@@ -32,10 +32,10 @@ namespace managers{
 
         public:
             void loadMap();
+            void loadSevenRooms();
+            void loadEightRooms();
             void loadNineRooms();
             void loadRooms();
-
-            void loadBoundaries();
 
         public:
             std::vector<int> getMap();

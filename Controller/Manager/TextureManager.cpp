@@ -27,20 +27,20 @@ void TextureManager::loadTest() {
     sf::Texture* pTexture;
     sf::RectangleShape* pShape;
 
-    // MapManager::getInstance()->loadMap();
-    // std::vector<int> vecMap = MapManager::getInstance()->getMap();
+    MapManager::getInstance()->loadMap();
+    std::vector<int> vecMap = MapManager::getInstance()->getMap();
 
-    // //Load connecting grids
-    // for(int i = 0; i < vecMap.size(); i++) {
-    //     pTexture = new sf::Texture();
-    //     pTexture->loadFromFile("View/Image/Debug/map/grid" + std::to_string(vecMap[i]) + ".png");
-    //     this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
-    // }
+    // Load connecting grids
+    for(int i = 0; i < vecMap.size(); i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/map/grid" + std::to_string(vecMap[i]) + ".png");
+        this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
+    }
 
     //Load map[debug]
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Debug/map/grid1.png");
-    this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
+    // pTexture = new sf::Texture();
+    // pTexture->loadFromFile("View/Image/Debug/map/grid8.png");
+    // this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
 
 
     //Load char
@@ -54,14 +54,28 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::PLAYER].push_back(pTexture);
     }
 
-    //Load Boundaries
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Debug/map/bounds/g1_left.png");
-    this->mapTexture[AssetType::G1_LEFT].push_back(pTexture);
+    // Load Boundaries [Left]
+    for(int i = 0; i < vecMap.size(); i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/map/bounds/g" + std::to_string(vecMap[i]) + "_left.png");
+        this->mapTexture[AssetType::LEFT].push_back(pTexture);
+    }
 
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Debug/map/bounds/g1_top.png");
-    this->mapTexture[AssetType::G1_TOP].push_back(pTexture);
+    // Load Boundaries [Top]
+    for(int i = 0; i < vecMap.size(); i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/map/bounds/g" + std::to_string(vecMap[i]) + "_top.png");
+        this->mapTexture[AssetType::TOP].push_back(pTexture);
+    }
+
+    //Load Boundaries [Debug]
+    // pTexture = new sf::Texture();
+    // pTexture->loadFromFile("View/Image/Debug/map/bounds/g8_left.png");
+    // this->mapTexture[AssetType::LEFT].push_back(pTexture);
+
+    // pTexture = new sf::Texture();
+    // pTexture->loadFromFile("View/Image/Debug/map/bounds/g8_top.png");
+    // this->mapTexture[AssetType::TOP].push_back(pTexture);
 }
 
 void TextureManager::unloadAll() {

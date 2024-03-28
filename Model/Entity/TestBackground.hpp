@@ -3,6 +3,8 @@
 #include "../GameObject.hpp"
 #include "../AnimatedTexture.hpp"
 #include "../Component/Renderer/Renderer.hpp"
+#include "../Component/Input/BackgroundInput.hpp"
+#include "../Component/Script/BackgroundAction.hpp"
 
 namespace entities{
     using namespace components;

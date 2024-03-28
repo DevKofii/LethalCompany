@@ -2,18 +2,21 @@
 
 using namespace components;
 
-BackgroundAction::BackgroundAction(std::string strName) : Component(strName, ComponentType::SCRIPT) {}
+BackgroundAction::BackgroundAction(std::string strName) : Component(strName, ComponentType::SCRIPT) {
+    this->bDebug = false;
+}
 
 void BackgroundAction::perform() {
     BackgroundInput* pBackgroundInput = (BackgroundInput*)this->getOwner()->getComponents(ComponentType::INPUT)[0]; 
     if(pBackgroundInput == NULL) std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     else {
+        this->debug();
         if(pBackgroundInput->getInteract()) {
-            //std::cout << "Loading Test Scene" << std::endl;
-            SceneManager::getInstance()->loadScene(SceneTag::TEST_SCENE);
-        }
-        if(pBackgroundInput->getQuit()) {
-            SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
+            this->bDebug = true;
         }
     }
+}
+
+void BackgroundAction::debug() {
+    if(this->bDebug) std::cout << "Debug Press" << std::endl;
 }

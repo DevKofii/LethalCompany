@@ -7,8 +7,192 @@ void MapManager::loadMap() {
     this->nRooms = (rand() % (9 - 4 + 1)) + 4;
     std::cout << "Rooms: " << this->nRooms << std::endl;  
 
-    if(this->nRooms == 9) this->loadNineRooms();
+    if(this->nRooms == 7) this->loadSevenRooms();
+    if(this->nRooms == 8) this->loadEightRooms();
+    else if(this->nRooms == 9) this->loadNineRooms();
     else this->loadRooms();
+}
+
+void MapManager::loadSevenRooms() {
+    sf::Texture* pTexture;
+    this->nRandomNum = (rand() % (8 - 1 + 1)) + 1;
+    switch(this->nRandomNum) {
+        case 1:
+            this->setActiveGrid(1);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(7);
+            break;
+        case 2:
+            this->setActiveGrid(9);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(3);
+            break;
+        case 3:
+            this->setActiveGrid(3);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(9);
+            break;
+        case 4:
+            this->setActiveGrid(7);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(1);
+            break;
+        case 5:
+            this->setActiveGrid(1);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(3);
+            break;
+        case 6:
+            this->setActiveGrid(9);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(7);
+            break;
+        case 7:
+            this->setActiveGrid(7);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(9);
+            break;
+        case 8:
+            this->setActiveGrid(3);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(1);
+            break;
+    }
+}
+
+void MapManager::loadEightRooms() {
+    sf::Texture* pTexture;
+    this->nRandomNum = (rand() % (8 - 1 + 1)) + 1;
+    switch(this->nRandomNum) {
+        case 1:
+            this->setActiveGrid(1);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(8);
+            break;
+        case 2:
+            this->setActiveGrid(9);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(2);
+            break;
+        case 3:
+            this->setActiveGrid(3);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(8);
+            break;
+        case 4:
+            this->setActiveGrid(7);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(2);
+            break;
+        case 5:
+            this->setActiveGrid(1);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(6);
+            break;
+        case 6:
+            this->setActiveGrid(9);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(4);
+            break;
+        case 7:
+            this->setActiveGrid(7);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(6);
+            break;
+        case 8:
+            this->setActiveGrid(3);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(4);
+            break;
+    }
 }
 
 void MapManager::loadNineRooms() {
@@ -16,6 +200,7 @@ void MapManager::loadNineRooms() {
     this->nRandomNum = (rand() % (8 - 1 + 1)) + 1;
     switch(this->nRandomNum) {
         case 1:
+            this->setActiveGrid(1);
             this->vecMap.push_back(1);
             this->vecMap.push_back(2);
             this->vecMap.push_back(3);
@@ -27,6 +212,7 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(9);
             break;
         case 2:
+            this->setActiveGrid(9);
             this->vecMap.push_back(9);
             this->vecMap.push_back(8);
             this->vecMap.push_back(7);
@@ -38,6 +224,7 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(1);
             break;
         case 3:
+            this->setActiveGrid(3);
             this->vecMap.push_back(3);
             this->vecMap.push_back(2);
             this->vecMap.push_back(1);
@@ -49,6 +236,7 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(7);
             break;
         case 4:
+            this->setActiveGrid(7);
             this->vecMap.push_back(7);
             this->vecMap.push_back(8);
             this->vecMap.push_back(9);
@@ -60,6 +248,7 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(3);
             break;
         case 5:
+            this->setActiveGrid(1);
             this->vecMap.push_back(1);
             this->vecMap.push_back(4);
             this->vecMap.push_back(7);
@@ -71,6 +260,7 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(9);
             break;
         case 6:
+            this->setActiveGrid(9);
             this->vecMap.push_back(9);
             this->vecMap.push_back(6);
             this->vecMap.push_back(3);
@@ -82,6 +272,7 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(1);
             break;
         case 7:
+            this->setActiveGrid(7);
             this->vecMap.push_back(7);
             this->vecMap.push_back(4);
             this->vecMap.push_back(1);
@@ -93,6 +284,7 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(3);
             break;
         case 8:
+            this->setActiveGrid(3);
             this->vecMap.push_back(3);
             this->vecMap.push_back(6);
             this->vecMap.push_back(9);
@@ -104,9 +296,6 @@ void MapManager::loadNineRooms() {
             this->vecMap.push_back(7);
             break;
     }
-
-    for(int i = 0; i < this->vecMap.size(); i++) std::cout << this->vecMap[i] << " ";
-    std::cout << std::endl;
 }
 
 void MapManager::loadRooms() {
@@ -122,6 +311,7 @@ void MapManager::loadRooms() {
         }
 
     for(int i = 0; i < this->nRooms - 1; i++) {
+        srand(time(NULL));
         switch(this->nCurrent) {
             case 1:
                 this->nGrid = (rand() % (9 - 1 + 1)) + 1;
@@ -173,9 +363,10 @@ void MapManager::loadRooms() {
 
             case 8:
                 this->nGrid = (rand() % (9 - 1 + 1)) + 1;
-                while(this->nGrid == 1 || this->nGrid == 2 || this->nGrid == 3 || this->nGrid == 4 || this->nGrid == 6 || this->nGrid == 8 || this->getLock(this->nGrid) == true) {
+                while(this->nGrid == 1 || this->nGrid == 2 || this->nGrid == 3 || this->nGrid == 4 || this->nGrid == 6 || this->nGrid == 8) {
                     this->nGrid = (rand() % (9 - 1 + 1)) + 1;
                 }
+                while(this->getLock(this->nGrid) == true) this->nGrid = (rand() % (9 - 1 + 1)) + 1;
                 break;
 
             case 9:
@@ -188,27 +379,11 @@ void MapManager::loadRooms() {
                 break;
         }
         this->nCurrent = this->nGrid;
-        this->setLock(this->nGrid,true);
         this->vecMap.push_back(this->nCurrent);
+        this->setLock(this->nCurrent,true);
     }
-    for(int i = 0; i < this->vecMap.size(); i++) std::cout << this->vecMap[i] << " ";
-    std::cout << std::endl;
-}
-
-void MapManager::loadBoundaries() { 
-    switch(this->nActiveGrid)
-    {
-        case 1:
-            //Pos
-            this->VLeftPos = {0.f, GRID1_Y};
-            this->VRightPos = {GRID1_X + GRID1_WIDTH, GRID1_Y};
-            this->VTopPos = {GRID1_X, 0.f};
-            this->VBottomPos = {GRID1_X, GRID1_Y + GRID1_HEIGHT};
-            break;
-
-        default:
-            break;
-    }
+    // for(int i = 0; i < this->vecMap.size(); i++) std::cout << this->vecMap[i] << " ";
+    // std::cout << std::endl;
 }
 
 std::vector<int> MapManager::getMap() {

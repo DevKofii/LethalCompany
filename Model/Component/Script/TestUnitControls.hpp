@@ -9,7 +9,6 @@
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
 
-
 namespace components {
     using namespace models;
     using namespace entities;

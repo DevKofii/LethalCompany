@@ -23,5 +23,9 @@ namespace components {
 
         public:
             void perform();
+
+        public:
+            void windowBounds();
+            void mapBounds();
     };
 }

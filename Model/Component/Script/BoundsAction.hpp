@@ -1,26 +1,29 @@
 #pragma once
 
+#include "../../../Config/Settings.hpp"
+
 #include <iostream>
 #include "SFML/Graphics.hpp"
-#include "../Input/BackgroundInput.hpp"
 #include "../Component.hpp"
+#include "../../Entity/TestBoundary.hpp"
 #include "../../Enum/ComponentType.hpp"
-#include "../../Enum/SceneTag.hpp"
 #include "../../GameObject.hpp"
 #include "../../../Controller/Manager/SceneManager.hpp"
 #include "../../../Controller/Manager/MapManager.hpp"
 
 namespace components {
+    using namespace models;
     using namespace managers;
-    class BackgroundAction : public Component {
+    using namespace entities;
+    class BoundsAction : public Component {
         protected:
-            bool bDebug;
+            std::vector<int> vecMap;
+            int nCurrentGrid;
 
         public:
-            BackgroundAction(std::string strName);
+            BoundsAction(std::string strName);
 
         public:
             void perform();
-            void debug();
     };
 }

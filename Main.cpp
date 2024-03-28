@@ -49,6 +49,7 @@
 #include "Model/Component/Script/TestUnitControls.cpp"
 #include "Model/Component/Script/TestBulletMovement_R.cpp"
 #include "Model/Component/Script/TestBulletMovement_L.cpp"
+#include "Model/Component/Script/BoundsAction.cpp"
 
 #include "Model/Component/Script/FrameAnimation.cpp"
 #include "Model/Component/Script/CollisionManager.cpp"

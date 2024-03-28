@@ -23,8 +23,14 @@ void TestScene::createBackground() {
     TestBackground* pTestBackground = new TestBackground("TestBackground", pTexture);
     GameObjectManager::getInstance()->addObject(pTestBackground); //First Grid loaded here
 
-    //Set Active Grid
-    // MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
+    std::vector<int> vecMap = MapManager::getInstance()->getMap();
+
+    for(int i = 0; i < vecMap.size(); i++) std::cout << vecMap[i] << " ";
+    std::cout << std::endl;
+
+    // Set Active Grid
+    // std::cout << MapManager::getInstance()->getMapGrid(0) << std::endl;
+    MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
     // MapManager::getInstance()->loadBoundaries();
 }
 
@@ -32,15 +38,13 @@ void TestScene::createBoundaries() {
     //Load Boundaries | Initialize
 
     //LeftBounds
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::G1_LEFT));
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LEFT));
     TestBoundary* pTestBoundary = new TestBoundary("LeftBounds", pTexture);
-    pTestBoundary->setPosition({0.f, GRID1_Y});
     GameObjectManager::getInstance()->addObject(pTestBoundary);
 
     //TopBounds
-    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::G1_TOP));
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOP));
     pTestBoundary = new TestBoundary("TopBounds", pTexture);
-    pTestBoundary->setPosition({GRID1_X, 0.f});
     GameObjectManager::getInstance()->addObject(pTestBoundary);
 }
 

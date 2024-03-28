@@ -14,5 +14,9 @@ enum class AssetType : int {
     TEST_BULLET,
     TEST_SHAPE,
     G1_LEFT,
-    G1_TOP
+    G1_TOP,
+    LEFT,
+    RIGHT,
+    TOP,
+    BOTTOM
 };
