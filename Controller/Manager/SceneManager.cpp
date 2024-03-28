@@ -35,6 +35,10 @@ bool SceneManager::getLoaded(SceneTag ETag) {
     return this->pActiveScene->getTag() == ETag;
 }
 
+Scene* SceneManager::getActiveScene() {
+    return this->pActiveScene;
+}
+
 
 /* * * * * * * * * * * * * * * * * * * * * 
  *       SINGLETON-RELATED CONTENT       * 

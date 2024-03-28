@@ -15,15 +15,9 @@ void MainMenuScene::onLoadObjects() {
 void MainMenuScene::onUnloadResources() {
     TextureManager::getInstance()->unloadAll();
 }
-
-/*
-void MainMenuScene::onLoadObjects() {
-    //Scene::onLoadObjects(); calls parent function
-}
-*/
  
 void MainMenuScene::createBackground() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::MAIN_MENU_BACKGROUND));
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TITLE_SCREEN));
     Background* pBackground = new Background("Background", pTexture);
     GameObjectManager::getInstance()->addObject(pBackground);
 }

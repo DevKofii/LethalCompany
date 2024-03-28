@@ -23,7 +23,7 @@ void BulletMovement::perform() {
 
             float fHalfWidth = this->pOwner->getSprite()->getGlobalBounds().width / 2.0f;
             if(this->pOwner->getSprite()->getPosition().x >= (SCREEN_WIDTH + fHalfWidth)) {
-                //ObjectPoolManager::getInstance()->getPool(pPoolableOwner->getTag())->releasePoolable(pPoolableOwner);
+                ObjectPoolManager::getInstance()->getPool(pPoolableOwner->getTag())->releasePoolable(pPoolableOwner);
             }
         }
     }

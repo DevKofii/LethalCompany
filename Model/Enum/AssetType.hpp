@@ -7,5 +7,9 @@ enum class AssetType : int {
     PLAYER_BULLET,
     MAIN_MENU_BACKGROUND,
     GAME_BACKGROUND,
-    MAP_BACKGROUND
+    TITLE_SCREEN,
+    TEST_BACKGROUND,
+    TEST_UNIT,
+    TEST_BOT,
+    TEST_BULLET
 };

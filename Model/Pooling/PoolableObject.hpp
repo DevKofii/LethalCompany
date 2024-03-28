@@ -9,11 +9,16 @@ namespace poolables {
     
     class PoolableObject : public GameObject {
         protected:
+            GameObject* pOwner;
             PoolTag ETag;
 
         public:
             PoolableObject(PoolTag ETag, std::string strName, AnimatedTexture* pTexture); 
             ~PoolableObject();
+
+        public:
+            void attachOwner(GameObject* pOwner);
+            void detachOwner();
 
         public:
             virtual void initialize()       = 0;
@@ -22,6 +27,7 @@ namespace poolables {
             virtual PoolableObject* clone() = 0;
 
         public:
+            GameObject* getOwner();
             PoolTag getTag();
     };
 }

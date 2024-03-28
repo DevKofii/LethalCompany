@@ -3,9 +3,11 @@
 #include "../../Model/Enum/PoolTag.hpp"
 #include "../../Model/Pooling/PoolableObject.hpp"
 #include "../../Controller/Manager/GameObjectManager.hpp"
+#include "../../Model/GameObject.hpp"
 
 namespace poolables {
     using namespace managers;
+    using namespace models;
     class GameObjectPool {
         private:
             PoolTag ETag;
@@ -13,6 +15,9 @@ namespace poolables {
             PoolableObject* pPoolableReference;
             std::vector<PoolableObject*> vecAvailableObject;
             std::vector<PoolableObject*> vecUsedObject;
+            float fSpeed;
+
+            GameObject* pParent;
 
         public:
             GameObjectPool(PoolTag ETag, int nPoolSize, PoolableObject* pPoolableReference);
@@ -29,6 +34,8 @@ namespace poolables {
 
         public:
             PoolTag getTag();
-        
+            float getSpeed();
+            void setSpeed(float fSpeed);
+            int getAvailable();
     };
 }

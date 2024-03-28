@@ -18,8 +18,8 @@ void ShipControls::perform() {
         float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
 
         if(pInput->getSpace()) {
-            pInput->resetSpace();
-            //ObjectPoolManager::getInstance()->getPool(PoolTag::PLAYER_BULLET)->requestPoolable();
+            //pInput->resetSpace();
+            ObjectPoolManager::getInstance()->getPool(PoolTag::PLAYER_BULLET)->requestPoolable();
         }
 
         if(pInput->getLeft()) {

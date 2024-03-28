@@ -8,11 +8,15 @@
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
 #include "../../Enum/PoolTag.hpp"
-//#include "../../Entity/Ship.hpp"
-//#include "../../../Controller/Manager/ObjectPoolManager.hpp"
+#include "../../../Controller/Manager/ObjectPoolManager.hpp"
+
+// namespace entities {
+//     class Ship;
+// }
 
 namespace components {
-    //using namespace managers;
+    using namespace models;
+    using namespace managers;
     using namespace entities;
     class ShipControls : public Component {
         private:

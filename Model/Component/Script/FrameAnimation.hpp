@@ -3,8 +3,8 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
 #include "../../AnimatedTexture.hpp"
-#include "../Input/PlayerInput.hpp"
-#include "../../Entity/Player.hpp"
+#include "../Input/TestUnitInput.hpp"
+#include "../../Entity/TestUnit.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"

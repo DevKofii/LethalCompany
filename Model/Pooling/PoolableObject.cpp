@@ -8,6 +8,18 @@ PoolableObject::PoolableObject(PoolTag ETag, std::string strName, AnimatedTextur
 
 PoolableObject::~PoolableObject() {}
 
+void PoolableObject::attachOwner(GameObject* pOwner) {
+    this->pOwner = pOwner;
+}
+
+void PoolableObject::detachOwner() {
+    delete this;
+}
+
+GameObject* PoolableObject::getOwner() {
+    return this->pOwner;
+}
+
 PoolTag PoolableObject::getTag() {
     return this->ETag;
 }

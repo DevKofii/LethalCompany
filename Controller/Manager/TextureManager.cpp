@@ -1,8 +1,29 @@
 #include "TextureManager.hpp"
 using namespace managers;
-using namespace std;
 
-void TextureManager::loadMap() {
+void TextureManager::loadAll() {}
+
+void TextureManager::loadMainMenu() {
+    sf::Texture* pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/TitleScreen.png");
+    this->mapTexture[AssetType::TITLE_SCREEN].push_back(pTexture);
+}
+
+void TextureManager::loadGame() {
+    sf::Texture* pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Background.png");
+    this->mapTexture[AssetType::GAME_BACKGROUND].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Space Impact/Player/this_ship_be_otp.png");
+    this->mapTexture[AssetType::SHIP].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Space Impact/Player/bullet.png");
+    this->mapTexture[AssetType::PLAYER_BULLET].push_back(pTexture);
+}
+
+void TextureManager::loadTest() {
     MapManager::getInstance()->loadMap();
     sf::Texture* pTexture;
     std::vector<int> vecMap = MapManager::getInstance()->getMap();
@@ -11,12 +32,9 @@ void TextureManager::loadMap() {
     for(int i = 0; i < vecMap.size(); i++) {
         pTexture = new sf::Texture();
         pTexture->loadFromFile("View/Image/Debug/map/grid" + std::to_string(vecMap[i]) + ".png");
-        this->mapTexture[AssetType::MAP_BACKGROUND].push_back(pTexture);
+        this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
     }
-}
 
-void TextureManager::loadPlayer() {
-    sf::Texture* pTexture;
     pTexture->loadFromFile("View/Image/Debug/char/anims/idle/idle.png");
     this->mapTexture[AssetType::PLAYER].push_back(pTexture);
 
@@ -25,26 +43,6 @@ void TextureManager::loadPlayer() {
         pTexture->loadFromFile("View/Image/Debug/char/anims/move/frame" + std::to_string(i) + ".png");
         this->mapTexture[AssetType::PLAYER].push_back(pTexture);
     }
-}
-
-void TextureManager::loadMainMenu() {
-    // sf::Texture* pTexture = new sf::Texture();
-    // pTexture->loadFromFile("View/Image/Space Impact/main_menu_background.png");
-    // this->mapTexture[AssetType::MAIN_MENU_BACKGROUND].push_back(pTexture);
-}
-
-void TextureManager::loadGame() {
-    // sf::Texture* pTexture = new sf::Texture();
-    // pTexture->loadFromFile("View/Image/Space Impact/game_background.png");
-    // this->mapTexture[AssetType::GAME_BACKGROUND].push_back(pTexture);
-
-    // pTexture = new sf::Texture();
-    // pTexture->loadFromFile("View/Image/Space Impact/Player/this_ship_be_otp.png");
-    // this->mapTexture[AssetType::SHIP].push_back(pTexture);
-
-    // pTexture = new sf::Texture();
-    // pTexture->loadFromFile("View/Image/Space Impact/Player/bullet.png");
-    // this->mapTexture[AssetType::PLAYER_BULLET].push_back(pTexture);
 }
 
 void TextureManager::unloadAll() {
@@ -66,6 +64,7 @@ std::vector<sf::Texture*> TextureManager::getTexture(AssetType EKey) {
 sf::Texture* TextureManager::getTextureAt(AssetType EKey, int nFrame) {
     return this->mapTexture[EKey][nFrame];
 }
+
 
 TextureManager* TextureManager::P_SHARED_INSTANCE = NULL;
 

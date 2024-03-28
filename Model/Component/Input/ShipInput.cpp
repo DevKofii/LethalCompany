@@ -29,7 +29,7 @@ void ShipInput::processKeyInput(bool bPressed) {
     sf::Keyboard::Key CKey = this->CEvent.key.code;
 
     switch(CKey) {
-        case sf::Keyboard::Space:
+        case sf::Keyboard::F:
             this->bSpace = bPressed;
             break;
 

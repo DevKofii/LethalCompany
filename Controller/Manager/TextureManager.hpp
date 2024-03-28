@@ -12,16 +12,16 @@ namespace managers{
             std::vector<AssetType> vecAssetTypes;
 
         public:
-            void loadMap();
-            void loadPlayer();
-
+            void loadAll();
             void loadMainMenu();
             void loadGame();
+            void loadTest();
             void unloadAll();
 
         public:
             std::vector<sf::Texture*> getTexture(AssetType EKey);
             sf::Texture* getTextureAt(AssetType EKey, int nFrame);
+
         private:
             static TextureManager* P_SHARED_INSTANCE;
             TextureManager();

@@ -4,11 +4,11 @@
 #include "../../Enum/ComponentType.hpp"
 #include "../../Pooling/PoolableObject.hpp"
 #include "../Component.hpp"
-//#include "../../../Controller/Manager/ObjectPoolManager.hpp"
+#include "../../../Controller/Manager/ObjectPoolManager.hpp"
 
 namespace components {
     using namespace models;
-    //using namespace managers;
+    using namespace managers;
     using namespace poolables;
 
     class BulletMovement : public Component {

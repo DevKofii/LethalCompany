@@ -7,7 +7,7 @@ Scene::Scene(SceneTag ETag) {
 }
 
 void Scene::onUnloadObjects() {
-    GameObjectManager::getInstance()->deleteAllObjects();
+    //GameObjectManager::getInstance()->deleteAllObjects();
 }
 
 void Scene::registerObject(GameObject* pGameObject){

@@ -1,15 +1,15 @@
 #pragma once
+
 #include "iostream"
 #include "SFML/Graphics.hpp"
 #include "Manager/TextureManager.hpp"
 #include "Manager/GameObjectManager.hpp"
+#include "Manager/ObjectCollisionManager.hpp"
 #include "Manager/SceneManager.hpp"
-#include "../Model/Entity/Player.hpp"
 #include "../Model/Enum/AssetType.hpp"
 #include "../Model/Scene/MainMenuScene.hpp"
 #include "../Model/Scene/GameScene.hpp"
-#include "../Model/Component/Script/PlayerMovement.hpp"
-#include "../Model/Component/Input/PlayerInput.hpp"
+#include "../Model/Scene/TestScene.hpp"
 
 namespace controllers {
     using namespace managers;

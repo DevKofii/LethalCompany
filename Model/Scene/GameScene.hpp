@@ -4,10 +4,11 @@
 #include "../AnimatedTexture.hpp"
 #include "../Enum/SceneTag.hpp"
 #include "../Enum/PoolTag.hpp"
-#include "../Entity/Player.hpp"
-#include "../Entity/Background.hpp"
+#include "../Entity/Ship.hpp"
+#include "../Entity/TestBackground.hpp"
 #include "../Pooling/Entity/PlayerBullet.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
+#include "../../Controller/Manager/ObjectPoolManager.hpp"
 #include "../../Controller/Pooling/GameObjectPool.hpp"
 
 namespace scenes {
@@ -25,10 +26,7 @@ namespace scenes {
         
         private:
             void createBackground();
-            void createPlayer();
+            void createShip();
             void createObjectPools();
-
-        public:
-
     };
 }

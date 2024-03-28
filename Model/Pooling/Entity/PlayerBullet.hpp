@@ -5,12 +5,14 @@
 #include "../PoolableObject.hpp"
 #include "../../Entity/Ship.hpp"
 #include "../../Enum/PoolTag.hpp"
+#include "../../Component/Script/BulletMovement.hpp"
 #include "../../../Controller/Manager/TextureManager.hpp"
 
 namespace poolables{
     using namespace models;
     using namespace entities;
     using namespace managers;
+    using namespace components;
     class PlayerBullet : public PoolableObject {
         private:
             Ship* pShip;

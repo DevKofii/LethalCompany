@@ -2,7 +2,6 @@
 
 #include "../Scene.hpp"
 #include "../Enum/SceneTag.hpp"
-#include "../Entity/Player.hpp"
 #include "../Entity/Background.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
 

@@ -10,7 +10,8 @@ void Ship::initialize() {
     this->centerOrigin();
     this->pSprite->setColor(this->CNormalColor);
     //this->pSprite->setOrigin(51.f,36.f); // Center Origin | Divide dims by 2
-    this->pSprite->setPosition(640.f,320.f);
+    this->pSprite->setPosition(90.f,210.f);
+    //this->pSprite->setPosition(640.f,320.f);
     this->pSprite->setScale(0.5f,0.5f);
     
 

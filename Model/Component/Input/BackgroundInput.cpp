@@ -4,6 +4,7 @@ using namespace components;
 
 BackgroundInput::BackgroundInput(std::string strName) : GeneralInput(strName) {
     this->bInteract = false;
+    this->bQuit = false;
 }
 void BackgroundInput::perform() {
     switch(CEvent.type) {
@@ -12,8 +13,6 @@ void BackgroundInput::perform() {
             break;
         case sf::Event::KeyReleased:
             this->processKeyboardInput(CEvent.key.code, false);
-            //std::cout << "Released." << std::endl;
-            //this->nRandomNum = NULL;
             break;
         default:
             break;
@@ -21,8 +20,12 @@ void BackgroundInput::perform() {
 }
 void BackgroundInput::processKeyboardInput(sf::Keyboard::Key CKey, bool bPressed) {
     switch(CKey) {
-        case sf::Keyboard::F:
+        case sf::Keyboard::Space:
             this->bInteract = bPressed;
+            break;
+
+        case sf::Keyboard::Q:
+            this->bQuit = bPressed;
             break;
 
         default:
@@ -34,7 +37,6 @@ bool BackgroundInput::getInteract() {
     return this->bInteract;
 }
 
-
-// bool BackgroundInput::getQuit() {
-//     return this->bQuit;
-// }
+bool BackgroundInput::getQuit() {
+    return this->bQuit;
+}

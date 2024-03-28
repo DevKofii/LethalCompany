@@ -1,19 +1,17 @@
 #pragma once
 
-#include <iostream>
+#include "iostream"
 #include "SFML/Graphics.hpp"
 #include "../Input/PlayerInput.hpp"
-#include "../../Entity/Player.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
 
+/* [TODO] :
+   Include ALL necessary classes. */
+
 namespace components {
     class PlayerMovement : public Component {
-        protected:
-            Player* pPlayer;
-            PlayerInput* pInput;
-
         private:
             float fSpeed;
 

@@ -2,19 +2,15 @@
 
 using namespace models;
 
-GameObject::GameObject(std::string strName, float fSpeed) {
-    this->bEnabled = true;
-    this->strName = strName;
-    this->fSpeed = fSpeed;
-    this->pSprite = new sf::Sprite();
-}
-
 GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
     this->bEnabled = true;
     this->strName = strName;
     this->pSprite = new sf::Sprite();
     this->pTexture = pTexture;
     this->setFrame(1);
+    this->nCurrentFrame = 0;
+    this->pParent = NULL;
+    this->vecChildren = {};
 }
 
 GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pTexture) {
@@ -23,7 +19,10 @@ GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pText
     this->fSpeed = fSpeed;
     this->pSprite = new sf::Sprite();
     this->pTexture = pTexture;
-    this->setFrame(1);
+    this->setFrame(0);
+    this->nCurrentFrame = 0;
+    this->pParent = NULL;
+    this->vecChildren = {};
 }
 
 void GameObject::processEvents(sf::Event CEvent) {
@@ -76,7 +75,32 @@ void GameObject::detachComponent(Component* pComponent) {
 
 }
 
+void GameObject::attachChild(GameObject* pChild) {
+    this->vecChildren.push_back(pChild);
+    pChild->setParent(this);
+    pChild->initialize();
+}
+
+void GameObject::detachChild(GameObject* pChild) {
+    int nIndex = -1;
+    for(int i = 0; i < this->vecChildren.size() && nIndex == -1; i++) {
+        if(this->vecChildren[i] == pChild) {
+            nIndex = i;
+        }
+    }
+
+    if(nIndex != -1)
+        this->vecChildren.erase(this->vecChildren.begin() + nIndex);
+}
+
 Component* GameObject::findComponentByName(std::string strName) {
+    // for(int i = -1; i < this->vecComponents.size(); i++) {
+    //      if(this->vecComponents[i]->getName() == strName) { 
+    //          return this->vecComponents[i];
+    //      }
+    //  }
+    // //return NULL;
+
     for(Component* pComponent : this->vecComponents) {
         if(pComponent->getName() == strName)
             return pComponent;
@@ -100,6 +124,7 @@ void GameObject::centerOrigin() {
     if(this->pTexture != NULL) {
         int nWidth = this->pSprite->getTexture()->getSize().x;
         int nHeight = this->pSprite->getTexture()->getSize().y;
+
         this->pSprite->setOrigin(nWidth/2,nHeight/2);
     }
 }
@@ -118,7 +143,11 @@ sf::Sprite* GameObject::getSprite() {
 
 void GameObject::setTexture(AnimatedTexture* pTexture) {
     this->pTexture = pTexture;
-    this->pSprite->setTexture(*this->pTexture->getFrame());
+    //this->pSprite->setTexture(*this->pTexture->getFrame());
+}
+
+void GameObject::setSpeed(float fSpeed) {
+    this->fSpeed = fSpeed;
 }
 
 float GameObject::getSpeed() {
@@ -134,10 +163,6 @@ void GameObject::setFrame(int nFrame) {
         this->pSprite->setTexture(*this->pTexture->getFrame());
         this->pSprite->setTextureRect(sf::IntRect(0,0,nWidth,nHeight));
     }
-}
-
-int GameObject::getFrame() {
-    return this->nFrame;
 }
 
 void GameObject::setEnabled(bool bEnabled) {
@@ -158,6 +183,14 @@ bool GameObject::getOrientationRight() {
 
 bool GameObject::getOrientationLeft() {
     return this->bOrientLeft;
+}
+
+GameObject* GameObject::getParent() {
+    return this->pParent;
+}
+
+void GameObject::setParent(GameObject* pParent) {
+    this->pParent = pParent;
 }
 
 sf::Vector2f GameObject::getPosition() {

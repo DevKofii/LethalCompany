@@ -22,6 +22,7 @@ namespace managers {
             void unloadScene();
             void checkLoadScene();
             bool getLoaded(SceneTag ETag);
+            Scene* getActiveScene();
 
         /* * * * * * * * * * * * * * * * * * * * * 
          *       SINGLETON-RELATED CONTENT       * 

@@ -2,17 +2,17 @@
 
 using namespace controllers;
 
-Game::Game() : CWindow(sf::VideoMode(1280,720),"Paul Nikko Ragudo",sf::Style::Close){
-    SceneManager::getInstance()->registerScene(new GameScene());
-    SceneManager::getInstance()->loadScene(SceneTag::GAME_SCENE);
+Game::Game() : CWindow(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT),"PROJECT BULLET HELL",sf::Style::Close){
+    SceneManager::getInstance()->registerScene(new TestScene());
+    SceneManager::getInstance()->loadScene(SceneTag::TEST_SCENE);
 }
 
 void Game::run() {
     sf::Clock CClock = sf::Clock();
-    sf::Time tTimePerFrame = sf::seconds(1.0f / 60.0f);
+    sf::Time tTimePerFrame = sf::seconds(1.0f / FRAME_RATE_LIMIT);
     sf::Time tTimeSinceLastUpdate = sf::Time::Zero;
 
-    this->CWindow.setFramerateLimit(60);
+    this->CWindow.setFramerateLimit(FRAME_RATE_LIMIT);
 
     while(this->CWindow.isOpen()) {
         tTimeSinceLastUpdate += CClock.restart();
@@ -24,6 +24,7 @@ void Game::run() {
         }
 
         SceneManager::getInstance()->checkLoadScene();
+        //ObjectCollisionManager::getInstance()->checkCollision();
         this->render();
     }
 }

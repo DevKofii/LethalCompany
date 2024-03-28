@@ -9,7 +9,7 @@ namespace components {
     class BackgroundInput : public GeneralInput {
         private:
             bool bInteract;
-            //bool bQuit;
+            bool bQuit;
 
         public:
             BackgroundInput(std::string strName);
@@ -22,6 +22,6 @@ namespace components {
 
         public:
             bool getInteract();
-            // bool getQuit();
+            bool getQuit();
     };
 }
