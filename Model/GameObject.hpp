@@ -18,6 +18,9 @@ namespace models {
             std::vector<Component*> vecComponents;
             int nFrame;
 
+            bool bOrientRight;
+            bool bOrientLeft;
+
         public:
             GameObject(std::string strName, float fSpeed);
             GameObject(std::string strName, AnimatedTexture* pTexture);
@@ -53,5 +56,14 @@ namespace models {
             float getSpeed();
             int getFrame();
             void setFrame(int nFrame);
+
+            void setOrientationRight(bool bRight);
+            void setOrientationLeft(bool bLeft);
+            bool getOrientationRight();
+            bool getOrientationLeft();
+
+            virtual sf::Vector2f getPosition();
+            virtual void setPosition(sf::Vector2f vecPosition);
+            virtual void setScale(sf::Vector2f vecScale);
     };
 }

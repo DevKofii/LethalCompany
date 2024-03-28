@@ -8,17 +8,13 @@
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
 
+
 namespace components {
-    class PlayerMovement : public Component {
-        protected:
-            Player* pPlayer;
-            PlayerInput* pInput;
-
-        private:
-            float fSpeed;
-
+    using namespace models;
+    using namespace entities;
+    class CollisionManager : public Component {
         public:
-            PlayerMovement(std::string strName);
+            CollisionManager(std::string strName);
 
         public:
             void perform();

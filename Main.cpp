@@ -6,6 +6,7 @@
 
 #include "Controller/Game.cpp"
 #include "Controller/Manager/TextureManager.cpp"
+#include "Controller/Manager/MapManager.cpp"
 #include "Controller/Manager/GameObjectManager.cpp"
 #include "Controller/Manager/SceneManager.cpp"
 
@@ -36,6 +37,8 @@
 #include "Model/Component/Script/BackgroundAction.cpp"
 #include "Model/Component/Script/BulletMovement.cpp"
 #include "Model/Component/Script/ShipControls.cpp"
+#include "Model/Component/Script/CollisionManager.cpp"
+#include "Model/Component/Script/FrameAnimation.cpp"
 
 //#include "Model/Component/Pooling/PoolableObject.cpp"
 

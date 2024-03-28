@@ -2,7 +2,7 @@
 
 using namespace controllers;
 
-Game::Game() : CWindow(sf::VideoMode(1280,720),"Paul Nikko Ragudo",sf::Style::Close), CEntity("Player") {
+Game::Game() : CWindow(sf::VideoMode(1280,720),"Paul Nikko Ragudo",sf::Style::Close){
     SceneManager::getInstance()->registerScene(new GameScene());
     SceneManager::getInstance()->loadScene(SceneTag::GAME_SCENE);
 }

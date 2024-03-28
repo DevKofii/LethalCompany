@@ -4,7 +4,7 @@
 #include "../AnimatedTexture.hpp"
 #include "../Enum/SceneTag.hpp"
 #include "../Enum/PoolTag.hpp"
-#include "../Entity/Ship.hpp"
+#include "../Entity/Player.hpp"
 #include "../Entity/Background.hpp"
 #include "../Pooling/Entity/PlayerBullet.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
@@ -25,7 +25,7 @@ namespace scenes {
         
         private:
             void createBackground();
-            void createShip();
+            void createPlayer();
             void createObjectPools();
 
         public:

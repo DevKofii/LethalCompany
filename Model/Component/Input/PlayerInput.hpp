@@ -8,10 +8,10 @@
 namespace components {
     class PlayerInput : public GeneralInput {
         private:
-            bool bMovingLeft;
-            bool bMovingRight;
-            bool bMovingUp;
-            bool bMovingDown;
+            bool bLeft;
+            bool bRight;
+            bool bUp;
+            bool bDown;
 
         public:
             PlayerInput(std::string strName);
@@ -24,9 +24,9 @@ namespace components {
 
 
         public:
-            bool getMovingLeft();
-            bool getMovingRight();
-            bool getMovingUp();
-            bool getMovingDown();
+            bool getLeft();
+            bool getRight();
+            bool getUp();
+            bool getDown();
     };
 }

@@ -77,12 +77,13 @@ void GameObject::detachComponent(Component* pComponent) {
 }
 
 Component* GameObject::findComponentByName(std::string strName) {
-    for(int i = -1; i < this->vecComponents.size(); i++) {
-         if(this->vecComponents[i]->getName() == strName) { 
-             return this->vecComponents[i];
-         }
-     }
-    return nullptr;
+    for(Component* pComponent : this->vecComponents) {
+        if(pComponent->getName() == strName)
+            return pComponent;
+    }
+    
+    std::cout << "[ERROR] : Component [" << strName << "] NOT found." << std::endl;
+    return NULL;
 }
 
 std::vector<Component*> GameObject::getComponents(ComponentType EType) {
@@ -125,9 +126,13 @@ float GameObject::getSpeed() {
 }
 
 void GameObject::setFrame(int nFrame) {
+    int nWidth = this->pTexture->getFrame()->getSize().x;
+    int nHeight = this->pTexture->getFrame()->getSize().y;
+
     if(this->pTexture != NULL) {
         this->pTexture->setCurrentFrame(nFrame);
         this->pSprite->setTexture(*this->pTexture->getFrame());
+        this->pSprite->setTextureRect(sf::IntRect(0,0,nWidth,nHeight));
     }
 }
 
@@ -137,4 +142,32 @@ int GameObject::getFrame() {
 
 void GameObject::setEnabled(bool bEnabled) {
     this->bEnabled = bEnabled;
+}
+
+void GameObject::setOrientationRight(bool bRight) {
+    this->bOrientRight = bRight;
+}
+
+void GameObject::setOrientationLeft(bool bLeft) {
+    this->bOrientLeft = bLeft;
+}
+
+bool GameObject::getOrientationRight() {
+    return this->bOrientRight;
+}
+
+bool GameObject::getOrientationLeft() {
+    return this->bOrientLeft;
+}
+
+sf::Vector2f GameObject::getPosition() {
+    return this->pSprite->getPosition();
+}
+
+void GameObject::setPosition(sf::Vector2f vecPosition) {
+    this->pSprite->setPosition(vecPosition);
+}
+
+void GameObject::setScale(sf::Vector2f vecScale) {
+    this->pSprite->setScale(vecScale);
 }

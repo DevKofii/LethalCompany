@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "SFML/Graphics.hpp"
+#include "../../AnimatedTexture.hpp"
 #include "../Input/PlayerInput.hpp"
 #include "../../Entity/Player.hpp"
 #include "../Component.hpp"
@@ -9,16 +10,16 @@
 #include "../../GameObject.hpp"
 
 namespace components {
-    class PlayerMovement : public Component {
-        protected:
-            Player* pPlayer;
-            PlayerInput* pInput;
-
+    using namespace models;
+    using namespace entities;
+    class FrameAnimation : public Component {
         private:
-            float fSpeed;
-
+            float fFrameInterval;
+            float fTicks;
+            int nFrame;
+    
         public:
-            PlayerMovement(std::string strName);
+            FrameAnimation(std::string strName);
 
         public:
             void perform();

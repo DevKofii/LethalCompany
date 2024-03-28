@@ -7,12 +7,13 @@ GameScene::GameScene() : Scene(SceneTag::GAME_SCENE) {
 
 void GameScene::onLoadResources() {
     TextureManager::getInstance()->loadMap();
+    TextureManager::getInstance()->loadPlayer();
 }
 
 
 void GameScene::onLoadObjects() {
     this->createBackground();
-    //this->createShip();
+    this->createPlayer();
 }
 
 void GameScene::onUnloadResources() {
@@ -25,10 +26,15 @@ void GameScene::createBackground() {
     GameObjectManager::getInstance()->addObject(pBackground);
 }
 
-void GameScene::createShip() {
-    // AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHIP));
-    // Ship* pEntity = new Ship("Ship", pTexture);
-    // GameObjectManager::getInstance()->addObject(pEntity);
+void GameScene::createPlayer() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
+    Player* pPlayer = new Player("Player", pTexture);
+    pPlayer->setFrame(0);
+    pPlayer->setOrientationRight(false);
+    pPlayer->setOrientationLeft(true);
+    pPlayer->setScale({-2.0f,2.0f});
+    pPlayer->setPosition({690.f,210.f});
+    GameObjectManager::getInstance()->addObject(pPlayer);
 }
 
 void GameScene::createObjectPools() {

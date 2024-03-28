@@ -18,7 +18,6 @@ namespace controllers {
     class Game {
         private: 
             sf::RenderWindow CWindow;
-            Player CEntity;
 
             // GameObject CTest;
 

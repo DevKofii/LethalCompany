@@ -3,10 +3,10 @@
 using namespace components;
 
 PlayerInput::PlayerInput(std::string strName) : GeneralInput(strName){
-    this->bMovingLeft = false;
-    this->bMovingRight = false;
-    this->bMovingUp = false;
-    this->bMovingDown = false;
+    this->bLeft = false;
+    this->bRight = false;
+    this->bUp = false;
+    this->bDown = false;
 }
 
 void PlayerInput::perform() {
@@ -27,19 +27,19 @@ void PlayerInput::perform() {
 void PlayerInput::processKeyboardInput(sf::Keyboard::Key CKey, bool bPressed) {
     switch(CKey) {
         case sf::Keyboard::A:
-            this->bMovingLeft = bPressed;
+            this->bLeft = bPressed;
             break;
         
         case sf::Keyboard::D:
-            this->bMovingRight = bPressed;
+            this->bRight = bPressed;
             break;
 
         case sf::Keyboard::W:
-            this->bMovingUp = bPressed;
+            this->bUp = bPressed;
             break;
 
         case sf::Keyboard::S:
-            this->bMovingDown = bPressed;
+            this->bDown = bPressed;
             break;
 
         default:
@@ -47,18 +47,18 @@ void PlayerInput::processKeyboardInput(sf::Keyboard::Key CKey, bool bPressed) {
     }
 }
 
-bool PlayerInput::getMovingLeft() {
-    return this->bMovingLeft;
+bool PlayerInput::getLeft() {
+    return this->bLeft;
 }
 
-bool PlayerInput::getMovingRight() {
-    return this->bMovingRight;
+bool PlayerInput::getRight() {
+    return this->bRight;
 }
 
-bool PlayerInput::getMovingUp() {
-    return this->bMovingUp;
+bool PlayerInput::getUp() {
+    return this->bUp;
 }
 
-bool PlayerInput::getMovingDown() {
-    return this->bMovingDown;
+bool PlayerInput::getDown() {
+    return this->bDown;
 }
