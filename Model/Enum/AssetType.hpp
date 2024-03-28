@@ -11,5 +11,8 @@ enum class AssetType : int {
     TEST_BACKGROUND,
     TEST_UNIT,
     TEST_BOT,
-    TEST_BULLET
+    TEST_BULLET,
+    TEST_SHAPE,
+    G1_LEFT,
+    G1_TOP
 };

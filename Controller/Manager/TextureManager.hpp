@@ -10,7 +10,6 @@ namespace managers{
         private:
             std::unordered_map<AssetType, std::vector<sf::Texture*>> mapTexture;
             std::vector<AssetType> vecAssetTypes;
-
         public:
             void loadAll();
             void loadMainMenu();

@@ -24,17 +24,27 @@ void TextureManager::loadGame() {
 }
 
 void TextureManager::loadTest() {
-    MapManager::getInstance()->loadMap();
     sf::Texture* pTexture;
-    std::vector<int> vecMap = MapManager::getInstance()->getMap();
+    sf::RectangleShape* pShape;
 
-    //Load connecting grids
-    for(int i = 0; i < vecMap.size(); i++) {
-        pTexture = new sf::Texture();
-        pTexture->loadFromFile("View/Image/Debug/map/grid" + std::to_string(vecMap[i]) + ".png");
-        this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
-    }
+    // MapManager::getInstance()->loadMap();
+    // std::vector<int> vecMap = MapManager::getInstance()->getMap();
 
+    // //Load connecting grids
+    // for(int i = 0; i < vecMap.size(); i++) {
+    //     pTexture = new sf::Texture();
+    //     pTexture->loadFromFile("View/Image/Debug/map/grid" + std::to_string(vecMap[i]) + ".png");
+    //     this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
+    // }
+
+    //Load map[debug]
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/map/grid1.png");
+    this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
+
+
+    //Load char
+    pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Debug/char/anims/idle/idle.png");
     this->mapTexture[AssetType::PLAYER].push_back(pTexture);
 
@@ -43,6 +53,15 @@ void TextureManager::loadTest() {
         pTexture->loadFromFile("View/Image/Debug/char/anims/move/frame" + std::to_string(i) + ".png");
         this->mapTexture[AssetType::PLAYER].push_back(pTexture);
     }
+
+    //Load Boundaries
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/map/bounds/g1_left.png");
+    this->mapTexture[AssetType::G1_LEFT].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/map/bounds/g1_top.png");
+    this->mapTexture[AssetType::G1_TOP].push_back(pTexture);
 }
 
 void TextureManager::unloadAll() {
@@ -64,7 +83,6 @@ std::vector<sf::Texture*> TextureManager::getTexture(AssetType EKey) {
 sf::Texture* TextureManager::getTextureAt(AssetType EKey, int nFrame) {
     return this->mapTexture[EKey][nFrame];
 }
-
 
 TextureManager* TextureManager::P_SHARED_INSTANCE = NULL;
 

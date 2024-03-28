@@ -2,10 +2,24 @@
 
 using namespace models;
 
+GameObject::GameObject(std::string strName) {
+    this->bEnabled = true;
+    this->strName = strName;
+    this->fSpeed = 0;
+    this->pSprite = new sf::Sprite();
+    this->pShape = new sf::RectangleShape();
+    this->pTexture = NULL;
+    this->setFrame(0);
+    this->nCurrentFrame = 0;
+    this->pParent = NULL;
+    this->vecChildren = {};
+}
+
 GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
     this->bEnabled = true;
     this->strName = strName;
     this->pSprite = new sf::Sprite();
+    this->pShape = new sf::RectangleShape();
     this->pTexture = pTexture;
     this->setFrame(1);
     this->nCurrentFrame = 0;
@@ -18,6 +32,7 @@ GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pText
     this->strName = strName;
     this->fSpeed = fSpeed;
     this->pSprite = new sf::Sprite();
+    this->pShape = new sf::RectangleShape();
     this->pTexture = pTexture;
     this->setFrame(0);
     this->nCurrentFrame = 0;
@@ -94,13 +109,6 @@ void GameObject::detachChild(GameObject* pChild) {
 }
 
 Component* GameObject::findComponentByName(std::string strName) {
-    // for(int i = -1; i < this->vecComponents.size(); i++) {
-    //      if(this->vecComponents[i]->getName() == strName) { 
-    //          return this->vecComponents[i];
-    //      }
-    //  }
-    // //return NULL;
-
     for(Component* pComponent : this->vecComponents) {
         if(pComponent->getName() == strName)
             return pComponent;
@@ -143,7 +151,6 @@ sf::Sprite* GameObject::getSprite() {
 
 void GameObject::setTexture(AnimatedTexture* pTexture) {
     this->pTexture = pTexture;
-    //this->pSprite->setTexture(*this->pTexture->getFrame());
 }
 
 void GameObject::setSpeed(float fSpeed) {

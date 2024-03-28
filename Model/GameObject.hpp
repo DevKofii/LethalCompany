@@ -13,6 +13,7 @@ namespace models {
             bool bEnabled;
             std::string strName;
             sf::Sprite* pSprite;
+            sf::RectangleShape* pShape;
             //sf::Texture* pTexture;
             AnimatedTexture* pTexture;
             float fSpeed;
@@ -28,6 +29,7 @@ namespace models {
             // std::vector<PoolableObject*> vecChildrenPools;
 
         public:
+            GameObject(std::string strName);
             GameObject(std::string strName, AnimatedTexture* pTexture);
             GameObject(std::string strName, float fSpeed, AnimatedTexture* pTexture);
         

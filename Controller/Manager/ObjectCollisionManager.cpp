@@ -23,7 +23,7 @@ void ObjectCollisionManager::checkCollision() {
                 // if(this->pActiveObject->getSprite()->getGlobalBounds().intersects(pGameObject->getSprite()->getGlobalBounds())) {
                 //     std::cout << "Collision Detected" << std::endl;
                 // }
-                if(this->pActiveObject->getSprite()->getGlobalBounds().width < pGameObject->getSprite()->getGlobalBounds().width) std::cout << "Collision Detected" << std::endl;
+                //if(this->pActiveObject->getSprite()->getGlobalBounds().width < pGameObject->getSprite()->getGlobalBounds().width) std::cout << "Collision Detected" << std::endl;
             }
         }
     }

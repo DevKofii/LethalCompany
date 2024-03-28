@@ -19,6 +19,7 @@ void Renderer::assignDrawable(sf::Drawable* pDrawable) {
     this->vecDrawables.push_back(pDrawable);
 }
 
+
 void Renderer::flip() {
     sf::Sprite* pSprite = (sf::Sprite*)this->vecDrawables[0];
     pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);

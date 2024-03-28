@@ -6,12 +6,16 @@
 #include "../Entity/TestUnit.hpp"
 #include "../Entity/TestEnemy.hpp"
 #include "../Entity/TestBackground.hpp"
-#include "../../Controller/Manager/TextureManager.hpp"
+#include "../Entity/TestBoundary.hpp"
 
 #include "../Pooling/Entity/TestBullet_R.hpp"
 #include "../Pooling/Entity/TestBullet_L.hpp"
+
+#include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
 #include "../../Controller/Manager/ObjectCollisionManager.hpp"
+#include "../../Controller/Manager/MapManager.hpp"
+
 #include "../../Controller/Pooling/GameObjectPool.hpp"
 
 namespace scenes {
@@ -29,10 +33,10 @@ namespace scenes {
 
         private:
             void createBackground();
+            void createBoundaries();
             void spawnUnit();
             void spawnBot();
             void createObjectPools();
-
             void checkCollision();
     };
 }

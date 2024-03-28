@@ -195,10 +195,30 @@ void MapManager::loadRooms() {
     std::cout << std::endl;
 }
 
+void MapManager::loadBoundaries() { 
+    switch(this->nActiveGrid)
+    {
+        case 1:
+            //Pos
+            this->VLeftPos = {0.f, GRID1_Y};
+            this->VRightPos = {GRID1_X + GRID1_WIDTH, GRID1_Y};
+            this->VTopPos = {GRID1_X, 0.f};
+            this->VBottomPos = {GRID1_X, GRID1_Y + GRID1_HEIGHT};
+            break;
+
+        default:
+            break;
+    }
+}
+
 std::vector<int> MapManager::getMap() {
     return this->vecMap;
 }
 
+int MapManager::getMapGrid(int nGrid) {
+    return this->vecMap[nGrid];
+}
+ 
 int MapManager::getRoomSize() {
     return this->nRooms;
 }
@@ -206,66 +226,91 @@ int MapManager::getRoomSize() {
 bool MapManager::getLock(int nGrid) {
     switch(nGrid){
         case 1:
-            return this->bOne;
+            return this->bOneLock;
             break;
         case 2:
-            return this->bTwo;
+            return this->bTwoLock;
             break;
         case 3:
-            return this->bThree;
+            return this->bThreeLock;
             break;
         case 4:
-            return this->bFour;
+            return this->bFourLock;
             break;
         case 5:
-            return this->bFive;
+            return this->bFiveLock;
             break;
         case 6:
-            return this->bSix;
+            return this->bSixLock;
             break;
         case 7:
-            return this->bSeven;
+            return this->bSevenLock;
             break;
         case 8:
-            return this->bEight;
+            return this->bEightLock;
             break;
         case 9:
-            return this->bNine;
-            break;
-    }
-}
-void MapManager::setLock(int nGrid, bool bLock) {
-    switch(nGrid){
-        case 1:
-            this->bOne = bLock;
-            break;
-        case 2:
-            this->bTwo = bLock;
-            break;
-        case 3:
-            this->bThree = bLock;
-            break;
-        case 4:
-            this->bFour = bLock;
-            break;
-        case 5:
-            this->bFive = bLock;
-            break;
-        case 6:
-            this->bSix = bLock;
-            break;
-        case 7:
-            this->bSeven = bLock;
-            break;
-        case 8:
-            this->bEight = bLock;
-            break;
-        case 9:
-            this->bNine = bLock;
+            return this->bNineLock;
             break;
     }
 }
 
+void MapManager::setLock(int nGrid, bool bLock) {
+    switch(nGrid){
+        case 1:
+            this->bOneLock = bLock;
+            break;
+        case 2:
+            this->bTwoLock = bLock;
+            break;
+        case 3:
+            this->bThreeLock = bLock;
+            break;
+        case 4:
+            this->bFourLock = bLock;
+            break;
+        case 5:
+            this->bFiveLock = bLock;
+            break;
+        case 6:
+            this->bSixLock = bLock;
+            break;
+        case 7:
+            this->bSevenLock = bLock;
+            break;
+        case 8:
+            this->bEightLock = bLock;
+            break;
+        case 9:
+            this->bNineLock = bLock;
+            break;
+    }
+}
+
+bool MapManager::getActiveGrid() {
+    return this->nActiveGrid;
+}
+
+void MapManager::setActiveGrid(int nActiveGrid) {
+    this->nActiveGrid = nActiveGrid;
+}
+
+//Pos
+sf::Vector2f MapManager::getLeftBounds_pos() {
+    return this->VLeftPos;
+}
+
+sf::Vector2f MapManager::getRightBounds_pos() {
+    return this->VRightPos;
+}   
+
+sf::Vector2f MapManager::getTopBounds_pos() {
+    return this->VTopPos;
+}
+
+sf::Vector2f MapManager::getBottomBounds_pos() {
+    return this->VBottomPos;
+}
 
 MapManager* MapManager::P_SHARED_INSTANCE = NULL;
 

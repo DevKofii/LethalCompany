@@ -10,10 +10,8 @@ void TestScene::onLoadResources() {
 
 void TestScene::onLoadObjects() {
     this->createBackground();
-    // this->spawnBot();
+    this->createBoundaries();
     this->spawnUnit();
-    // this->createObjectPools();
-    // this->checkCollision();
 }
 
 void TestScene::onUnloadResources() {
@@ -23,7 +21,27 @@ void TestScene::onUnloadResources() {
 void TestScene::createBackground() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TEST_BACKGROUND));
     TestBackground* pTestBackground = new TestBackground("TestBackground", pTexture);
-    GameObjectManager::getInstance()->addObject(pTestBackground);
+    GameObjectManager::getInstance()->addObject(pTestBackground); //First Grid loaded here
+
+    //Set Active Grid
+    // MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
+    // MapManager::getInstance()->loadBoundaries();
+}
+
+void TestScene::createBoundaries() {
+    //Load Boundaries | Initialize
+
+    //LeftBounds
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::G1_LEFT));
+    TestBoundary* pTestBoundary = new TestBoundary("LeftBounds", pTexture);
+    pTestBoundary->setPosition({0.f, GRID1_Y});
+    GameObjectManager::getInstance()->addObject(pTestBoundary);
+
+    //TopBounds
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::G1_TOP));
+    pTestBoundary = new TestBoundary("TopBounds", pTexture);
+    pTestBoundary->setPosition({GRID1_X, 0.f});
+    GameObjectManager::getInstance()->addObject(pTestBoundary);
 }
 
 void TestScene::spawnUnit() {
@@ -33,7 +51,7 @@ void TestScene::spawnUnit() {
     pTestUnit->setOrientationRight(true);
     pTestUnit->setOrientationLeft(false);
     pTestUnit->setScale({2.0f,2.0f});
-    pTestUnit->setPosition({90.f,210.f});
+    pTestUnit->setPosition({640.f,360.f});
     GameObjectManager::getInstance()->addObject(pTestUnit);
 }
 

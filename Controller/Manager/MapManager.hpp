@@ -1,4 +1,7 @@
 #pragma once
+
+#include "../../Config/Settings.hpp"
+
 #include "iostream"
 #include "unordered_map"
 #include "SFML/Graphics.hpp"
@@ -14,9 +17,17 @@ namespace managers{
             std::vector<int> vecMap;
 
             bool
-                bOne, bTwo, bThree,
-                bFour, bFive, bSix,
-                bSeven, bEight, bNine
+                bOneLock, bTwoLock, bThreeLock,
+                bFourLock, bFiveLock, bSixLock,
+                bSevenLock, bEightLock, bNineLock
+            ;
+
+            int nActiveGrid;
+            bool bActive;
+
+            sf::Vector2f
+                VLeftPos, VRightPos,
+                VTopPos, VBottomPos
             ;
 
         public:
@@ -24,14 +35,23 @@ namespace managers{
             void loadNineRooms();
             void loadRooms();
 
+            void loadBoundaries();
+
         public:
-            // std::vector<sf::Texture*> getTexture(AssetType EKey);
-            // sf::Texture* getTextureAt(AssetType EKey, int nFrame);
             std::vector<int> getMap();
+            int getMapGrid(int nGrid);
             int getRoomSize();
             
             bool getLock(int nGrid);
             void setLock(int nGrid, bool bLock);
+
+            bool getActiveGrid();
+            void setActiveGrid(int nActiveGrid);
+
+            sf::Vector2f getLeftBounds_pos();
+            sf::Vector2f getRightBounds_pos();
+            sf::Vector2f getTopBounds_pos();
+            sf::Vector2f getBottomBounds_pos();
 
         private:
             static MapManager* P_SHARED_INSTANCE;

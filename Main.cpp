@@ -22,6 +22,7 @@
 #include "Model/Entity/TestBackground.cpp"
 #include "Model/Entity/TestUnit.cpp"
 #include "Model/Entity/TestEnemy.cpp"
+#include "Model/Entity/TestBoundary.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 #include "Model/Pooling/Entity/PlayerBullet.cpp"
