@@ -45,10 +45,6 @@ void TestUnitInput::processKeyInput(bool bPressed) {
             this->bRight = bPressed;
             break;
 
-        case sf::Keyboard::F:
-            this->bShoot = bPressed;
-            break;
-
         default:
             break;
     }

@@ -7,8 +7,6 @@ CollisionManager::CollisionManager(std::string strName) : Component  (strName, C
 void CollisionManager::perform() {
     TestUnit* pUnitOwner = (TestUnit*)this->pOwner;
     TestUnitInput* pUnitInput = (TestUnitInput*)this->getOwner()->getComponents(ComponentType::INPUT)[0];
-    TestBoundary* pLeftBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("LeftBounds");
-    TestBoundary* pTopBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("TopBounds");
 
     if(pUnitInput == NULL && pUnitOwner == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
@@ -52,21 +50,39 @@ void CollisionManager::mapBounds() {
     TestUnit* pUnitOwner = (TestUnit*)this->pOwner;
     TestUnitInput* pUnitInput = (TestUnitInput*)this->getOwner()->getComponents(ComponentType::INPUT)[0];
     TestBoundary* pLeftBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("LeftBounds");
+    TestBoundary* pRightBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("RightBounds");
     TestBoundary* pTopBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("TopBounds");
+    TestBoundary* pBottomBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("BottomBounds");
 
     float fOffset  = pUnitOwner->getSpeed() * this->tDeltaTime.asSeconds();
 
     //LeftGridBounds
-    if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pLeftBounds->getSprite()->getGlobalBounds()) &&
-    pUnitOwner->getSprite()->getGlobalBounds().width <= pLeftBounds->getSprite()->getGlobalBounds().width + pUnitOwner->getSprite()->getGlobalBounds().width) {
-        //std::cout << "Collision Detected" << std::endl;
+    // if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pLeftBounds->getSprite()->getGlobalBounds()) &&
+    // pUnitOwner->getSprite()->getGlobalBounds().width <= pLeftBounds->getSprite()->getGlobalBounds().width + pUnitOwner->getSprite()->getGlobalBounds().width) {
+    //     //std::cout << "Collision Detected" << std::endl;
+    //     pUnitOwner->getSprite()->move(fOffset,0.f);
+    // }
+
+    if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pLeftBounds->getSprite()->getGlobalBounds())) {
         pUnitOwner->getSprite()->move(fOffset,0.f);
     }
 
+    if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pRightBounds->getSprite()->getGlobalBounds())) {
+        pUnitOwner->getSprite()->move(-fOffset,0.f);
+    }
+
     //TopGridBounds
-    if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pTopBounds->getSprite()->getGlobalBounds()) &&
-    pUnitOwner->getSprite()->getGlobalBounds().top <= pTopBounds->getSprite()->getGlobalBounds().top + pUnitOwner->getSprite()->getGlobalBounds().top) {
-        //std::cout << "Collision Detected" << std::endl;
+    // if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pTopBounds->getSprite()->getGlobalBounds()) &&
+    // pUnitOwner->getSprite()->getGlobalBounds().top <= pTopBounds->getSprite()->getGlobalBounds().top + pUnitOwner->getSprite()->getGlobalBounds().top) {
+    //     //std::cout << "Collision Detected" << std::endl;
+    //     pUnitOwner->getSprite()->move(0.f,fOffset);
+    // }
+
+    if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pTopBounds->getSprite()->getGlobalBounds())) {
         pUnitOwner->getSprite()->move(0.f,fOffset);
+    }
+
+    if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pBottomBounds->getSprite()->getGlobalBounds())) {
+        pUnitOwner->getSprite()->move(0.f,-fOffset);
     }
 }

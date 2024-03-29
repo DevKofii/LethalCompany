@@ -6,11 +6,11 @@ TestBackground::TestBackground(std::string strName, AnimatedTexture* pTexture) :
 
 void TestBackground::initialize() {
 
-    // BackgroundInput* backgroundInput = new BackgroundInput(this->strName + " Input");
-    // this->attachComponent(backgroundInput);
+    BackgroundInput* backgroundInput = new BackgroundInput(this->strName + " Input");
+    this->attachComponent(backgroundInput);
 
-    // BackgroundAction* backgroundAction = new BackgroundAction(this->strName + " Script"); 
-    // this->attachComponent(backgroundAction);
+    BackgroundAction* backgroundAction = new BackgroundAction(this->strName + " Script"); 
+    this->attachComponent(backgroundAction);
 
     Renderer* pRenderer = new Renderer(this->strName + " Renderer");
     pRenderer->assignDrawable(this->pSprite);

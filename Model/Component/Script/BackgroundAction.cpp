@@ -14,6 +14,7 @@ void BackgroundAction::perform() {
         if(pBackgroundInput->getInteract()) {
             this->bDebug = true;
         }
+        else this->bDebug = false;
     }
 }
 
