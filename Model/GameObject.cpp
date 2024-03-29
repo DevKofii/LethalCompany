@@ -137,6 +137,12 @@ void GameObject::centerOrigin() {
     }
 }
 
+void GameObject::centerPosition() {
+    if(this->pTexture != NULL) {
+        this->pSprite->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    }
+}
+
 bool GameObject::getEnabled() {
     return this->bEnabled;
 }

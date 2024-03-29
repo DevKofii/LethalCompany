@@ -6,14 +6,22 @@
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../Enum/SceneTag.hpp"
+#include "../../Entity/TestBackground.hpp"
+#include "../../Entity/TestBoundary.hpp"
+#include "../../Entity/TestUnit.hpp"
 #include "../../GameObject.hpp"
+#include "../../../Controller/Manager/GameObjectManager.hpp"
 #include "../../../Controller/Manager/SceneManager.hpp"
 #include "../../../Controller/Manager/MapManager.hpp"
 
 namespace components {
     using namespace managers;
+    using namespace models;
+    using namespace entities;
     class BackgroundAction : public Component {
         protected:
+            int nFrame;
+            int nLastFrame;
             bool bDebug;
 
         public:

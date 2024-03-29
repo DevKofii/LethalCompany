@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Config/Settings.hpp"
+
 #include "AnimatedTexture.hpp"
 #include "Enum/AssetType.hpp"
 #include "Component/Component.hpp"
@@ -51,14 +53,11 @@ namespace models {
             void detachComponent(Component* pComponent);
             void attachChild(GameObject* pChild);
             void detachChild(GameObject* pChild);
-            // void attachPoolable(PoolableObject* pPoolObj);
-            // void detachPoolable(PoolableObject* pPoolObj);
             Component* findComponentByName(std::string strName);
             std::vector<Component*> getComponents(ComponentType EType);
-            // PoolableObject* findPoolablesByName(std::string strName);
-            // std::vector<PoolableObject*> getPoolables(PoolTag EType);
             sf::Sprite* getSprite();
             void centerOrigin();
+            void centerPosition();
 
         public:
             bool getEnabled();

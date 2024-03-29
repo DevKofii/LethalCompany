@@ -31,6 +31,8 @@ void TestScene::createBackground() {
     // Set Active Grid
     // std::cout << MapManager::getInstance()->getMapGrid(0) << std::endl;
     MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
+    std::cout << "Current Grid: " << MapManager::getInstance()->getActiveGrid() << std::endl;
+    std::cout << "Current Frame: 0" << std::endl << std::endl;
     // MapManager::getInstance()->loadBoundaries();
 }
 

@@ -13,6 +13,7 @@ void BoundsAction::perform() {
     TestBoundary* pTopBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("TopBounds");
     TestBoundary* pBottomBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("BottomBounds");
     int num = MapManager::getInstance()->getActiveGrid();
+    int debug;
 
     if(pLeftBounds == NULL && pRightBounds == NULL && pTopBounds == NULL && pBottomBounds == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;

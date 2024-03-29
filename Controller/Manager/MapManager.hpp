@@ -25,10 +25,7 @@ namespace managers{
             int nActiveGrid;
             bool bActive;
 
-            sf::Vector2f
-                VLeftPos, VRightPos,
-                VTopPos, VBottomPos
-            ;
+
 
         public:
             void loadMap();
@@ -38,6 +35,8 @@ namespace managers{
             void loadRooms();
 
         public:
+            int findGridByNum(int nGrid);
+
             std::vector<int> getMap();
             int getMapGrid(int nGrid);
             int getRoomSize();

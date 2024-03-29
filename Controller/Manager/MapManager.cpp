@@ -463,6 +463,15 @@ void MapManager::setLock(int nGrid, bool bLock) {
     }
 }
 
+int MapManager::findGridByNum(int nGrid) {
+    for(auto i = 0; i < this->vecMap.size(); i++) {
+        if(this->vecMap[i] == nGrid) {
+            return i;
+        }
+    }
+    return NULL;
+}
+
 int MapManager::getActiveGrid() {
     return this->nActiveGrid;
 }
