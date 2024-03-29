@@ -8,7 +8,6 @@
 #include "Controller/Manager/TextureManager.cpp"
 #include "Controller/Manager/GameObjectManager.cpp"
 #include "Controller/Manager/ObjectPoolManager.cpp"
-#include "Controller/Manager/ObjectCollisionManager.cpp"
 #include "Controller/Manager/SceneManager.cpp"
 #include "Controller/Manager/MapManager.cpp"
 

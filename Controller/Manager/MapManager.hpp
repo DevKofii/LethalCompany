@@ -25,8 +25,6 @@ namespace managers{
             int nActiveGrid;
             bool bActive;
 
-
-
         public:
             void loadMap();
             void loadSevenRooms();
@@ -46,6 +44,11 @@ namespace managers{
 
             int getActiveGrid();
             void setActiveGrid(int nActiveGrid);
+
+            bool isValidLeft(int nGrid, int nFrame);
+            bool isValidRight(int nGrid, int nFrame);
+            bool isValidTop(int nGrid, int nFrame);
+            bool isValidBottom(int nGrid, int nFrame);
 
         private:
             static MapManager* P_SHARED_INSTANCE;

@@ -323,7 +323,7 @@ void MapManager::loadRooms() {
 
             case 2:
                 this->nGrid = (rand() % (9 - 1 + 1)) + 1;
-                while(this->nGrid == 2 || this->nGrid == 5 || this->nGrid == 6 || this->nGrid == 7 || this->nGrid == 8 || this->nGrid == 9 || this->getLock(this->nGrid) == true) {
+                while(this->nGrid == 2 || this->nGrid == 4 || this->nGrid == 6 || this->nGrid == 7 || this->nGrid == 8 || this->nGrid == 9 || this->getLock(this->nGrid) == true) {
                     this->nGrid = (rand() % (9 - 1 + 1)) + 1;
                 }
                 break;
@@ -364,10 +364,10 @@ void MapManager::loadRooms() {
 
             case 8:
                 this->nGrid = (rand() % (9 - 1 + 1)) + 1;
-                while(this->nGrid == 1 || this->nGrid == 2 || this->nGrid == 3 || this->nGrid == 4 || this->nGrid == 6 || this->nGrid == 8) {
+                while(this->nGrid == 1 || this->nGrid == 2 || this->nGrid == 3 || this->nGrid == 4 || this->nGrid == 6 || this->nGrid == 8 || this->getLock(this->nGrid) == true) {
                     this->nGrid = (rand() % (9 - 1 + 1)) + 1;
                 }
-                while(this->getLock(this->nGrid) == true) this->nGrid = (rand() % (9 - 1 + 1)) + 1;
+                //while(this->getLock(this->nGrid) == true) this->nGrid = (rand() % (9 - 1 + 1)) + 1;
                 break;
 
             case 9:
@@ -479,6 +479,136 @@ int MapManager::getActiveGrid() {
 void MapManager::setActiveGrid(int nActiveGrid) {
     this->nActiveGrid = nActiveGrid;
 }
+
+bool MapManager::isValidLeft(int nGrid, int nFrame) {
+    switch(nGrid) {
+        case 2: // Going to Grid 1
+            if(nFrame == 1) return true;
+            else return false;
+            break;
+        case 3: 
+            if(nFrame == 2) return true;
+            else return false;
+            break;
+        case 5:
+            if(nFrame == 4) return true;
+            else return false;
+            break;
+        case 6: 
+            if(nFrame == 5) return true;
+            else return false;
+            break;
+        case 8:
+            if(nFrame == 7) return true;
+            else return false;
+            break;
+        case 9: 
+            if(nFrame == 8) return true;
+            else return false;
+            break;
+        default:
+            return false;
+            break;
+    }
+}
+
+bool MapManager::isValidRight(int nGrid, int nFrame) {
+    switch(nGrid) {
+        case 1: 
+            if(nFrame == 2) return true;
+            else return false;
+            break;
+        case 2:
+            if(nFrame == 3) return true;
+            else return false;
+            break;
+        case 4:
+            if(nFrame == 5) return true;
+            else return false;
+            break;
+        case 5:
+            if(nFrame == 6) return true;
+            else return false;
+            break;
+        case 7:
+            if(nFrame == 8) return true;
+            else return false;
+            break;
+        case 8:
+            if(nFrame == 9) return true;
+            else return false;
+            break;
+        default:
+            return false;
+            break;
+    }
+}
+
+bool MapManager::isValidTop(int nGrid, int nFrame) {
+    switch(nGrid) {
+        case 4: 
+            if(nFrame == 1) return true;
+            else return false;
+            break;
+        case 5:
+            if(nFrame == 2) return true;
+            else return false;
+            break;
+        case 6:
+            if(nFrame == 3) return true;
+            else return false;
+            break;
+        case 7:
+            if(nFrame == 4) return true;
+            else return false;
+            break;
+        case 8:
+            if(nFrame == 5) return true;
+            else return false;
+            break;
+        case 9:
+            if(nFrame == 6) return true;
+            else return false;
+            break;
+        default:
+            return false;
+            break;
+    }
+}
+
+bool MapManager::isValidBottom(int nGrid, int nFrame) {
+    switch(nGrid) {
+        case 1: 
+            if(nFrame == 4) return true;
+            else return false;
+            break;
+        case 2:
+            if(nFrame == 5) return true;
+            else return false;
+            break;
+        case 3:
+            if(nFrame == 6) return true;
+            else return false;
+            break;
+        case 4:
+            if(nFrame == 7) return true;
+            else return false;
+            break;
+        case 5:
+            if(nFrame == 8) return true;
+            else return false;
+            break;
+        case 6:
+            if(nFrame == 9) return true;
+            else return false;
+            break;
+        default:
+            return false;
+            break;
+    }
+}
+
+
 
 MapManager* MapManager::P_SHARED_INSTANCE = NULL;
 

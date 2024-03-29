@@ -33,6 +33,14 @@ void TestScene::createBackground() {
     MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
     std::cout << "Current Grid: " << MapManager::getInstance()->getActiveGrid() << std::endl;
     std::cout << "Current Frame: 0" << std::endl << std::endl;
+
+    int currentGrid = MapManager::getInstance()->getActiveGrid();
+    int nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) + 1);
+    int prevGrid = currentGrid;
+
+    std::cout << "Current Grid: " << currentGrid << std::endl;
+    std::cout << "Next Grid: " << nextGrid << std::endl;
+    std::cout << "Last Grid: " << prevGrid << std::endl << std::endl;
     // MapManager::getInstance()->loadBoundaries();
 }
 

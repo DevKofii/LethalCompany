@@ -35,24 +35,13 @@ void BackgroundAction::perform() {
             this->nFrame += 1;
             if(this->nFrame == this->nLastFrame) this->nFrame = 0;
             int Grid = MapManager::getInstance()->getMapGrid(this->nFrame);
-            MapManager::getInstance()->setActiveGrid(Grid);
+            MapManager::getInstance()->setActiveGrid(Grid); 
 
             // Debug Displays
             std::cout << "Current Grid: " << MapManager::getInstance()->getActiveGrid() << std::endl;
             std::cout << "[ALT] Current Grid: " << MapManager::getInstance()->getMapGrid(this->nFrame) << std::endl;
             std::cout << "Current Frame: " << this->nFrame << std::endl;
             std::cout << "Last Frame: " << this->nLastFrame << std::endl << std::endl;
-            
-            //SetFrames
-            // pLeftBounds->setFrame(this->nFrame);
-            // pRightBounds->setFrame(this->nFrame);
-            // pTopBounds->setFrame(this->nFrame);
-            // pBottomBounds->setFrame(this->nFrame);
-
-            // pLeftBounds->getSprite()->setColor(sf::Color::Transparent);
-            // pRightBounds->getSprite()->setColor(sf::Color::Transparent);
-            // pTopBounds->getSprite()->setColor(sf::Color::Transparent);
-            // pBottomBounds->getSprite()->setColor(sf::Color::Transparent);
 
             pTestUnit->centerPosition();
         }
