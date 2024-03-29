@@ -23,5 +23,7 @@ namespace components {
         public:
             bool getInteract();
             bool getQuit();
+
+            void setInteract(bool bPressed);
     };
 }

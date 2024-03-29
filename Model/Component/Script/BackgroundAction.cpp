@@ -12,9 +12,10 @@ void BackgroundAction::perform() {
     else {
         this->debug();
         if(pBackgroundInput->getInteract()) {
+            pBackgroundInput->setInteract(false); //One Press at a time
             this->bDebug = true;
         }
-        else this->bDebug = false;
+        else this->bDebug = false; //Prevent spam
     }
 }
 
