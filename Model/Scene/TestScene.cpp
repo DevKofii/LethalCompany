@@ -36,15 +36,25 @@ void TestScene::createBackground() {
 
 void TestScene::createBoundaries() {
     //Load Boundaries | Initialize
+    AnimatedTexture* pTexture;
+    TestBoundary* pTestBoundary;
 
     //LeftBounds
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LEFT));
-    TestBoundary* pTestBoundary = new TestBoundary("LeftBounds", pTexture);
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LEFT));
+    pTestBoundary = new TestBoundary("LeftBounds", pTexture);
+    GameObjectManager::getInstance()->addObject(pTestBoundary);
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::RIGHT));
+    pTestBoundary = new TestBoundary("RightBounds", pTexture);
     GameObjectManager::getInstance()->addObject(pTestBoundary);
 
     //TopBounds
     pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOP));
     pTestBoundary = new TestBoundary("TopBounds", pTexture);
+    GameObjectManager::getInstance()->addObject(pTestBoundary);
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BOTTOM));
+    pTestBoundary = new TestBoundary("BottomBounds", pTexture);
     GameObjectManager::getInstance()->addObject(pTestBoundary);
 }
 

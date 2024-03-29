@@ -8,7 +8,7 @@ void MapManager::loadMap() {
     std::cout << "Rooms: " << this->nRooms << std::endl;  
 
     if(this->nRooms == 7) this->loadSevenRooms();
-    if(this->nRooms == 8) this->loadEightRooms();
+    else if(this->nRooms == 8) this->loadEightRooms();
     else if(this->nRooms == 9) this->loadNineRooms();
     else this->loadRooms();
 }
@@ -308,6 +308,7 @@ void MapManager::loadRooms() {
             this->nCurrent = this->nGrid;
             this->vecMap.push_back(this->nCurrent);
             this->setLock(this->nCurrent,true);
+            this->setActiveGrid(this->nGrid);
         }
 
     for(int i = 0; i < this->nRooms - 1; i++) {
@@ -462,29 +463,12 @@ void MapManager::setLock(int nGrid, bool bLock) {
     }
 }
 
-bool MapManager::getActiveGrid() {
+int MapManager::getActiveGrid() {
     return this->nActiveGrid;
 }
 
 void MapManager::setActiveGrid(int nActiveGrid) {
     this->nActiveGrid = nActiveGrid;
-}
-
-//Pos
-sf::Vector2f MapManager::getLeftBounds_pos() {
-    return this->VLeftPos;
-}
-
-sf::Vector2f MapManager::getRightBounds_pos() {
-    return this->VRightPos;
-}   
-
-sf::Vector2f MapManager::getTopBounds_pos() {
-    return this->VTopPos;
-}
-
-sf::Vector2f MapManager::getBottomBounds_pos() {
-    return this->VBottomPos;
 }
 
 MapManager* MapManager::P_SHARED_INSTANCE = NULL;

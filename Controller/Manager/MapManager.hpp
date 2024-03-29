@@ -45,13 +45,8 @@ namespace managers{
             bool getLock(int nGrid);
             void setLock(int nGrid, bool bLock);
 
-            bool getActiveGrid();
+            int getActiveGrid();
             void setActiveGrid(int nActiveGrid);
-
-            sf::Vector2f getLeftBounds_pos();
-            sf::Vector2f getRightBounds_pos();
-            sf::Vector2f getTopBounds_pos();
-            sf::Vector2f getBottomBounds_pos();
 
         private:
             static MapManager* P_SHARED_INSTANCE;

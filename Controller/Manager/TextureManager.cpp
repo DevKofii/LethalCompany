@@ -61,11 +61,23 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::LEFT].push_back(pTexture);
     }
 
+    for(int i = 0; i < vecMap.size(); i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/map/bounds/g" + std::to_string(vecMap[i]) + "_left.png");
+        this->mapTexture[AssetType::RIGHT].push_back(pTexture);
+    }
+
     // Load Boundaries [Top]
     for(int i = 0; i < vecMap.size(); i++) {
         pTexture = new sf::Texture();
         pTexture->loadFromFile("View/Image/Debug/map/bounds/g" + std::to_string(vecMap[i]) + "_top.png");
         this->mapTexture[AssetType::TOP].push_back(pTexture);
+    }
+
+    for(int i = 0; i < vecMap.size(); i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/map/bounds/g" + std::to_string(vecMap[i]) + "_top.png");
+        this->mapTexture[AssetType::BOTTOM].push_back(pTexture);
     }
 
     //Load Boundaries [Debug]
