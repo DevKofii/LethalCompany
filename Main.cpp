@@ -28,7 +28,6 @@
 #include "Model/Entity/TestItem.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
-#include "Model/Pooling/Entity/Enemy.cpp"
 
 #include "Model/Scene.cpp"
 #include "Model/Scene/TestScene.cpp"

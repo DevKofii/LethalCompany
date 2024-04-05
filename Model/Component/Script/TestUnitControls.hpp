@@ -7,7 +7,6 @@
 #include "../Input/TestUnitInput.hpp"
 #include "../../Entity/TestUnit.hpp"
 #include "../../Entity/Light.hpp"
-#include "../../Pooling/Entity/Enemy.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
@@ -15,7 +14,6 @@
 namespace components {
     using namespace models;
     using namespace entities;
-    using namespace poolables;
     class TestUnitControls : public Component {
         private:
             float fSpeed;

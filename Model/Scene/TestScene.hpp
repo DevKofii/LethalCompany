@@ -12,8 +12,6 @@
 #include "../Entity/Light.hpp"
 #include "../Entity/TestItem.hpp"
 
-#include "../Pooling/Entity/Enemy.hpp"
-
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
 #include "../../Controller/Manager/MapManager.hpp"

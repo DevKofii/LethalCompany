@@ -33,22 +33,15 @@ void TestScene::createBackground() {
     std::cout << std::endl;
 
     // Set Active Grid
-    // std::cout << MapManager::getInstance()->getMapGrid(0) << std::endl;
     MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
-    // std::cout << "Current Grid: " << MapManager::getInstance()->getActiveGrid() << std::endl;
-    // std::cout << "Current Frame: 0" << std::endl << std::endl;
 
     int currentGrid = MapManager::getInstance()->getActiveGrid();
     int nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) + 1);
     int prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) - 1);
-    //int prevGrid = currentGrid;
 
     std::cout << "Current Grid: " << currentGrid << std::endl;
     std::cout << "Next Grid: " << nextGrid << std::endl;
     std::cout << "Last Grid: " << prevGrid << std::endl << std::endl;
-    // MapManager::getInstance()->loadBoundaries();
-
-
 }
 
 void TestScene::createBoundaries() {
@@ -101,11 +94,7 @@ void TestScene::createDoor() {
 }
 
 void TestScene::spawnEnemies() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY));
-    Enemy* pEnemy = new Enemy("Enemy",pTexture);
-    GameObjectPool* pPool = new GameObjectPool(PoolTag::ENEMY, 1, pEnemy);
-    pPool->initalize();
-    ObjectPoolManager::getInstance()->registerObjectPool(pPool);
+
 }
 
 void TestScene::spawnUnit() {
