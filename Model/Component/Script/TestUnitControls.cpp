@@ -12,6 +12,10 @@ void TestUnitControls::perform() {
 
     if(this->pUnitOwner == NULL) this->pUnitOwner = (TestUnit*)this->pOwner;
     if(this->pUnitInput == NULL) this->pUnitInput = (TestUnitInput*)this->getOwner()->findComponentByName(this->pUnitOwner->getName() + " Input");
+    
+    Enemy* pEnemy = (Enemy*)ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->getPoolable();
+    PoolableObject* pPoolEnemy = (PoolableObject*)ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY);
+
 
     // Light* pLight = (Light*)ObjectPoolManager::getInstance()->getPool(PoolTag::LIGHT)->getPoolable();
     // pLight->setPosition(this->pUnitOwner->getPosition());
@@ -61,13 +65,18 @@ void TestUnitControls::perform() {
             //     }
 
             // }
-            PoolableObject* pPoolableOwner = (PoolableObject*)this->pOwner;
+            
             int currentGrid = MapManager::getInstance()->getActiveGrid();
 
             if(pUnitInput->getInteract()) {
+                
+                // //ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->releasePoolable(pPoolEnemy);
+
+                // //pUnitInput->resetInteract();
+
+                if(currentGrid == 1) pEnemy->getSprite()->setPosition(this->randomPos());
+                else pEnemy->getSprite()->setPosition(-1000.0f,-1000.0f);
                 pUnitInput->resetInteract();
-                if(currentGrid == 0) pPoolableOwner->getSprite()->setPosition(this->randomPos());
-                else pPoolableOwner->getSprite()->setPosition(-1000.0f,-1000.0f);
                 ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->requestPoolable();
             }
 

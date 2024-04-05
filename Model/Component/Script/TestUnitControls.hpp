@@ -8,6 +8,7 @@
 #include "../../Entity/TestUnit.hpp"
 #include "../../Entity/Light.hpp"
 #include "../../Pooling/Entity/TestBullet_R.hpp"
+#include "../../Pooling/Entity/Enemy.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
