@@ -1,5 +1,6 @@
 #pragma once
 
+#include <random>
 
 #include <iostream>
 #include "SFML/Graphics.hpp"
@@ -28,5 +29,6 @@ namespace components {
 
         public:
             void perform();
+            sf::Vector2f randomPos();
     };
 }

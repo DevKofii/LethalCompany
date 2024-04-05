@@ -12,6 +12,7 @@
 
 #include "../Pooling/Entity/TestBullet_R.hpp"
 #include "../Pooling/Entity/TestBullet_L.hpp"
+#include "../Pooling/Entity/Enemy.hpp"
 
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
@@ -37,10 +38,8 @@ namespace scenes {
             void createBoundaries();
             void createDoor();
             void spawnUnit();
-            void spawnBot();
             void spawnEnemies();
             void spawnItem();
             void createObjectPools();
-            void checkCollision();
     };
 }

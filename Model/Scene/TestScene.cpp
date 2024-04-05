@@ -13,6 +13,7 @@ void TestScene::onLoadObjects() {
     this->createBoundaries();
     this->createDoor();
     this->spawnItem();
+    this->spawnEnemies();
     this->spawnUnit();
 }
 
@@ -94,6 +95,14 @@ void TestScene::createDoor() {
     pDoor = new TestDoor("DoorBottom", pTexture);
     GameObjectManager::getInstance()->addObject(pDoor);
     pDoor->getSprite()->setOrigin(0.f, pDoor->getSprite()->getTexture()->getSize().y/2);
+}
+
+void TestScene::spawnEnemies() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY));
+    Enemy* pEnemy = new Enemy("Enemy",pTexture);
+    GameObjectPool* pPool = new GameObjectPool(PoolTag::ENEMY, 1, pEnemy);
+    pPool->initalize();
+    ObjectPoolManager::getInstance()->registerObjectPool(pPool);
 }
 
 void TestScene::spawnUnit() {

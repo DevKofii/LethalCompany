@@ -51,15 +51,24 @@ void TestUnitControls::perform() {
             }
 
             //Actions
-            if(pUnitInput->getShoot()) { 
-                pUnitInput->resetShoot();
-                if(pUnitOwner->getOrientationRight()) {
-                    ObjectPoolManager::getInstance()->getPool(PoolTag::TEST_BULLET_R)->requestPoolable();
-                }
-                else if(pUnitOwner->getOrientationLeft()) {
-                    ObjectPoolManager::getInstance()->getPool(PoolTag::TEST_BULLET_L)->requestPoolable();
-                }
+            // if(pUnitInput->getShoot()) { 
+            //     pUnitInput->resetShoot();
+            //     if(pUnitOwner->getOrientationRight()) {
+            //         ObjectPoolManager::getInstance()->getPool(PoolTag::TEST_BULLET_R)->requestPoolable();
+            //     }
+            //     else if(pUnitOwner->getOrientationLeft()) {
+            //         ObjectPoolManager::getInstance()->getPool(PoolTag::TEST_BULLET_L)->requestPoolable();
+            //     }
 
+            // }
+            PoolableObject* pPoolableOwner = (PoolableObject*)this->pOwner;
+            int currentGrid = MapManager::getInstance()->getActiveGrid();
+
+            if(pUnitInput->getInteract()) {
+                pUnitInput->resetInteract();
+                if(currentGrid == 0) pPoolableOwner->getSprite()->setPosition(this->randomPos());
+                else pPoolableOwner->getSprite()->setPosition(-1000.0f,-1000.0f);
+                ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->requestPoolable();
             }
 
             //Orientation
@@ -73,4 +82,15 @@ void TestUnitControls::perform() {
             // pUnitOwner->getSprite()->move(-fOffset,0.f);
         }
     }
+}
+
+sf::Vector2f TestUnitControls::randomPos() {
+    srand(time(NULL));
+
+    int x = (rand() % (740 - 540 + 1)) + 540;
+    int y = (rand() % (410 - 310 + 1)) + 310;
+    
+    sf::Vector2f vect{x,y};
+
+    return vect;
 }

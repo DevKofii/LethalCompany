@@ -37,11 +37,16 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
     }
 
-    //Load map[debug]
-    // pTexture = new sf::Texture();
-    // pTexture->loadFromFile("View/Image/Debug/map/grid8.png");
-    // this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
+    // Load Enemy
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/char/anims/idle/idle.png");
+    this->mapTexture[AssetType::ENEMY].push_back(pTexture);
 
+    for(int i = 1; i <= 8; i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/char/anims/move/frame" + std::to_string(i) + ".png");
+        this->mapTexture[AssetType::ENEMY].push_back(pTexture);
+    }
 
     //Load char
     pTexture = new sf::Texture();

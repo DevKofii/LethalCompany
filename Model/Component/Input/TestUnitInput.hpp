@@ -26,6 +26,7 @@ namespace components{
 
         public:
             void resetShoot();
+            void resetInteract();
 
             bool getUp();
             bool getDown();

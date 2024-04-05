@@ -58,6 +58,10 @@ void TestUnitInput::resetShoot() {
     this->bShoot = false;
 }
 
+void TestUnitInput::resetInteract() {
+    this->bInteract = false;
+}
+
 bool TestUnitInput::getUp() {
     return this->bUp;
 }
