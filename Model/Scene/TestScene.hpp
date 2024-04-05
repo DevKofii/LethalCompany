@@ -9,6 +9,7 @@
 #include "../Entity/TestBoundary.hpp"
 #include "../Entity/TestDoor.hpp"
 
+#include "../Pooling/Entity/Enemy.hpp"
 #include "../Pooling/Entity/TestBullet_R.hpp"
 #include "../Pooling/Entity/TestBullet_L.hpp"
 
@@ -34,9 +35,11 @@ namespace scenes {
         private:
             void createBackground();
             void createBoundaries();
+            void createEnemyPool();
             void createDoor();
             void spawnUnit();
             void spawnBot();
+            void spawnEnemies();
             void createObjectPools();
             void checkCollision();
     };

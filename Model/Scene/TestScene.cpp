@@ -11,8 +11,10 @@ void TestScene::onLoadResources() {
 void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
+    this->createEnemyPool();
     this->createDoor();
     this->spawnUnit();
+    this->spawnEnemies();
 }
 
 void TestScene::onUnloadResources() {
@@ -104,6 +106,34 @@ void TestScene::spawnUnit() {
     pTestUnit->setScale({2.0f,2.0f});
     pTestUnit->setPosition({640.f,360.f});
     GameObjectManager::getInstance()->addObject(pTestUnit);
+}
+
+void TestScene::createEnemyPool() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY_1));
+
+    Enemy* pEnemyRef = new Enemy("Enemy", pTexture);
+    GameObjectPool* pEnemyPool = new GameObjectPool(PoolTag::ENEMY, 5, pEnemyRef);
+    pEnemyPool->initalize();
+    ObjectPoolManager::getInstance()->registerObjectPool(pEnemyPool);
+}
+
+void TestScene::spawnEnemies() {
+    int currentGrid = MapManager::getInstance()->getActiveGrid();
+    int nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) + 1);
+    int prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) - 1);
+    int randomGrid = rand() % 3 + currentGrid; // Randomly select a grid between the current grid and the next two grids
+
+    int numEnemies = rand() % 5 + 1; // Spawn a random number of enemies between 1 and 5
+
+    for (int i = 0; i < numEnemies; ++i) {
+        GameObjectPool* pEnemyPool = ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY);
+        GameObject* pEnemy = pEnemyPool->requestPoolable();
+
+        // Set the enemy's position based on the random grid
+        if (randomGrid == currentGrid) {
+            pEnemy->setPosition({0.f, 0.f});
+        }
+    }
 }
 
 // void TestScene::spawnBot() {
