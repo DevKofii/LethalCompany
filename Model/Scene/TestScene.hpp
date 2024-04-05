@@ -11,6 +11,8 @@
 #include "../Entity/TestBounds.hpp"
 #include "../Entity/Light.hpp"
 
+#include "../Entity/TestItem.hpp"
+
 #include "../Pooling/Entity/TestBullet_R.hpp"
 #include "../Pooling/Entity/TestBullet_L.hpp"
 #include "../Pooling/Entity/Enemy.hpp"
@@ -43,5 +45,7 @@ namespace scenes {
             void spawnItem();
             void createMoreBounds();
             void createObjectPools();
+
+            void setPosition(TestItem* pItem);
     };
 }

@@ -26,6 +26,8 @@
 #include "Model/Entity/TestBounds.cpp"
 #include "Model/Entity/Light.cpp"
 
+#include "Model/Entity/TestItem.cpp"
+
 #include "Model/Pooling/PoolableObject.cpp"
 #include "Model/Pooling/Entity/PlayerBullet.cpp"
 #include "Model/Pooling/Entity/TestBullet_R.cpp"

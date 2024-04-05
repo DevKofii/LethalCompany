@@ -10,6 +10,7 @@
 #include "../../Entity/TestBoundary.hpp"
 #include "../../Entity/TestBounds.hpp"
 #include "../../Entity/TestUnit.hpp"
+#include "../../Entity/TestItem.hpp"
 #include "../../GameObject.hpp"
 #include "../../../Controller/Manager/GameObjectManager.hpp"
 #include "../../../Controller/Manager/SceneManager.hpp"
@@ -30,6 +31,8 @@ namespace components {
 
         public:
             void perform();
-            void debug();
+            void objSpawn();
+
+            void spawn(TestItem* pItem);
     };
 }

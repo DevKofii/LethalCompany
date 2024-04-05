@@ -105,6 +105,11 @@ void TextureManager::loadTest() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Debug/parts/items/light/light.png");
     this->mapTexture[AssetType::LIGHT].push_back(pTexture);
+
+    // Load Pickup
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/parts/items/barrel/barrel.png");
+    this->mapTexture[AssetType::BARREL].push_back(pTexture);
 }
 
 void TextureManager::unloadAll() {

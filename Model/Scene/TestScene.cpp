@@ -123,12 +123,151 @@ void TestScene::spawnItem() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
     Light* pLight = new Light("Light",pTexture);
     GameObjectManager::getInstance()->addObject(pLight);
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BARREL));
+    TestItem* pBarrel;
+
+    int random = (rand() % (10 - 1 + 1)) + 1;\
+    int randomGrid;
+
+    for(int i = 0; i < random; i++) {
+        pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture);
+        randomGrid = (rand() % (9 - 1 + 1)) + 1;
+        pBarrel->setGrid(randomGrid);
+        this->setPosition(pBarrel);
+        GameObjectManager::getInstance()->addObject(pBarrel);
+    }
 }
 
 void TestScene::createMoreBounds() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BOUNDS));
     TestBounds* pTestBounds = new TestBounds("Bounds", pTexture);
     GameObjectManager::getInstance()->addObject(pTestBounds);
+}
+
+void TestScene::setPosition(TestItem* pItem) {
+    int grid = pItem->getGrid();
+    int randomPosX, randomPosY, temp_min_x, temp_max_x, temp_min_y, temp_max_y;
+
+    switch(grid) {
+        case 1:
+            temp_min_x = GRID1_X+75.f;
+            temp_max_x = (GRID1_WIDTH + GRID1_X) - 75.f;
+
+            temp_min_y = GRID1_Y+50.f;
+            temp_max_y = (GRID1_HEIGHT + GRID1_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 2:
+            temp_min_x = GRID2_X+75.f;
+            temp_max_x = (GRID2_WIDTH + GRID2_X) - 75.f;
+
+            temp_min_y = GRID2_Y+50.f;
+            temp_max_y = (GRID2_HEIGHT + GRID2_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 3:
+            temp_min_x = GRID3_X+75.f;
+            temp_max_x = (GRID3_WIDTH + GRID3_X) - 75.f;
+
+            temp_min_y = GRID3_Y+50.f;
+            temp_max_y = (GRID3_HEIGHT + GRID3_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 4:
+            temp_min_x = GRID4_X+75.f;
+            temp_max_x = (GRID4_WIDTH + GRID4_X) - 75.f;
+
+            temp_min_y = GRID4_Y+50.f;
+            temp_max_y = (GRID4_HEIGHT + GRID4_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 5:
+            temp_min_x = GRID5_X+75.f;
+            temp_max_x = (GRID5_WIDTH + GRID5_X) - 75.f;
+
+            temp_min_y = GRID5_Y+50.f;
+            temp_max_y = (GRID5_HEIGHT + GRID5_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 6:
+            temp_min_x = GRID6_X+75.f;
+            temp_max_x = (GRID6_WIDTH + GRID6_X) - 75.f;
+
+            temp_min_y = GRID6_Y+50.f;
+            temp_max_y = (GRID6_HEIGHT + GRID6_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 7:
+            temp_min_x = GRID7_X+75.f;
+            temp_max_x = (GRID7_WIDTH + GRID7_X) - 75.f;
+
+            temp_min_y = GRID7_Y+50.f;
+            temp_max_y = (GRID7_HEIGHT + GRID7_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 8:
+            temp_min_x = GRID8_X+75.f;
+            temp_max_x = (GRID8_WIDTH + GRID8_X) - 75.f;
+
+            temp_min_y = GRID8_Y+50.f;
+            temp_max_y = (GRID8_HEIGHT + GRID8_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+        case 9:
+            temp_min_x = GRID9_X+75.f;
+            temp_max_x = (GRID9_WIDTH + GRID9_X) - 75.f;
+
+            temp_min_y = GRID9_Y+50.f;
+            temp_max_y = (GRID9_HEIGHT + GRID9_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pItem->setPosX(randomPosX);
+            pItem->setPosY(randomPosY);
+            break;
+    }
 }
 
 // void TestScene::spawnBot() {
