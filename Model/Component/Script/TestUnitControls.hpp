@@ -1,9 +1,11 @@
 #pragma once
 
+
 #include <iostream>
 #include "SFML/Graphics.hpp"
 #include "../Input/TestUnitInput.hpp"
 #include "../../Entity/TestUnit.hpp"
+#include "../../Entity/Light.hpp"
 #include "../../Pooling/Entity/TestBullet_R.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"

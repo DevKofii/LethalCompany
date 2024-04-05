@@ -89,14 +89,10 @@ void TextureManager::loadTest() {
     pTexture->loadFromFile("View/Image/Debug/map/door_alt.png");
     this->mapTexture[AssetType::DOOR_ALT].push_back(pTexture);
 
-    //Load Boundaries [Debug]
-    // pTexture = new sf::Texture();
-    // pTexture->loadFromFile("View/Image/Debug/map/bounds/g8_left.png");
-    // this->mapTexture[AssetType::LEFT].push_back(pTexture);
-
-    // pTexture = new sf::Texture();
-    // pTexture->loadFromFile("View/Image/Debug/map/bounds/g8_top.png");
-    // this->mapTexture[AssetType::TOP].push_back(pTexture);
+    // Load Flashlight
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/parts/items/light/light.png");
+    this->mapTexture[AssetType::LIGHT].push_back(pTexture);
 }
 
 void TextureManager::unloadAll() {

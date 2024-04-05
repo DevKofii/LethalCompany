@@ -78,6 +78,11 @@ void GameObjectPool::releasePoolable(PoolableObject* pPoolableObject) {
     }
 }
 
+PoolableObject* GameObjectPool::getPoolable() {
+    PoolableObject* pPoolableObject = this->vecAvailableObject[0];
+    this->setEnabled(pPoolableObject,true);
+    return pPoolableObject;
+}
 
 bool GameObjectPool::hasAvailable(int nRequestSize) {
     if(this->vecAvailableObject.size() >= nRequestSize) return true;

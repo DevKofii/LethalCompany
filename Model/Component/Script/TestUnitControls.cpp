@@ -9,9 +9,15 @@ TestUnitControls::TestUnitControls(std::string strName) : Component  (strName, C
 }
 
 void TestUnitControls::perform() {
-    
+
     if(this->pUnitOwner == NULL) this->pUnitOwner = (TestUnit*)this->pOwner;
     if(this->pUnitInput == NULL) this->pUnitInput = (TestUnitInput*)this->getOwner()->findComponentByName(this->pUnitOwner->getName() + " Input");
+
+    // Light* pLight = (Light*)ObjectPoolManager::getInstance()->getPool(PoolTag::LIGHT)->getPoolable();
+    // pLight->setPosition(this->pUnitOwner->getPosition());
+
+    Light* pLight = (Light*)GameObjectManager::getInstance()->findObjectByName("Light");
+    pLight->setPosition(this->pUnitOwner->getPosition());
 
     if(pUnitInput == NULL && pUnitOwner == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
@@ -31,6 +37,8 @@ void TestUnitControls::perform() {
                 pUnitOwner->getSprite()->move(-fOffset,0.f);
                 pUnitOwner->setOrientationLeft(pUnitInput->getLeft());
                 pUnitOwner->setOrientationRight(false);
+
+                pLight->getSprite()->setScale(-1.0f,1.0f);
                 
             }
             if(pUnitInput->getRight()) {
@@ -38,6 +46,8 @@ void TestUnitControls::perform() {
                 pUnitOwner->getSprite()->move(fOffset,0.f);
                 pUnitOwner->setOrientationRight(pUnitInput->getRight());
                 pUnitOwner->setOrientationLeft(false);
+                
+                pLight->getSprite()->setScale(1.0f,1.0f);
             }
 
             //Actions

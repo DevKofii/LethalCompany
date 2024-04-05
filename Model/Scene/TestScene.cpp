@@ -12,7 +12,9 @@ void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
     this->createDoor();
+    this->spawnItem();
     this->spawnUnit();
+    
 }
 
 void TestScene::onUnloadResources() {
@@ -104,6 +106,12 @@ void TestScene::spawnUnit() {
     pTestUnit->setScale({2.0f,2.0f});
     pTestUnit->setPosition({640.f,360.f});
     GameObjectManager::getInstance()->addObject(pTestUnit);
+}
+
+void TestScene::spawnItem() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
+    Light* pLight = new Light("Light",pTexture);
+    GameObjectManager::getInstance()->addObject(pLight);
 }
 
 // void TestScene::spawnBot() {
