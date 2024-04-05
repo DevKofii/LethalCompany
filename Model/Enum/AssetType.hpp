@@ -24,5 +24,6 @@ enum class AssetType : int {
     TOP,
     BOTTOM,
     DOOR,
-    DOOR_ALT
+    DOOR_ALT,
+    LIGHT
 };

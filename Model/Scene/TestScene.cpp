@@ -13,6 +13,7 @@ void TestScene::onLoadObjects() {
     this->createBoundaries();
     this->createEnemyPool();
     this->createDoor();
+    this->spawnItem();
     this->spawnUnit();
     this->spawnEnemies();
 }
@@ -134,6 +135,10 @@ void TestScene::spawnEnemies() {
             pEnemy->setPosition({0.f, 0.f});
         }
     }
+void TestScene::spawnItem() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
+    Light* pLight = new Light("Light",pTexture);
+    GameObjectManager::getInstance()->addObject(pLight);
 }
 
 // void TestScene::spawnBot() {
