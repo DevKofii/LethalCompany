@@ -5,6 +5,5 @@ enum class PoolTag : int {
     PLAYER_BULLET,
     TEST_BULLET,
     TEST_BULLET_R = 1,
-    TEST_BULLET_L = 2,
-    LIGHT
+    TEST_BULLET_L = 2
 };
