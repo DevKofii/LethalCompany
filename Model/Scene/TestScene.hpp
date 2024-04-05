@@ -7,6 +7,7 @@
 #include "../Entity/TestEnemy.hpp"
 #include "../Entity/TestBackground.hpp"
 #include "../Entity/TestBoundary.hpp"
+#include "../Entity/TestDoor.hpp"
 
 #include "../Pooling/Entity/TestBullet_R.hpp"
 #include "../Pooling/Entity/TestBullet_L.hpp"
@@ -33,6 +34,7 @@ namespace scenes {
         private:
             void createBackground();
             void createBoundaries();
+            void createDoor();
             void spawnUnit();
             void spawnBot();
             void createObjectPools();

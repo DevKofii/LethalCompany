@@ -5,7 +5,9 @@
 #include "../Input/TestUnitInput.hpp"
 #include "../../Entity/TestUnit.hpp"
 #include "../../Entity/TestEnemy.hpp"
+#include "../../Entity/TestBackground.hpp"
 #include "../../Entity/TestBoundary.hpp"
+#include "../../Entity/TestDoor.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
@@ -37,5 +39,9 @@ namespace components {
             void windowBounds();
             void mapBounds();
             void mapTraversal(int debug);
+            void setDoorPosL(int num);
+            void setDoorPosR(int num);
+            void setDoorPosT(int num);
+            void setDoorPosB(int num);
     };
 }

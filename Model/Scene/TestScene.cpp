@@ -11,6 +11,7 @@ void TestScene::onLoadResources() {
 void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
+    this->createDoor();
     this->spawnUnit();
 }
 
@@ -31,12 +32,13 @@ void TestScene::createBackground() {
     // Set Active Grid
     // std::cout << MapManager::getInstance()->getMapGrid(0) << std::endl;
     MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
-    std::cout << "Current Grid: " << MapManager::getInstance()->getActiveGrid() << std::endl;
-    std::cout << "Current Frame: 0" << std::endl << std::endl;
+    // std::cout << "Current Grid: " << MapManager::getInstance()->getActiveGrid() << std::endl;
+    // std::cout << "Current Frame: 0" << std::endl << std::endl;
 
     int currentGrid = MapManager::getInstance()->getActiveGrid();
     int nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) + 1);
-    int prevGrid = currentGrid;
+    int prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) - 1);
+    //int prevGrid = currentGrid;
 
     std::cout << "Current Grid: " << currentGrid << std::endl;
     std::cout << "Next Grid: " << nextGrid << std::endl;
@@ -66,6 +68,31 @@ void TestScene::createBoundaries() {
     pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BOTTOM));
     pTestBoundary = new TestBoundary("BottomBounds", pTexture);
     GameObjectManager::getInstance()->addObject(pTestBoundary);
+}
+
+void TestScene::createDoor() {
+    AnimatedTexture* pTexture;
+    TestDoor* pDoor;
+
+    //LEFT AND RIGHT
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::DOOR));
+    pDoor = new TestDoor("DoorLeft", pTexture);
+    GameObjectManager::getInstance()->addObject(pDoor);
+    pDoor->getSprite()->setOrigin(pDoor->getSprite()->getTexture()->getSize().x/2, 0.f);
+
+    pDoor = new TestDoor("DoorRight", pTexture);
+    GameObjectManager::getInstance()->addObject(pDoor);
+    pDoor->getSprite()->setOrigin(pDoor->getSprite()->getTexture()->getSize().x/2, 0.f);
+
+    //TOP AND BOTTOM
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::DOOR_ALT));
+    pDoor = new TestDoor("DoorTop", pTexture);
+    GameObjectManager::getInstance()->addObject(pDoor);
+    pDoor->getSprite()->setOrigin(0.f, pDoor->getSprite()->getTexture()->getSize().y/2);
+
+    pDoor = new TestDoor("DoorBottom", pTexture);
+    GameObjectManager::getInstance()->addObject(pDoor);
+    pDoor->getSprite()->setOrigin(0.f, pDoor->getSprite()->getTexture()->getSize().y/2);
 }
 
 void TestScene::spawnUnit() {

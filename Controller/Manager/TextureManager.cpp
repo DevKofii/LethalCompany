@@ -80,6 +80,15 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::BOTTOM].push_back(pTexture);
     }
 
+    // Load Door
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/map/door.png");
+    this->mapTexture[AssetType::DOOR].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/map/door_alt.png");
+    this->mapTexture[AssetType::DOOR_ALT].push_back(pTexture);
+
     //Load Boundaries [Debug]
     // pTexture = new sf::Texture();
     // pTexture->loadFromFile("View/Image/Debug/map/bounds/g8_left.png");

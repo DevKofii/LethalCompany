@@ -9,7 +9,16 @@ const float FRAME_RATE_LIMIT = 60.0f;
 
 const int SFX_VOLUME = 25;
 
+//For Door
+const float DOOR_GRID_X = 570.f;
+const float DOOR_GRID_Y = 295.f;
+
 //For Boundaries 
+const float GRID0_WIDTH = 718.f;
+const float GRID0_HEIGHT = 250.f;
+const float GRID0_X = 281.f;
+const float GRID0_Y = 235.f;
+
 const float GRID1_WIDTH = 300.f;
 const float GRID1_HEIGHT = 300.f;
 const float GRID1_X = 490.f;

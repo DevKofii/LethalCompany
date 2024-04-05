@@ -13,6 +13,7 @@ void BoundsAction::perform() {
     TestBoundary* pTopBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("TopBounds");
     TestBoundary* pBottomBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("BottomBounds");
     int num = MapManager::getInstance()->getActiveGrid();
+    
     int debug;
 
     if(pLeftBounds == NULL && pRightBounds == NULL && pTopBounds == NULL && pBottomBounds == NULL) {
@@ -20,6 +21,13 @@ void BoundsAction::perform() {
     }
     else {
         switch(num) {
+            case 0:
+                pLeftBounds->getSprite()->setPosition(0.f, GRID0_Y);
+                pTopBounds->getSprite()->setPosition(GRID0_X, 0.f);
+                pRightBounds->getSprite()->setPosition(GRID0_X + GRID0_WIDTH, GRID0_Y);
+                pBottomBounds->getSprite()->setPosition(GRID0_X, GRID0_Y + GRID0_HEIGHT);
+                break;
+
             case 1:
                 pLeftBounds->getSprite()->setPosition(0.f, GRID1_Y);
                 pTopBounds->getSprite()->setPosition(GRID1_X, 0.f);
