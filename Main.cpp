@@ -23,6 +23,7 @@
 #include "Model/Entity/TestEnemy.cpp"
 #include "Model/Entity/TestBoundary.cpp"
 #include "Model/Entity/TestDoor.cpp"
+#include "Model/Entity/TestBounds.cpp"
 #include "Model/Entity/Light.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"

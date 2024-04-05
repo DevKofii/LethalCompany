@@ -8,6 +8,7 @@
 #include "../../Enum/SceneTag.hpp"
 #include "../../Entity/TestBackground.hpp"
 #include "../../Entity/TestBoundary.hpp"
+#include "../../Entity/TestBounds.hpp"
 #include "../../Entity/TestUnit.hpp"
 #include "../../GameObject.hpp"
 #include "../../../Controller/Manager/GameObjectManager.hpp"

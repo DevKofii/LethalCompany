@@ -85,6 +85,13 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::BOTTOM].push_back(pTexture);
     }
 
+    // Load More Boundaries
+    for(int i = 0; i < vecMap.size(); i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/map/spec_bounds/grid" + std::to_string(vecMap[i]) + ".png");
+        this->mapTexture[AssetType::BOUNDS].push_back(pTexture);
+    }
+
     // Load Door
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Debug/map/door.png");

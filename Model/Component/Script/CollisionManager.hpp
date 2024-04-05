@@ -7,6 +7,7 @@
 #include "../../Entity/TestEnemy.hpp"
 #include "../../Entity/TestBackground.hpp"
 #include "../../Entity/TestBoundary.hpp"
+#include "../../Entity/TestBounds.hpp"
 #include "../../Entity/TestDoor.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"

@@ -8,7 +8,7 @@ CollisionManager::CollisionManager(std::string strName) : Component  (strName, C
 
     this->currentGrid = MapManager::getInstance()->getActiveGrid();
     this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
-    this->prevGrid = -1;
+    this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
 
     this->debug = true;
 }
@@ -175,6 +175,11 @@ void CollisionManager::mapBounds() {
     TestBoundary* pTopBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("TopBounds");
     TestBoundary* pBottomBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("BottomBounds");
 
+    TestDoor* pDoorL = (TestDoor*)GameObjectManager::getInstance()->findObjectByName("DoorLeft");
+    TestDoor* pDoorR = (TestDoor*)GameObjectManager::getInstance()->findObjectByName("DoorRight");
+    TestDoor* pDoorT = (TestDoor*)GameObjectManager::getInstance()->findObjectByName("DoorTop");
+    TestDoor* pDoorB = (TestDoor*)GameObjectManager::getInstance()->findObjectByName("DoorBottom");
+
     float fOffset  = pUnitOwner->getSpeed() * this->tDeltaTime.asSeconds();
 
     //Set Max Frame
@@ -235,37 +240,34 @@ void CollisionManager::mapBounds() {
         prev = MapManager::getInstance()->isValidLeft(this->currentGrid, this->prevGrid);
 
         if(next == true) {
-            //pUnitOwner->getSprite()->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
-            this->mapTraversal(1);
-            MapManager::getInstance()->setActiveGrid(this->nextGrid);
-            //this->prevGrid = this->currentGrid;
-            this->currentGrid = this->nextGrid;
-            this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
-            this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorL->getSprite()->getGlobalBounds())) {
+                this->mapTraversal(1);
+                MapManager::getInstance()->setActiveGrid(this->nextGrid);
+                this->currentGrid = this->nextGrid;
+                this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
+                this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
 
-            //this->setDoorPosL(this->currentGrid);
-
-            std::cout << "LEFT | NEXT FRAME" << std::endl;
-            std::cout << "Current Grid: " << this->currentGrid << std::endl;
-            std::cout << "Next Grid: " << this->nextGrid << std::endl;
-            std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+                std::cout << "LEFT | NEXT FRAME" << std::endl;
+                std::cout << "Current Grid: " << this->currentGrid << std::endl;
+                std::cout << "Next Grid: " << this->nextGrid << std::endl;
+                std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
 
         else if(prev == true) {
-            this->mapTraversal(1);
-            MapManager::getInstance()->setActiveGrid(this->prevGrid);
-            int temp = this->currentGrid; // Store current grid
-            this->currentGrid = this->prevGrid;
-            this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
-            this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
-            //this->prevGrid = temp;
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorL->getSprite()->getGlobalBounds())) {
+                this->mapTraversal(1);
+                MapManager::getInstance()->setActiveGrid(this->prevGrid);
+                int temp = this->currentGrid; // Store current grid
+                this->currentGrid = this->prevGrid;
+                this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
+                this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
 
-            //this->setDoorPosL(this->currentGrid);
-
-            std::cout << "LEFT | PREV FRAME" << std::endl;
-            std::cout << "Current Grid: " << this->currentGrid << std::endl;
-            std::cout << "Next Grid: " << this->nextGrid << std::endl;
-            std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+                std::cout << "LEFT | PREV FRAME" << std::endl;
+                std::cout << "Current Grid: " << this->currentGrid << std::endl;
+                std::cout << "Next Grid: " << this->nextGrid << std::endl;
+                std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
     }
 
@@ -277,57 +279,50 @@ void CollisionManager::mapBounds() {
         prev = MapManager::getInstance()->isValidRight(this->currentGrid, this->prevGrid);
 
         if(next == true && this->currentGrid == 0) {
-            pUnitOwner->getSprite()->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
-            MapManager::getInstance()->setActiveGrid(this->nextGrid); 
-            //this->prevGrid = this->currentGrid;
-            this->currentGrid = this->nextGrid;
-            this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
-            this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorR->getSprite()->getGlobalBounds())) {
+                pUnitOwner->getSprite()->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+                MapManager::getInstance()->setActiveGrid(this->nextGrid); 
+                this->currentGrid = this->nextGrid;
+                this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
+                this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
 
-            //this->setDoorPosR(this->currentGrid);
-
-            std::cout << "RIGHT | NEXT FRAME" << std::endl;
-            std::cout << "Current Grid: " << this->currentGrid << std::endl;
-            std::cout << "Next Grid: " << this->nextGrid << std::endl;
-            std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+                std::cout << "RIGHT | NEXT FRAME" << std::endl;
+                std::cout << "Current Grid: " << this->currentGrid << std::endl;
+                std::cout << "Next Grid: " << this->nextGrid << std::endl;
+                std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
 
         else if(next == true && this->currentGrid != 0) {
-            // pUnitOwner->getSprite()->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorR->getSprite()->getGlobalBounds())) {
+                this->mapTraversal(2);
+                MapManager::getInstance()->setActiveGrid(this->nextGrid); 
+                this->currentGrid = this->nextGrid;
+                this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
+                this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
 
-            this->mapTraversal(2);
-            MapManager::getInstance()->setActiveGrid(this->nextGrid); 
-            //this->prevGrid = this->currentGrid;
-            this->currentGrid = this->nextGrid;
-            this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
-            this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
-
-            //this->setDoorPosR(this->currentGrid);
-
-            std::cout << "RIGHT | NEXT FRAME" << std::endl;
-            std::cout << "Current Grid: " << this->currentGrid << std::endl;
-            std::cout << "Next Grid: " << this->nextGrid << std::endl;
-            std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+                std::cout << "RIGHT | NEXT FRAME" << std::endl;
+                std::cout << "Current Grid: " << this->currentGrid << std::endl;
+                std::cout << "Next Grid: " << this->nextGrid << std::endl;
+                std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
 
         else if(prev == true) {
-            this->mapTraversal(2);
-            MapManager::getInstance()->setActiveGrid(this->prevGrid); 
-            int temp = this->currentGrid; // Store current grid
-            this->currentGrid = this->prevGrid;
-            this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
-            this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
-            //this->prevGrid = temp;
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorR->getSprite()->getGlobalBounds())) {
+                this->mapTraversal(2);
+                MapManager::getInstance()->setActiveGrid(this->prevGrid); 
+                int temp = this->currentGrid; // Store current grid
+                this->currentGrid = this->prevGrid;
+                this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
+                this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
 
-            //this->setDoorPosR(this->currentGrid);
-
-            std::cout << "RIGHT | PREV FRAME" << std::endl;
-            std::cout << "Current Grid: " << this->currentGrid << std::endl;
-            std::cout << "Next Grid: " << this->nextGrid << std::endl;
-            std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
-            
+                std::cout << "RIGHT | PREV FRAME" << std::endl;
+                std::cout << "Current Grid: " << this->currentGrid << std::endl;
+                std::cout << "Next Grid: " << this->nextGrid << std::endl;
+                std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
-
         else this->setDoorPosR(-1);
     }
 
@@ -338,22 +333,22 @@ void CollisionManager::mapBounds() {
         prev = MapManager::getInstance()->isValidTop(this->currentGrid, this->prevGrid);
 
         if(next == true) {
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorT->getSprite()->getGlobalBounds())) {
             this->mapTraversal(3);
             MapManager::getInstance()->setActiveGrid(this->nextGrid); 
-            //this->prevGrid = this->currentGrid;
             this->currentGrid = this->nextGrid;
             this->nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) + 1);
             this->prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
-
-            //this->setDoorPosT(this->currentGrid);
 
             std::cout << "TOP | NEXT FRAME" << std::endl;
             std::cout << "Current Grid: " << this->currentGrid << std::endl;
             std::cout << "Next Grid: " << this->nextGrid << std::endl;
             std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
 
         else if(prev == true) {
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorT->getSprite()->getGlobalBounds())) {
             this->mapTraversal(3);
             MapManager::getInstance()->setActiveGrid(this->prevGrid); 
             int temp = this->currentGrid; // Store current grid
@@ -368,6 +363,7 @@ void CollisionManager::mapBounds() {
             std::cout << "Current Grid: " << this->currentGrid << std::endl;
             std::cout << "Next Grid: " << this->nextGrid << std::endl;
             std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
     }
 
@@ -378,6 +374,7 @@ void CollisionManager::mapBounds() {
         prev = MapManager::getInstance()->isValidBottom(this->currentGrid, this->prevGrid);
 
         if(next == true) {
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorB->getSprite()->getGlobalBounds())) {
             this->mapTraversal(4);
             MapManager::getInstance()->setActiveGrid(this->nextGrid); 
             //this->prevGrid = this->currentGrid;
@@ -391,9 +388,11 @@ void CollisionManager::mapBounds() {
             std::cout << "Current Grid: " << this->currentGrid << std::endl;
             std::cout << "Next Grid: " << this->nextGrid << std::endl;
             std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+            }
         }
 
         else if(prev == true) {
+            if(pUnitOwner->getSprite()->getGlobalBounds().intersects(pDoorB->getSprite()->getGlobalBounds())) {
             this->mapTraversal(4);
             MapManager::getInstance()->setActiveGrid(this->prevGrid); 
             int temp = this->currentGrid; // Store current grid
@@ -407,7 +406,8 @@ void CollisionManager::mapBounds() {
             std::cout << "BOTTOM | PREV FRAME" << std::endl;
             std::cout << "Current Grid: " << this->currentGrid << std::endl;
             std::cout << "Next Grid: " << this->nextGrid << std::endl;
-            std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;            
+            std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;      
+            }      
         }
     }
 }

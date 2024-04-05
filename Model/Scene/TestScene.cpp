@@ -11,8 +11,9 @@ void TestScene::onLoadResources() {
 void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
-    this->createDoor();
     this->spawnItem();
+    this->createMoreBounds();
+    this->createDoor();
     this->spawnEnemies();
     this->spawnUnit();
 }
@@ -46,6 +47,8 @@ void TestScene::createBackground() {
     std::cout << "Next Grid: " << nextGrid << std::endl;
     std::cout << "Last Grid: " << prevGrid << std::endl << std::endl;
     // MapManager::getInstance()->loadBoundaries();
+
+
 }
 
 void TestScene::createBoundaries() {
@@ -120,6 +123,12 @@ void TestScene::spawnItem() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
     Light* pLight = new Light("Light",pTexture);
     GameObjectManager::getInstance()->addObject(pLight);
+}
+
+void TestScene::createMoreBounds() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BOUNDS));
+    TestBounds* pTestBounds = new TestBounds("Bounds", pTexture);
+    GameObjectManager::getInstance()->addObject(pTestBounds);
 }
 
 // void TestScene::spawnBot() {

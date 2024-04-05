@@ -14,6 +14,8 @@ void BackgroundAction::perform() {
     TestBoundary* pRightBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("RightBounds");
     TestBoundary* pTopBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("TopBounds");
     TestBoundary* pBottomBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("BottomBounds");
+    TestBounds* pTestBounds = (TestBounds*)GameObjectManager::getInstance()->findObjectByName("Bounds");
+
     TestUnit* pTestUnit = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
     BackgroundInput* pBackgroundInput = (BackgroundInput*)this->getOwner()->getComponents(ComponentType::INPUT)[0]; 
 
@@ -52,6 +54,7 @@ void BackgroundAction::perform() {
         pRightBounds->setFrame(MapManager::getInstance()->findGridByNum(MapManager::getInstance()->getActiveGrid()));
         pTopBounds->setFrame(MapManager::getInstance()->findGridByNum(MapManager::getInstance()->getActiveGrid()));
         pBottomBounds->setFrame(MapManager::getInstance()->findGridByNum(MapManager::getInstance()->getActiveGrid()));
+        pTestBounds->setFrame(MapManager::getInstance()->findGridByNum(MapManager::getInstance()->getActiveGrid()));
     }
 }
 

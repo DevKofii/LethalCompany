@@ -68,17 +68,17 @@ void TestUnitControls::perform() {
             
             int currentGrid = MapManager::getInstance()->getActiveGrid();
 
-            if(pUnitInput->getInteract()) {
+            // if(pUnitInput->getInteract()) {
                 
-                // //ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->releasePoolable(pPoolEnemy);
+            //     // //ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->releasePoolable(pPoolEnemy);
 
-                // //pUnitInput->resetInteract();
+            //     // //pUnitInput->resetInteract();
 
-                if(currentGrid == 1) pEnemy->getSprite()->setPosition(this->randomPos());
-                else pEnemy->getSprite()->setPosition(-1000.0f,-1000.0f);
-                pUnitInput->resetInteract();
-                ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->requestPoolable();
-            }
+            //     if(currentGrid == 1) pEnemy->getSprite()->setPosition(this->randomPos());
+            //     else pEnemy->getSprite()->setPosition(-1000.0f,-1000.0f);
+            //     pUnitInput->resetInteract();
+            //     ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->requestPoolable();
+            // }
 
             //Orientation
             if(pUnitOwner->getOrientationRight() == true && pUnitOwner->getOrientationLeft() == false) pUnitOwner->getSprite()->setScale(2.0f,2.0f);
