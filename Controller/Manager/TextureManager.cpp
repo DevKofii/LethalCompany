@@ -3,26 +3,6 @@ using namespace managers;
 
 void TextureManager::loadAll() {}
 
-void TextureManager::loadMainMenu() {
-    sf::Texture* pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/TitleScreen.png");
-    this->mapTexture[AssetType::TITLE_SCREEN].push_back(pTexture);
-}
-
-void TextureManager::loadGame() {
-    sf::Texture* pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Background.png");
-    this->mapTexture[AssetType::GAME_BACKGROUND].push_back(pTexture);
-
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/Player/this_ship_be_otp.png");
-    this->mapTexture[AssetType::SHIP].push_back(pTexture);
-
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/Player/bullet.png");
-    this->mapTexture[AssetType::PLAYER_BULLET].push_back(pTexture);
-}
-
 void TextureManager::loadTest() {
     sf::Texture* pTexture;
     sf::RectangleShape* pShape;

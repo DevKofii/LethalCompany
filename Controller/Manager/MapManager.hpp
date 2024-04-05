@@ -27,6 +27,7 @@ namespace managers{
 
         public:
             void loadMap();
+            void loadSixRooms();
             void loadSevenRooms();
             void loadEightRooms();
             void loadNineRooms();

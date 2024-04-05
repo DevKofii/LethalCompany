@@ -11,9 +11,9 @@ void TestScene::onLoadResources() {
 void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
-    this->spawnItem();
     this->createMoreBounds();
     this->createDoor();
+    this->spawnItem();
     this->spawnEnemies();
     this->spawnUnit();
 }

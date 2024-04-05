@@ -6,8 +6,6 @@
 #include "Manager/GameObjectManager.hpp"
 #include "Manager/SceneManager.hpp"
 #include "../Model/Enum/AssetType.hpp"
-#include "../Model/Scene/MainMenuScene.hpp"
-#include "../Model/Scene/GameScene.hpp"
 #include "../Model/Scene/TestScene.hpp"
 
 namespace controllers {

@@ -12,8 +12,6 @@ namespace managers{
             std::vector<AssetType> vecAssetTypes;
         public:
             void loadAll();
-            void loadMainMenu();
-            void loadGame();
             void loadTest();
             void unloadAll();
 

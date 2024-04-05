@@ -3,16 +3,9 @@
 enum class AssetType : int {
     NONE = -1,
     PLAYER,
-    SHIP,
-    PLAYER_BULLET,
-    MAIN_MENU_BACKGROUND,
-    GAME_BACKGROUND,
+    ENEMY,
     TITLE_SCREEN,
     TEST_BACKGROUND,
-    TEST_UNIT,
-    TEST_BOT,
-    TEST_BULLET,
-    TEST_SHAPE,
     BOUNDS,
     LEFT,
     RIGHT,
@@ -21,6 +14,5 @@ enum class AssetType : int {
     DOOR,
     DOOR_ALT,
     LIGHT,
-    ENEMY,
     BARREL
 };

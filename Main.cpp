@@ -35,8 +35,6 @@
 #include "Model/Pooling/Entity/Enemy.cpp"
 
 #include "Model/Scene.cpp"
-#include "Model/Scene/MainMenuScene.cpp"
-#include "Model/Scene/GameScene.cpp"
 #include "Model/Scene/TestScene.cpp"
 
 #include "Model/Component/Component.cpp"

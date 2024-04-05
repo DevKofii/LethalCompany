@@ -7,10 +7,84 @@ void MapManager::loadMap() {
     this->nRooms = (rand() % (9 - 4 + 1)) + 4;
     std::cout << "Rooms: " << this->nRooms << std::endl;  
 
-    if(this->nRooms == 7) this->loadSevenRooms();
+    if(this->nRooms == 6) this->loadSixRooms();
+    else if(this->nRooms == 7) this->loadSevenRooms();
     else if(this->nRooms == 8) this->loadEightRooms();
     else if(this->nRooms == 9) this->loadNineRooms();
     else this->loadRooms();
+}
+
+void MapManager::loadSixRooms() {
+    sf::Texture* pTexture;
+    this->vecMap.push_back(0); // Safe Zone
+    this->setActiveGrid(0);
+    this->nRandomNum = (rand() % (8 - 1 + 1)) + 1;
+    switch(this->nRandomNum) {
+        case 1:
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(4);
+            break;
+        case 2:
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(6);
+            break;
+        case 3:
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(6);
+            break;
+        case 4:
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(4);
+            break;
+        case 5:
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(2);
+            break;
+        case 6:
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(8);
+            break;
+        case 7:
+            this->vecMap.push_back(7);
+            this->vecMap.push_back(4);
+            this->vecMap.push_back(1);
+            this->vecMap.push_back(2);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(8);
+            break;
+        case 8:
+            this->vecMap.push_back(3);
+            this->vecMap.push_back(6);
+            this->vecMap.push_back(9);
+            this->vecMap.push_back(8);
+            this->vecMap.push_back(5);
+            this->vecMap.push_back(2);
+            break;
+    }
 }
 
 void MapManager::loadSevenRooms() {
