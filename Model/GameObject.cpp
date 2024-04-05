@@ -13,6 +13,10 @@ GameObject::GameObject(std::string strName) {
     this->nCurrentFrame = 0;
     this->pParent = NULL;
     this->vecChildren = {};
+
+    this->grid = 0;
+    this->posX = 0;
+    this->posY = 0;
 }
 
 GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
@@ -25,6 +29,10 @@ GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
     this->nCurrentFrame = 0;
     this->pParent = NULL;
     this->vecChildren = {};
+
+    this->grid = 0;
+    this->posX = 0;
+    this->posY = 0;
 }
 
 GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pTexture) {
@@ -38,6 +46,10 @@ GameObject::GameObject(std::string strName, float fSpeed, AnimatedTexture* pText
     this->nCurrentFrame = 0;
     this->pParent = NULL;
     this->vecChildren = {};
+
+    this->grid = 0;
+    this->posX = 0;
+    this->posY = 0;
 }
 
 void GameObject::processEvents(sf::Event CEvent) {
@@ -216,4 +228,32 @@ void GameObject::setPosition(sf::Vector2f vecPosition) {
 
 void GameObject::setScale(sf::Vector2f vecScale) {
     this->pSprite->setScale(vecScale);
+}
+
+void GameObject::resetPos() {
+    this->pSprite->setPosition(-10000.f,-10000.f);
+}
+
+int GameObject::getGrid() {
+    return this->grid;
+}
+
+void GameObject::setGrid(int num) {
+    this->grid = num;
+}
+
+void GameObject::setPosX(int x) {
+    this->posX = x;
+}
+
+void GameObject::setPosY(int y) {
+    this->posY = y;
+}
+
+int GameObject::getPosX() {
+    return this->posX;
+}
+
+int GameObject::getPosY() {
+    return this->posY;
 }

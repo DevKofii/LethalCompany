@@ -16,9 +16,5 @@ namespace entities {
 
         public:
             void initialize();
-
-        public:
-            int getFrameStart();
-            int getFrameEnd();
     };
 }

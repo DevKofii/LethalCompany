@@ -35,12 +35,12 @@ namespace scenes {
             void createBackground();
             void createBoundaries();
             void createDoor();
-            void spawnUnit();
-            void spawnEnemies();
             void spawnItem();
-            void createMoreBounds();
-            void createObjectPools();
+            void spawnEnemies();
+            void createExtraBoundary();
+            void spawnUnit();
+            
 
-            void setPosition(TestItem* pItem);
+            void setPosition(GameObject* pEntity);
     };
 }

@@ -11,6 +11,7 @@
 #include "../../Entity/TestBounds.hpp"
 #include "../../Entity/TestUnit.hpp"
 #include "../../Entity/TestItem.hpp"
+#include "../../Entity/TestEnemy.hpp"
 #include "../../GameObject.hpp"
 #include "../../../Controller/Manager/GameObjectManager.hpp"
 #include "../../../Controller/Manager/SceneManager.hpp"
@@ -33,6 +34,6 @@ namespace components {
             void perform();
             void objSpawn();
 
-            void spawn(TestItem* pItem);
+            void spawn(GameObject* pEntity);
     };
 }

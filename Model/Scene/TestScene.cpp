@@ -11,10 +11,10 @@ void TestScene::onLoadResources() {
 void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
-    this->createMoreBounds();
-    this->createDoor();
     this->spawnItem();
     this->spawnEnemies();
+    this->createExtraBoundary();
+    this->createDoor();
     this->spawnUnit();
 }
 
@@ -68,6 +68,52 @@ void TestScene::createBoundaries() {
     GameObjectManager::getInstance()->addObject(pTestBoundary);
 }
 
+void TestScene::spawnItem() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
+    Light* pLight = new Light("Light",pTexture);
+    GameObjectManager::getInstance()->addObject(pLight);
+
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BARREL));
+    TestItem* pBarrel;
+
+    int random = (rand() % (10 - 1 + 1)) + 1;
+    int randomGrid;
+
+    for(int i = 0; i < random; i++) {
+        pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture);
+        randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Item spawning in first tile
+        pBarrel->setGrid(randomGrid);
+        this->setPosition(pBarrel);
+        GameObjectManager::getInstance()->addObject(pBarrel);
+    }
+}
+
+void TestScene::spawnEnemies() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
+    TestEnemy* pTestEnemy;
+
+    int random = (rand() % (10 - 1 + 1)) + 1;
+    int randomGrid;
+
+    for(int i = 0; i < random; i++) {
+        pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture);
+        pTestEnemy->setFrame(0);
+        pTestEnemy->setScale({2.0f,2.0f});
+
+        randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
+        pTestEnemy->setGrid(randomGrid);
+        this->setPosition(pTestEnemy);
+
+        GameObjectManager::getInstance()->addObject(pTestEnemy);
+    }
+}
+
+void TestScene::createExtraBoundary() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BOUNDS));
+    TestBounds* pTestBounds = new TestBounds("Bounds", pTexture);
+    GameObjectManager::getInstance()->addObject(pTestBounds);
+}
+
 void TestScene::createDoor() {
     AnimatedTexture* pTexture;
     TestDoor* pDoor;
@@ -93,10 +139,6 @@ void TestScene::createDoor() {
     pDoor->getSprite()->setOrigin(0.f, pDoor->getSprite()->getTexture()->getSize().y/2);
 }
 
-void TestScene::spawnEnemies() {
-
-}
-
 void TestScene::spawnUnit() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
     TestUnit* pTestUnit = new TestUnit("TestUnit", pTexture);
@@ -108,50 +150,11 @@ void TestScene::spawnUnit() {
     GameObjectManager::getInstance()->addObject(pTestUnit);
 }
 
-void TestScene::spawnItem() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
-    Light* pLight = new Light("Light",pTexture);
-    GameObjectManager::getInstance()->addObject(pLight);
-
-    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BARREL));
-    TestItem* pBarrel;
-
-    int random = (rand() % (10 - 1 + 1)) + 1;\
-    int randomGrid;
-
-    for(int i = 0; i < random; i++) {
-        pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture);
-        randomGrid = (rand() % (9 - 1 + 1)) + 1;
-        pBarrel->setGrid(randomGrid);
-        this->setPosition(pBarrel);
-        GameObjectManager::getInstance()->addObject(pBarrel);
-    }
-}
-
-void TestScene::createMoreBounds() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BOUNDS));
-    TestBounds* pTestBounds = new TestBounds("Bounds", pTexture);
-    GameObjectManager::getInstance()->addObject(pTestBounds);
-}
-
-void TestScene::setPosition(TestItem* pItem) {
-    int grid = pItem->getGrid();
+void TestScene::setPosition(GameObject* pEntity) {
+    int grid = pEntity->getGrid();
     int randomPosX, randomPosY, temp_min_x, temp_max_x, temp_min_y, temp_max_y;
 
     switch(grid) {
-        case 1:
-            temp_min_x = GRID1_X+75.f;
-            temp_max_x = (GRID1_WIDTH + GRID1_X) - 75.f;
-
-            temp_min_y = GRID1_Y+50.f;
-            temp_max_y = (GRID1_HEIGHT + GRID1_Y) - 50.f;
-
-            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
-            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
-
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
-            break;
         case 2:
             temp_min_x = GRID2_X+75.f;
             temp_max_x = (GRID2_WIDTH + GRID2_X) - 75.f;
@@ -162,8 +165,8 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
         case 3:
             temp_min_x = GRID3_X+75.f;
@@ -175,8 +178,8 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
         case 4:
             temp_min_x = GRID4_X+75.f;
@@ -188,8 +191,8 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
         case 5:
             temp_min_x = GRID5_X+75.f;
@@ -201,8 +204,8 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
         case 6:
             temp_min_x = GRID6_X+75.f;
@@ -214,8 +217,8 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
         case 7:
             temp_min_x = GRID7_X+75.f;
@@ -227,8 +230,8 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
         case 8:
             temp_min_x = GRID8_X+75.f;
@@ -240,8 +243,8 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
         case 9:
             temp_min_x = GRID9_X+75.f;
@@ -253,22 +256,11 @@ void TestScene::setPosition(TestItem* pItem) {
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
 
-            pItem->setPosX(randomPosX);
-            pItem->setPosY(randomPosY);
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
             break;
     }
 }
-
-// void TestScene::spawnBot() {
-//     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TEST_UNIT));
-//     TestEnemy* pTestBot = new TestEnemy("TestBot", pTexture);
-//     pTestBot->setFrame(0);
-//     pTestBot->setOrientationRight(false);
-//     pTestBot->setOrientationLeft(true);
-//     pTestBot->setScale({-2.0f,2.0f});
-//     pTestBot->setPosition({690.f,210.f});
-//     GameObjectManager::getInstance()->addObject(pTestBot);
-// }
 
 // void TestScene::createObjectPools() {
 //     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TEST_BULLET));

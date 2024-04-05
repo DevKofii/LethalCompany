@@ -28,7 +28,9 @@ namespace models {
             GameObject* pParent;
             std::vector<GameObject*> vecChildren;
 
-            // std::vector<PoolableObject*> vecChildrenPools;
+            int grid;
+            int posX;
+            int posY;
 
         public:
             GameObject(std::string strName);
@@ -80,5 +82,16 @@ namespace models {
             virtual sf::Vector2f getPosition();
             virtual void setPosition(sf::Vector2f vecPosition);
             virtual void setScale(sf::Vector2f vecScale);
+
+            void resetPos();
+
+            int getGrid();
+            void setGrid(int num);
+            
+            void setPosX(int x);
+            void setPosY(int y);
+
+            int getPosX();
+            int getPosY();
     };
 }
