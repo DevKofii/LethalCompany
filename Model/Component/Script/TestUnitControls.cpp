@@ -3,15 +3,13 @@
 using namespace components;
 
 TestUnitControls::TestUnitControls(std::string strName) : Component  (strName, ComponentType::SCRIPT) {
-    this->pUnitInput = NULL;
-    this->pUnitOwner = NULL;
     this->fSpeed = 300.0f;
 }
 
 void TestUnitControls::perform() {
 
-    if(this->pUnitOwner == NULL) this->pUnitOwner = (TestUnit*)this->pOwner;
-    if(this->pUnitInput == NULL) this->pUnitInput = (TestUnitInput*)this->getOwner()->findComponentByName(this->pUnitOwner->getName() + " Input");
+    TestUnit* pUnitOwner = (TestUnit*)this->pOwner;
+    TestUnitInput* pUnitInput = (TestUnitInput*)this->getOwner()->findComponentByName(pUnitOwner->getName() + " Input");
     
     Enemy* pEnemy = (Enemy*)ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY)->getPoolable();
     PoolableObject* pPoolEnemy = (PoolableObject*)ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY);
@@ -21,14 +19,14 @@ void TestUnitControls::perform() {
     // pLight->setPosition(this->pUnitOwner->getPosition());
 
     Light* pLight = (Light*)GameObjectManager::getInstance()->findObjectByName("Light");
-    pLight->setPosition(this->pUnitOwner->getPosition());
+    pLight->setPosition(pUnitOwner->getPosition());
 
     if(pUnitInput == NULL && pUnitOwner == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
         //Player
-        if(this->pUnitOwner->getName() == "TestUnit") {
+        if(pUnitOwner->getName() == "TestUnit") {
 
             float fOffset  = this->fSpeed * this->tDeltaTime.asSeconds();
 
@@ -86,20 +84,9 @@ void TestUnitControls::perform() {
         }
 
         //BotTest
-        if(this->pUnitOwner->getName() == "TestBot") {
+        if(pUnitOwner->getName() == "TestBot") {
             // float fOffset  = this->fSpeed * this->tDeltaTime.asSeconds();
             // pUnitOwner->getSprite()->move(-fOffset,0.f);
         }
     }
-}
-
-sf::Vector2f TestUnitControls::randomPos() {
-    srand(time(NULL));
-
-    int x = (rand() % (740 - 540 + 1)) + 540;
-    int y = (rand() % (410 - 310 + 1)) + 310;
-    
-    sf::Vector2f vect{x,y};
-
-    return vect;
 }

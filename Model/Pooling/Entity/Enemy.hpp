@@ -3,9 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "../../AnimatedTexture.hpp"
 #include "../PoolableObject.hpp"
-#include "../../Entity/TestEnemy.hpp"
 #include "../../Enum/PoolTag.hpp"
-//#include "../../Component/Script/EnemyMovement.hpp"
 #include "../../Component/Script/Bot/BotAction.hpp"
 #include "../../../Controller/Manager/TextureManager.hpp"
 

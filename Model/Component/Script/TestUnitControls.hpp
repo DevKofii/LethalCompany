@@ -7,7 +7,6 @@
 #include "../Input/TestUnitInput.hpp"
 #include "../../Entity/TestUnit.hpp"
 #include "../../Entity/Light.hpp"
-#include "../../Pooling/Entity/TestBullet_R.hpp"
 #include "../../Pooling/Entity/Enemy.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
@@ -18,10 +17,6 @@ namespace components {
     using namespace entities;
     using namespace poolables;
     class TestUnitControls : public Component {
-        protected:
-            TestUnit* pUnitOwner;
-            TestUnitInput* pUnitInput;
-
         private:
             float fSpeed;
         
@@ -30,6 +25,5 @@ namespace components {
 
         public:
             void perform();
-            sf::Vector2f randomPos();
     };
 }
