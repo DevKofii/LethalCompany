@@ -38,11 +38,8 @@ namespace scenes {
             void createDoor();
             void spawnUnit();
             void spawnBot();
-<<<<<<< HEAD
             void spawnEnemies();
             void spawnItem();
-=======
->>>>>>> parent of d2b0c64 (hi nikko pls check thanks)
             void createObjectPools();
             void checkCollision();
     };

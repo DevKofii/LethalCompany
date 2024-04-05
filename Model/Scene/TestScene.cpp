@@ -107,41 +107,12 @@ void TestScene::spawnUnit() {
     GameObjectManager::getInstance()->addObject(pTestUnit);
 }
 
-<<<<<<< HEAD
-void TestScene::createEnemyPool() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY_1));
-
-    Enemy* pEnemyRef = new Enemy("Enemy", pTexture);
-    GameObjectPool* pEnemyPool = new GameObjectPool(PoolTag::ENEMY, 5, pEnemyRef);
-    pEnemyPool->initalize();
-    ObjectPoolManager::getInstance()->registerObjectPool(pEnemyPool);
-}
-
-void TestScene::spawnEnemies() {
-    int currentGrid = MapManager::getInstance()->getActiveGrid();
-    int nextGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) + 1);
-    int prevGrid = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(currentGrid) - 1);
-    int randomGrid = rand() % 3 + currentGrid; // Randomly select a grid between the current grid and the next two grids
-
-    int numEnemies = rand() % 5 + 1; // Spawn a random number of enemies between 1 and 5
-
-    for (int i = 0; i < numEnemies; ++i) {
-        GameObjectPool* pEnemyPool = ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY);
-        GameObject* pEnemy = pEnemyPool->requestPoolable();
-
-        // Set the enemy's position based on the random grid
-        if (randomGrid == currentGrid) {
-            pEnemy->setPosition({0.f, 0.f});
-        }
-    }
 void TestScene::spawnItem() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
     Light* pLight = new Light("Light",pTexture);
     GameObjectManager::getInstance()->addObject(pLight);
 }
 
-=======
->>>>>>> parent of d2b0c64 (hi nikko pls check thanks)
 // void TestScene::spawnBot() {
 //     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TEST_UNIT));
 //     TestEnemy* pTestBot = new TestEnemy("TestBot", pTexture);
