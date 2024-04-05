@@ -10,7 +10,6 @@
 #include "../Entity/TestDoor.hpp"
 #include "../Entity/Light.hpp"
 
-#include "../Pooling/Entity/Enemy.hpp"
 #include "../Pooling/Entity/TestBullet_R.hpp"
 #include "../Pooling/Entity/TestBullet_L.hpp"
 
@@ -36,12 +35,14 @@ namespace scenes {
         private:
             void createBackground();
             void createBoundaries();
-            void createEnemyPool();
             void createDoor();
             void spawnUnit();
             void spawnBot();
+<<<<<<< HEAD
             void spawnEnemies();
             void spawnItem();
+=======
+>>>>>>> parent of d2b0c64 (hi nikko pls check thanks)
             void createObjectPools();
             void checkCollision();
     };

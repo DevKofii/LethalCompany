@@ -37,26 +37,6 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
     }
 
-    // Load ENEMY_1 texture
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/Enemy/enemy1.png");
-    this->mapTexture[AssetType::ENEMY_1].push_back(pTexture);
-
-    // Load ENEMY_2 texture
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/Enemy/enemy2.png");
-    this->mapTexture[AssetType::ENEMY_2].push_back(pTexture);
-
-    // Load ENEMY_3 texture
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/Enemy/enemy3.png");
-    this->mapTexture[AssetType::ENEMY_3].push_back(pTexture);
-
-    // Load ENEMY_4 texture
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/Enemy/enemy4.png");
-    this->mapTexture[AssetType::ENEMY_4].push_back(pTexture);
-
     //Load map[debug]
     // pTexture = new sf::Texture();
     // pTexture->loadFromFile("View/Image/Debug/map/grid8.png");

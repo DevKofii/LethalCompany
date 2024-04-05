@@ -11,11 +11,9 @@ void TestScene::onLoadResources() {
 void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
-    this->createEnemyPool();
     this->createDoor();
     this->spawnItem();
     this->spawnUnit();
-    this->spawnEnemies();
 }
 
 void TestScene::onUnloadResources() {
@@ -109,6 +107,7 @@ void TestScene::spawnUnit() {
     GameObjectManager::getInstance()->addObject(pTestUnit);
 }
 
+<<<<<<< HEAD
 void TestScene::createEnemyPool() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY_1));
 
@@ -141,6 +140,8 @@ void TestScene::spawnItem() {
     GameObjectManager::getInstance()->addObject(pLight);
 }
 
+=======
+>>>>>>> parent of d2b0c64 (hi nikko pls check thanks)
 // void TestScene::spawnBot() {
 //     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TEST_UNIT));
 //     TestEnemy* pTestBot = new TestEnemy("TestBot", pTexture);

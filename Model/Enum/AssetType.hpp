@@ -3,10 +3,6 @@
 enum class AssetType : int {
     NONE = -1,
     PLAYER,
-    ENEMY_1,
-    ENEMY_2,
-    ENEMY_3,
-    ENEMY_4,
     SHIP,
     PLAYER_BULLET,
     MAIN_MENU_BACKGROUND,
