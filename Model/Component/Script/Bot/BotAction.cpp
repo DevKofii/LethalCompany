@@ -43,6 +43,7 @@ void BotAction::spawnEnemy() {
 void BotAction::selectState(){
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
 
+    std::cout << pEnemy->getName() << std::endl;
     pEnemy->setRandom();
 
     switch(pEnemy->getRandom()) {
@@ -129,10 +130,8 @@ void BotAction::performState() {
 
         default:
             break;
-
+        }
     }
-
-}
 
 void BotAction::checkCollision() {
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;

@@ -44,5 +44,7 @@ namespace scenes {
             
             void setPositionEnemy(TestEnemy* pEntity);
             void setPosition(GameObject* pEntity);
+
+            bool gridLock(int num);
     };
 }

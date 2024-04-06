@@ -107,9 +107,9 @@ void TestScene::spawnEnemies() {
         pTestEnemy->setFrame(0);
         pTestEnemy->setScale({2.0f,2.0f});
 
-        //randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
+        randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
         pTestEnemy->setGrid(0);
-        this->setPositionEnemy(pTestEnemy);
+        this->setPosition(pTestEnemy);
         pTestEnemy->setPosition({pTestEnemy->getPosX(),pTestEnemy->getPosY()});
         GameObjectManager::getInstance()->addObject(pTestEnemy);
     }
@@ -157,33 +157,12 @@ void TestScene::spawnUnit() {
     GameObjectManager::getInstance()->addObject(pTestUnit);
 }
 
-void TestScene::setPositionEnemy(TestEnemy* pEntity) {
-    int grid = pEntity->getGrid();
-    int randomPosX, randomPosY, temp_min_x, temp_max_x, temp_min_y, temp_max_y;
-
-    switch(grid) {
-        case 0:
-            temp_min_x = GRID0_X+75.f;
-            temp_max_x = (GRID0_WIDTH + GRID0_X) - 75.f;
-
-            temp_min_y = GRID0_Y+50.f;
-            temp_max_y = (GRID0_HEIGHT + GRID0_Y) - 50.f;
-
-            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
-            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
-
-            pEntity->setPosX(randomPosX);
-            pEntity->setPosY(randomPosY);
-            break;
-    }
-}
-
 void TestScene::setPosition(GameObject* pEntity) {
     int grid = pEntity->getGrid();
     int randomPosX, randomPosY, temp_min_x, temp_max_x, temp_min_y, temp_max_y;
 
     switch(grid) {
-        case 0:
+        case 0: // Debug
             temp_min_x = GRID0_X+75.f;
             temp_max_x = (GRID0_WIDTH + GRID0_X) - 75.f;
 
