@@ -102,14 +102,14 @@ void TestScene::spawnEnemies() {
     int random = (rand() % (10 - 1 + 1)) + 1;
     int randomGrid;
 
-    for(int i = 0; i < random; i++) {
+    for(int i = 0; i < 1; i++) {
         pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture);
         pTestEnemy->setFrame(0);
         pTestEnemy->setScale({2.0f,2.0f});
 
-        randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
-        pTestEnemy->setGrid(randomGrid);
-        this->setPosition(pTestEnemy);
+        //randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
+        //pTestEnemy->setGrid(0);
+        //this->setPosition(pTestEnemy);
 
         GameObjectManager::getInstance()->addObject(pTestEnemy);
     }

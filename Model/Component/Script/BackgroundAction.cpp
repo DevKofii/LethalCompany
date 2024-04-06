@@ -42,16 +42,15 @@ void BackgroundAction::objSpawn() {
     //Random how many spawns;
 
     TestItem* pItem; 
-    TestEnemy* pEnemy;
+    //TestEnemy* pEnemy;
 
     for(int i = 0; i < 10; i++) { 
         pItem = (TestItem*)GameObjectManager::getInstance()->findObjectByName("Barrel" + std::to_string(i)); 
-        pEnemy = (TestEnemy*)GameObjectManager::getInstance()->findObjectByName("TestEnemy" + std::to_string(i)); 
+        //pEnemy = (TestEnemy*)GameObjectManager::getInstance()->findObjectByName("TestEnemy" + std::to_string(i)); 
         if(pItem != NULL) this->spawn(pItem);
-        if(pEnemy != NULL) this->spawn(pEnemy);
+        //if(pEnemy != NULL) this->spawn(pEnemy);
     }
 }
-
 
 void BackgroundAction::spawn(GameObject* pEntity) {
     int currentActive = MapManager::getInstance()->getActiveGrid();

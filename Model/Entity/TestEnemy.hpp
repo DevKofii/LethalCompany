@@ -3,6 +3,7 @@
 #include "../GameObject.hpp"
 #include "../AnimatedTexture.hpp"
 #include "../Component/Renderer/Renderer.hpp"
+#include "../Component/Script/Bot/BotAction.hpp"
 
 namespace entities {
     using namespace models;
