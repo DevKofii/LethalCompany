@@ -108,11 +108,17 @@ void TestScene::spawnEnemies() {
         pTestEnemy->setScale({2.0f,2.0f});
 
         randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
-        pTestEnemy->setGrid(0);
+        if(this->getGridLock(randomGrid)) randomGrid = (rand() % (9 - 2 + 1)) + 2;
+
+        pTestEnemy->setGrid(randomGrid);
+        this->setGridLock(randomGrid,true);
         this->setPosition(pTestEnemy);
         pTestEnemy->setPosition({pTestEnemy->getPosX(),pTestEnemy->getPosY()});
         GameObjectManager::getInstance()->addObject(pTestEnemy);
+
+        std::cout << randomGrid << std::endl;
     }
+
 }
 
 void TestScene::createExtraBoundary() {
@@ -279,6 +285,64 @@ void TestScene::setPosition(GameObject* pEntity) {
 
             pEntity->setPosX(randomPosX);
             pEntity->setPosY(randomPosY);
+            break;
+    }
+}
+
+void TestScene::setGridLock(int num, bool bLock) {
+    switch(num) {
+        case 2:
+            this->two = bLock;
+            break;
+        case 3:
+            this->three = bLock;
+            break;
+        case 4:
+            this->four = bLock;
+            break;
+        case 5:
+            this->five = bLock;
+            break;
+        case 6:
+            this->six = bLock;
+            break;
+        case 7:
+            this->seven = bLock;
+            break;
+        case 8:
+            this->eight = bLock;
+            break;
+        case 9:
+            this->nine = bLock;
+            break;
+    }
+}
+
+bool TestScene::getGridLock(int num) {
+    switch(num) {
+        case 2:
+            return this->two;
+            break;
+        case 3:
+            return this->three;
+            break;
+        case 4:
+            return this->four;
+            break;
+        case 5:
+            return this->five;
+            break;
+        case 6:
+            return this->six;
+            break;
+        case 7:
+            return this->seven;
+            break;
+        case 8:
+            return this->eight;
+            break;
+        case 9:
+            return this->nine;
             break;
     }
 }

@@ -24,6 +24,13 @@ namespace scenes {
     using namespace entities;
     using namespace models;
     class TestScene : public Scene {
+        protected:
+            bool
+                two, three, four,
+                five, six, seven,
+                eight, nine
+            ;
+
         public:
             TestScene();
 
@@ -45,6 +52,7 @@ namespace scenes {
             void setPositionEnemy(TestEnemy* pEntity);
             void setPosition(GameObject* pEntity);
 
-            bool gridLock(int num);
+            void setGridLock(int num, bool bLock);
+            bool getGridLock(int num);
     };
 }
