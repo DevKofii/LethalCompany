@@ -48,32 +48,32 @@ void BotAction::spawnEnemy() {
 void BotAction::selectState(){
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
     
-    std::cout << pEnemy->getName() << std::endl;
+    //std::cout << pEnemy->getName() << std::endl;
     pEnemy->setRandom();
 
     switch(pEnemy->getRandom()) {
         case 1: // WALK_LEFT
-            std::cout << "WALK_LEFT" << std::endl;
+            //std::cout << "WALK_LEFT" << std::endl;
             pEnemy->setTag(BotTag::WALK_LEFT);
             break;
 
         case 2: // WALK_RIGHT
-            std::cout << "WALK_RIGHT" << std::endl;
+            //std::cout << "WALK_RIGHT" << std::endl;
             pEnemy->setTag(BotTag::WALK_RIGHT);
             break;
 
         case 3: // WALK_UP
-            std::cout << "WALK_UP" << std::endl;
+            //std::cout << "WALK_UP" << std::endl;
             pEnemy->setTag(BotTag::WALK_UP);
             break;
 
         case 4: // WALK_DOWN
-            std::cout << "WALK_DOWN" << std::endl;
+            //std::cout << "WALK_DOWN" << std::endl;
             pEnemy->setTag(BotTag::WALK_DOWN);
             break;
 
         default: // CATCH ERROR?
-            std::cout << "IDLE" << std::endl;
+            //std::cout << "IDLE" << std::endl;
             pEnemy->setTag(BotTag::IDLE);
             break;
     }
@@ -199,7 +199,7 @@ void BotAction::checkCollision() {
 
     //Enemy Collision
     if(pPlayer->getSprite()->getGlobalBounds().intersects(pShadow->getSprite()->getGlobalBounds())) { 
-        std::cout << "Chase Player!" << std::endl;
+        //std::cout << "Chase Player!" << std::endl;
         this->chaseTarget();
     }
 }
@@ -211,26 +211,9 @@ void BotAction::chaseTarget() {
     
     sf::Vector2f distance = ((pPlayer->getPosition()) - pEnemy->getPosition());
     sf::Vector2f normalized_dist = this->normalize(distance);
+
     sf::Vector2f moveSpeed = (normalized_dist * 5.0f * ((float) this->tDeltaTime.asMilliseconds() / 60));
-    std::cout << moveSpeed.x << std::endl;
     pEnemy->getSprite()->move(moveSpeed); 
-
-    // if(distance.x > 0) this->setTag(BotTag::WALK_RIGHT);
-    // if(distance.x < 0) this->setTag(BotTag::WALK_LEFT);
-    
-    // TestEnemy* pEnemy = (TestEnemy*)GameObjectManager::getInstance()->findObjectByName("TestBot");
-    // TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
-
-    // sf::Vector2f distance = ((pPlayer->getPosition())- pEnemy->getPosition());
-    // sf::Vector2f normalized_dist = this->normalize(distance);
-    // sf::Vector2f moveSpeed = (normalized_dist * this->fSpeed * ((float)this->tDeltaTime.asMilliseconds() / 60));
-    // std::cout << moveSpeed.x << std::endl;
-    // pEnemy->getSprite()->move(moveSpeed);
-
-    // if(distance.x > 0) {
-    //     this->setTag(BotTag::WALK_RIGHT);
-    // }
-    // if(distance.x < 0) this->setTag(BotTag::WALK_LEFT);
 }
 
 void BotAction::setTag(BotTag ETag) {

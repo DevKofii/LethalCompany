@@ -44,5 +44,6 @@ namespace components {
             void setDoorPosR(int num);
             void setDoorPosT(int num);
             void setDoorPosB(int num);
+
     };
 }

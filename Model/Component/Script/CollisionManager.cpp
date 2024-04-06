@@ -208,8 +208,6 @@ void CollisionManager::mapBounds() {
         }
     }
 
-    //Enemy Visibility
-
     //Door Checks | LEFT
     bool nextDoor_L = MapManager::getInstance()->isValidLeft(this->currentGrid, this->nextGrid);
     bool prevDoor_L = MapManager::getInstance()->isValidLeft(this->currentGrid, this->prevGrid);
@@ -449,4 +447,3 @@ void CollisionManager::mapTraversal(int debug) {
             break;
     }
 }
-
