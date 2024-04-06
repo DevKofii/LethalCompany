@@ -11,6 +11,7 @@ void TestScene::onLoadResources() {
 void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
+    this->loadMisc();
     this->spawnItem();
     this->spawnEnemies();
     this->createExtraBoundary();
@@ -66,6 +67,12 @@ void TestScene::createBoundaries() {
     pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BOTTOM));
     pTestBoundary = new TestBoundary("BottomBounds", pTexture);
     GameObjectManager::getInstance()->addObject(pTestBoundary);
+}
+
+void TestScene::loadMisc() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHADOW));
+    Shadow* pShadow = new Shadow("Shadow",pTexture);
+    GameObjectManager::getInstance()->addObject(pShadow);
 }
 
 void TestScene::spawnItem() {

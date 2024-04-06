@@ -6,6 +6,7 @@ TestBackground::TestBackground(std::string strName, AnimatedTexture* pTexture) :
 
 void TestBackground::initialize() {
     //this->pSprite->setColor(sf::Color::Transparent);
+    this->pSprite->setColor(sf::Color(255,255,255,50));
 
     BackgroundInput* backgroundInput = new BackgroundInput(this->strName + " Input");
     this->attachComponent(backgroundInput);

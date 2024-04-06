@@ -24,6 +24,7 @@
 #include "Model/Entity/TestDoor.cpp"
 #include "Model/Entity/TestBounds.cpp"
 #include "Model/Entity/Light.cpp"
+#include "Model/Entity/Shadow.cpp"
 
 #include "Model/Entity/TestItem.cpp"
 

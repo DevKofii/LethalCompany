@@ -11,6 +11,7 @@
 #include "../Entity/TestBounds.hpp"
 #include "../Entity/Light.hpp"
 #include "../Entity/TestItem.hpp"
+#include "../Entity/Shadow.hpp"
 
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
@@ -34,10 +35,11 @@ namespace scenes {
         private:
             void createBackground();
             void createBoundaries();
-            void createDoor();
+            void loadMisc();
             void spawnItem();
             void spawnEnemies();
             void createExtraBoundary();
+            void createDoor();
             void spawnUnit();
             
 

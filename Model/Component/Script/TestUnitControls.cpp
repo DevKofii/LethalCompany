@@ -13,6 +13,11 @@ void TestUnitControls::perform() {
 
     Light* pLight = (Light*)GameObjectManager::getInstance()->findObjectByName("Light");
     pLight->setPosition(pUnitOwner->getPosition());
+    
+    Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow");
+    //GameObject* pClone = pShadow->clone();
+
+    pShadow->setPosition({pUnitOwner->getPosition().x,pUnitOwner->getPosition().y});
 
     if(pUnitInput == NULL && pUnitOwner == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
@@ -33,6 +38,7 @@ void TestUnitControls::perform() {
                 pUnitOwner->setOrientationLeft(pUnitInput->getLeft());
                 pUnitOwner->setOrientationRight(false);
 
+                pShadow->getSprite()->setScale(-1.5f,1.5f);
                 pLight->getSprite()->setScale(-1.0f,1.0f);
                 
             }
@@ -42,6 +48,7 @@ void TestUnitControls::perform() {
                 pUnitOwner->setOrientationRight(pUnitInput->getRight());
                 pUnitOwner->setOrientationLeft(false);
                 
+                pShadow->getSprite()->setScale(1.5f,1.5f);
                 pLight->getSprite()->setScale(1.0f,1.0f);
             }
 
@@ -62,12 +69,6 @@ void TestUnitControls::perform() {
             //Orientation
             if(pUnitOwner->getOrientationRight() == true && pUnitOwner->getOrientationLeft() == false) pUnitOwner->getSprite()->setScale(2.0f,2.0f);
             if(pUnitOwner->getOrientationRight() == false && pUnitOwner->getOrientationLeft() == true) pUnitOwner->getSprite()->setScale(-2.0f,2.0f);
-        }
-
-        //BotTest
-        if(pUnitOwner->getName() == "TestBot") {
-            // float fOffset  = this->fSpeed * this->tDeltaTime.asSeconds();
-            // pUnitOwner->getSprite()->move(-fOffset,0.f);
         }
     }
 }

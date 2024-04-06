@@ -28,6 +28,11 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::PLAYER].push_back(pTexture);
     }
 
+    //Load shadow
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/char/anims/parts/shadow.png");
+    this->mapTexture[AssetType::SHADOW].push_back(pTexture);
+
     // Load Boundaries [Left]
     for(int i = 0; i < vecMap.size(); i++) {
         pTexture = new sf::Texture();
