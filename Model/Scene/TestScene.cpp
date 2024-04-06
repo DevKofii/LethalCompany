@@ -102,14 +102,15 @@ void TestScene::spawnEnemies() {
     int random = (rand() % (10 - 1 + 1)) + 1;
     int randomGrid;
 
-    for(int i = 0; i < 1; i++) {
-        pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture, 0);
+    for(int i = 0; i < 2; i++) {
+        pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture, i);
         pTestEnemy->setFrame(0);
         pTestEnemy->setScale({2.0f,2.0f});
 
         //randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
         pTestEnemy->setGrid(0);
-        this->setPosition(pTestEnemy);
+        this->setPositionEnemy(pTestEnemy);
+        pTestEnemy->setPosition({pTestEnemy->getPosX(),pTestEnemy->getPosY()});
         GameObjectManager::getInstance()->addObject(pTestEnemy);
     }
 }
@@ -154,6 +155,27 @@ void TestScene::spawnUnit() {
     pTestUnit->setScale({2.0f,2.0f});
     pTestUnit->setPosition({640.f,360.f});
     GameObjectManager::getInstance()->addObject(pTestUnit);
+}
+
+void TestScene::setPositionEnemy(TestEnemy* pEntity) {
+    int grid = pEntity->getGrid();
+    int randomPosX, randomPosY, temp_min_x, temp_max_x, temp_min_y, temp_max_y;
+
+    switch(grid) {
+        case 0:
+            temp_min_x = GRID0_X+75.f;
+            temp_max_x = (GRID0_WIDTH + GRID0_X) - 75.f;
+
+            temp_min_y = GRID0_Y+50.f;
+            temp_max_y = (GRID0_HEIGHT + GRID0_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
+            break;
+    }
 }
 
 void TestScene::setPosition(GameObject* pEntity) {

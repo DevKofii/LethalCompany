@@ -9,15 +9,18 @@ BotAction::BotAction(std::string strName) : Component(strName, ComponentType::SC
     this->delayTimer.restart();
     this->delayTimerMax = 1.3f;
     this->select = 0;
+    this->bEnabled = false;
 }
 
 void BotAction::perform() {
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
     if(pEnemy == NULL) std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     else {
-        //this->spawnEnemy();
-        this->performState();
-        this->checkCollision();
+        this->spawnEnemy();
+        if(this->bEnabled == true) {
+            this->performState();
+            this->checkCollision();
+        }
     }
 }
 
@@ -25,61 +28,50 @@ void BotAction::spawnEnemy() {
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
     int currentActive = MapManager::getInstance()->getActiveGrid();
 
-    int x = pEnemy->getPosX();
-    int y = pEnemy->getPosY();
-
     if(pEnemy->getGrid() == currentActive) {
-        pEnemy->setPosition({x,y});
+        //pEnemy->setPosition({x,y});
+        pEnemy->getSprite()->setColor(sf::Color(255,255,255,255));
+        this->bEnabled = true;
     }
-    else pEnemy->resetPos();
+    else { 
+        pEnemy->getSprite()->setColor(sf::Color(0,0,0,0));
+        this->bEnabled = false;
+        //pEnemy->resetPos();
+    }
 }
 
 void BotAction::selectState(){
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
 
-    std::cout << "SELECTING STATE" << std::endl;
+    pEnemy->setRandom();
 
-    srand(time(NULL));
-    int temp_select = (rand() % (7 - 1 + 1)) + 1;
-    if(this->select == temp_select) temp_select = (rand() % (5 - 1 + 1)) + 1;
-    this->select = temp_select;
-
-    switch(this->select) {
-        case 1: // IDLE
-            std::cout << "IDLE" << std::endl;
-            this->setTag(BotTag::IDLE);
-            break;
-        case 2: // WALK_LEFT
+    switch(pEnemy->getRandom()) {
+        case 1: // WALK_LEFT
             std::cout << "WALK_LEFT" << std::endl;
-            this->setTag(BotTag::WALK_LEFT);
+            pEnemy->setTag(BotTag::WALK_LEFT);
             break;
 
-        case 3: // WALK_RIGHT
+        case 2: // WALK_RIGHT
             std::cout << "WALK_RIGHT" << std::endl;
-            this->setTag(BotTag::WALK_RIGHT);
+            pEnemy->setTag(BotTag::WALK_RIGHT);
             break;
 
-        case 4: // WALK_UP
+        case 3: // WALK_UP
             std::cout << "WALK_UP" << std::endl;
-            this->setTag(BotTag::WALK_UP);
+            pEnemy->setTag(BotTag::WALK_UP);
             break;
 
-        case 5: // WALK_DOWN
+        case 4: // WALK_DOWN
             std::cout << "WALK_DOWN" << std::endl;
-            this->setTag(BotTag::WALK_DOWN);
+            pEnemy->setTag(BotTag::WALK_DOWN);
             break;
 
         default: // CATCH ERROR?
             std::cout << "IDLE" << std::endl;
-            this->setTag(BotTag::IDLE);
+            pEnemy->setTag(BotTag::IDLE);
             break;
     }
     std::cout << std::endl;
-}
-
-int BotAction::random() {
-    int random;
-    return random = (rand() % (100 - 50 + 1)) + 50;
 }
 
 void BotAction::performState() {
@@ -87,7 +79,7 @@ void BotAction::performState() {
     // Enemy Speed
     float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
 
-    switch(ETag) {
+    switch(pEnemy->getTag()) {
         case BotTag::IDLE:
             if(this->getDelayTimer()) {
                 this->selectState();

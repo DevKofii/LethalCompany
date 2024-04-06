@@ -31,13 +31,12 @@ namespace components {
             sf::Clock delayTimer;
             float delayTimerMax;
             int select;
+            bool bEnabled;
         public:
             BotAction(std::string strName);
 
         public:
             void perform();
-
-            int random();
 
             void spawnEnemy();
             void selectState();

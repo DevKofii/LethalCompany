@@ -42,7 +42,7 @@ namespace scenes {
             void createDoor();
             void spawnUnit();
             
-
+            void setPositionEnemy(TestEnemy* pEntity);
             void setPosition(GameObject* pEntity);
     };
 }
