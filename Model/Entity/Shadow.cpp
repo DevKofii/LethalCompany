@@ -16,7 +16,3 @@ void Shadow::initialize() {
     this->attachComponent(pRenderer);
 }
 
-GameObject* Shadow::clone() {
-    GameObject* pClone = new Shadow(this->strName, new AnimatedTexture(*this->pTexture));
-    return pClone;
-}

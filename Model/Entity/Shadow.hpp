@@ -12,6 +12,5 @@ namespace entities {
 
         public:
             void initialize();
-            GameObject* clone();
     };
 }

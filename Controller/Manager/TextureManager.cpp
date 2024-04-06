@@ -31,6 +31,7 @@ void TextureManager::loadTest() {
     //Load shadow
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Debug/char/anims/parts/shadow.png");
+    pTexture->setSmooth(1);
     this->mapTexture[AssetType::SHADOW].push_back(pTexture);
 
     // Load Boundaries [Left]

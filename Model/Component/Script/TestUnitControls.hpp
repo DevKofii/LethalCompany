@@ -7,6 +7,7 @@
 #include "../Input/TestUnitInput.hpp"
 #include "../../Entity/TestUnit.hpp"
 #include "../../Entity/Light.hpp"
+#include "../../Entity/Shadow.hpp"
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"

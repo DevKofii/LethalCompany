@@ -96,8 +96,10 @@ void TestScene::spawnItem() {
 }
 
 void TestScene::spawnEnemies() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
+    AnimatedTexture* pTexture1 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
+    AnimatedTexture* pTexture2 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHADOW));
     TestEnemy* pTestEnemy;
+    Shadow* pShadow;
 
     int random = (rand() % (10 - 1 + 1)) + 1;
     int randomNum, grid;
@@ -106,7 +108,10 @@ void TestScene::spawnEnemies() {
     bool Lock;
  
     for(int i = 0; i < 2; i++) {
-        pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture, i);
+        pShadow = new Shadow("Shadow" + std::to_string(i), pTexture2);
+        GameObjectManager::getInstance()->addObject(pShadow);
+
+        pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
         pTestEnemy->setFrame(0);
         pTestEnemy->setScale({2.0f,2.0f});
 
@@ -117,7 +122,7 @@ void TestScene::spawnEnemies() {
             randomNum = (rand() % (maxSize - 2 + 1)) + 2; 
             if(this->getGridLock(randomNum) == true) randomNum = (rand() % (maxSize - 2 + 1)) + 2; 
             //std::cout << "Random Num: " << randomNum << std::endl;
-            
+
             //Find Index based on random num
             if(MapManager::getInstance()->findGridByNum(randomNum) == NULL) Lock == true;
             else {

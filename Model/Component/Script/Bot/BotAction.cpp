@@ -27,17 +27,20 @@ void BotAction::perform() {
 
 void BotAction::spawnEnemy() {
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
+    Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow" + std::to_string(pEnemy->getID()));
+    pShadow->setScale({2.5f,2.5f});
+
     int currentActive = MapManager::getInstance()->getActiveGrid();
 
     if(pEnemy->getGrid() == currentActive) {
-        //pEnemy->setPosition({x,y});
         pEnemy->getSprite()->setColor(sf::Color(255,255,255,255));
+        pShadow->getSprite()->setColor(sf::Color(255,255,255,20));
         this->bEnabled = true;
     }
     else { 
         pEnemy->getSprite()->setColor(sf::Color(0,0,0,0));
+        pShadow->getSprite()->setColor(sf::Color(0,0,0,0));
         this->bEnabled = false;
-        //pEnemy->resetPos();
     }
 }
 
@@ -193,10 +196,10 @@ void BotAction::checkCollision() {
 
 void BotAction::chaseTarget() {
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
-    Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow");
-    GameObject* pClone = pShadow->clone();
-
-    pClone->setPosition({pEnemy->getPosition().x,pEnemy->getPosition().y});
+    Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow" + std::to_string(pEnemy->getID()));
+    
+    pShadow->setPosition({pEnemy->getSprite()->getPosition().x, pEnemy->getSprite()->getPosition().y});
+    //pShadow->setPosition({pUnitOwner->getPosition().x,pUnitOwner->getPosition().y});
 }
 
 void BotAction::setTag(BotTag ETag) {
