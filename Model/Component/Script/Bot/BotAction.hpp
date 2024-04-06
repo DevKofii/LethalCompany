@@ -11,6 +11,7 @@
 #include "../../../Enum/ComponentType.hpp"
 #include "../../../Enum/BotTag.hpp"
 #include "../../../GameObject.hpp"
+#include "../../../Entity/TestUnit.hpp"
 #include "../../../Entity/TestEnemy.hpp"
 #include "../../../Entity/TestBoundary.hpp"
 #include "../../../Entity/Shadow.hpp"
@@ -33,6 +34,9 @@ namespace components {
             float delayTimerMax;
             int select;
             bool bEnabled;
+
+            bool bChase;
+
         public:
             BotAction(std::string strName);
 
@@ -44,6 +48,8 @@ namespace components {
             void performState();
             void checkCollision();
             void chaseTarget();
+
+            sf::Vector2f normalize(sf::Vector2f vec);
 
         public:
             void setTag(BotTag ETag);

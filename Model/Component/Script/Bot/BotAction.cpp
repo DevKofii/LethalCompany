@@ -10,6 +10,7 @@ BotAction::BotAction(std::string strName) : Component(strName, ComponentType::SC
     this->delayTimerMax = 1.3f;
     this->select = 0;
     this->bEnabled = false;
+    this->bChase = false;
 }
 
 void BotAction::perform() {
@@ -20,7 +21,6 @@ void BotAction::perform() {
         if(this->bEnabled == true) {
             this->performState();
             this->checkCollision();
-            this->chaseTarget();
         }
     }
 }
@@ -29,6 +29,7 @@ void BotAction::spawnEnemy() {
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
     Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow" + std::to_string(pEnemy->getID()));
     pShadow->setScale({2.5f,2.5f});
+    pShadow->setPosition({pEnemy->getSprite()->getPosition().x, pEnemy->getSprite()->getPosition().y});
 
     int currentActive = MapManager::getInstance()->getActiveGrid();
 
@@ -143,6 +144,9 @@ void BotAction::checkCollision() {
     TestBoundary* pRightBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("RightBounds");
     TestBoundary* pTopBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("TopBounds");
     TestBoundary* pBottomBounds = (TestBoundary*)GameObjectManager::getInstance()->findObjectByName("BottomBounds");
+
+    TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
+    Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow" + std::to_string(pEnemy->getID()));
     float fOffset  = this->fSpeed * this->tDeltaTime.asSeconds();
 
     //Left Boundary
@@ -192,14 +196,41 @@ void BotAction::checkCollision() {
             this->setTag(BotTag::WALK_UP);
         }
     }
+
+    //Enemy Collision
+    if(pPlayer->getSprite()->getGlobalBounds().intersects(pShadow->getSprite()->getGlobalBounds())) { 
+        std::cout << "Chase Player!" << std::endl;
+        this->chaseTarget();
+    }
 }
 
 void BotAction::chaseTarget() {
+    TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
     Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow" + std::to_string(pEnemy->getID()));
     
-    pShadow->setPosition({pEnemy->getSprite()->getPosition().x, pEnemy->getSprite()->getPosition().y});
-    //pShadow->setPosition({pUnitOwner->getPosition().x,pUnitOwner->getPosition().y});
+    sf::Vector2f distance = ((pPlayer->getPosition()) - pEnemy->getPosition());
+    sf::Vector2f normalized_dist = this->normalize(distance);
+    sf::Vector2f moveSpeed = (normalized_dist * 5.0f * ((float) this->tDeltaTime.asMilliseconds() / 60));
+    std::cout << moveSpeed.x << std::endl;
+    pEnemy->getSprite()->move(moveSpeed); 
+
+    // if(distance.x > 0) this->setTag(BotTag::WALK_RIGHT);
+    // if(distance.x < 0) this->setTag(BotTag::WALK_LEFT);
+    
+    // TestEnemy* pEnemy = (TestEnemy*)GameObjectManager::getInstance()->findObjectByName("TestBot");
+    // TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
+
+    // sf::Vector2f distance = ((pPlayer->getPosition())- pEnemy->getPosition());
+    // sf::Vector2f normalized_dist = this->normalize(distance);
+    // sf::Vector2f moveSpeed = (normalized_dist * this->fSpeed * ((float)this->tDeltaTime.asMilliseconds() / 60));
+    // std::cout << moveSpeed.x << std::endl;
+    // pEnemy->getSprite()->move(moveSpeed);
+
+    // if(distance.x > 0) {
+    //     this->setTag(BotTag::WALK_RIGHT);
+    // }
+    // if(distance.x < 0) this->setTag(BotTag::WALK_LEFT);
 }
 
 void BotAction::setTag(BotTag ETag) {
@@ -214,4 +245,14 @@ const bool BotAction::getDelayTimer() {
         return true;
     }
     return false;
+}
+
+sf::Vector2f BotAction::normalize(sf::Vector2f vec) {
+    float magnitude = sqrtf(vec.x * vec.x + vec.y * vec.y);
+    if (magnitude != 0) 
+    {
+        vec.x /= magnitude;
+        vec.y /= magnitude;
+    }
+    return vec;
 }

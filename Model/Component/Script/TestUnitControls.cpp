@@ -3,7 +3,7 @@
 using namespace components;
 
 TestUnitControls::TestUnitControls(std::string strName) : Component  (strName, ComponentType::SCRIPT) {
-    this->fSpeed = 300.0f;
+    this->fSpeed = 200.0f;
 }
 
 void TestUnitControls::perform() {
@@ -18,6 +18,7 @@ void TestUnitControls::perform() {
     //GameObject* pClone = pShadow->clone();
 
     pShadow->setPosition({pUnitOwner->getPosition().x,pUnitOwner->getPosition().y});
+    pShadow->getSprite()->setColor(sf::Color::Transparent);
 
     if(pUnitInput == NULL && pUnitOwner == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;

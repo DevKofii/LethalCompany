@@ -12,7 +12,6 @@
 #include "../Entity/Light.hpp"
 #include "../Entity/TestItem.hpp"
 #include "../Entity/Shadow.hpp"
-#include "../Entity/EnemyBox.hpp"
 
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"

@@ -12,7 +12,7 @@ void MapManager::loadMap() {
     else if(this->nRooms == 6) this->loadSixRooms();
     else if(this->nRooms == 7) this->loadSevenRooms();
     else if(this->nRooms == 8) this->loadEightRooms();
-    else if(this->nRooms == 9) this->loadNineRooms();
+    else this->loadNineRooms();
 }
 
 void MapManager::loadFourRooms() {
