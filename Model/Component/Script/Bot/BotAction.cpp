@@ -8,15 +8,7 @@ BotAction::BotAction(std::string strName) : Component(strName, ComponentType::SC
     this->fSpeed = 50.0f;
     this->delayTimer.restart();
     this->delayTimerMax = 1.3f;
-
     this->select = 0;
-    this->debug = false;
-
-    this->randomDest = 0;
-    this->destX_L = 0;
-    this->destX_R = 0;
-    this->destY_T = 0;
-    this->destY_B = 0;
 }
 
 void BotAction::perform() {

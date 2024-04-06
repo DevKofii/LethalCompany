@@ -31,18 +31,6 @@ namespace components {
             sf::Clock delayTimer;
             float delayTimerMax;
             int select;
-
-            int debug;
-
-            int randomDest;
-            int currentPosX;
-            int currentPosY;
-
-            int destX_L;
-            int destX_R;
-            int destY_T;
-            int destY_B;
-
         public:
             BotAction(std::string strName);
 
