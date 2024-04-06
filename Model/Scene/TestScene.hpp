@@ -26,9 +26,9 @@ namespace scenes {
     class TestScene : public Scene {
         protected:
             bool
-                two, three, four,
-                five, six, seven,
-                eight, nine
+                one, two, three, 
+                four, five, six, 
+                seven, eight, nine
             ;
 
         public:

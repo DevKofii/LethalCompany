@@ -20,6 +20,7 @@ void BotAction::perform() {
         if(this->bEnabled == true) {
             this->performState();
             this->checkCollision();
+            this->chaseTarget();
         }
     }
 }
@@ -188,6 +189,14 @@ void BotAction::checkCollision() {
             this->setTag(BotTag::WALK_UP);
         }
     }
+}
+
+void BotAction::chaseTarget() {
+    TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
+    Shadow* pShadow = (Shadow*)GameObjectManager::getInstance()->findObjectByName("Shadow");
+    GameObject* pClone = pShadow->clone();
+
+    pClone->setPosition({pEnemy->getPosition().x,pEnemy->getPosition().y});
 }
 
 void BotAction::setTag(BotTag ETag) {

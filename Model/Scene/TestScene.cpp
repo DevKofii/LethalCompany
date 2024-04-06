@@ -100,25 +100,40 @@ void TestScene::spawnEnemies() {
     TestEnemy* pTestEnemy;
 
     int random = (rand() % (10 - 1 + 1)) + 1;
-    int randomGrid;
+    int randomNum, grid;
+    int maxSize = MapManager::getInstance()->getRoomSize();
 
+    bool Lock;
+ 
     for(int i = 0; i < 2; i++) {
         pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture, i);
         pTestEnemy->setFrame(0);
         pTestEnemy->setScale({2.0f,2.0f});
 
-        randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Enemy spawning in first tile
-        if(this->getGridLock(randomGrid)) randomGrid = (rand() % (9 - 2 + 1)) + 2;
+        Lock = true;
+        // Randomize Grid based on the min grid (1) and its max room size
+        // Avoid Enemy spawning in first tile
+        while(Lock == true) {
+            randomNum = (rand() % (maxSize - 2 + 1)) + 2; 
+            if(this->getGridLock(randomNum) == true) randomNum = (rand() % (maxSize - 2 + 1)) + 2; 
+            //std::cout << "Random Num: " << randomNum << std::endl;
+            
+            //Find Index based on random num
+            if(MapManager::getInstance()->findGridByNum(randomNum) == NULL) Lock == true;
+            else {
+                Lock = false;
+                grid = MapManager::getInstance()->findGridByNum(randomNum);
+            }
+        }
+        
+        //std::cout << "Grid: " << grid << std::endl;
 
-        pTestEnemy->setGrid(randomGrid);
-        this->setGridLock(randomGrid,true);
+        pTestEnemy->setGrid(randomNum);
+        this->setGridLock(randomNum,true);
         this->setPosition(pTestEnemy);
         pTestEnemy->setPosition({pTestEnemy->getPosX(),pTestEnemy->getPosY()});
         GameObjectManager::getInstance()->addObject(pTestEnemy);
-
-        std::cout << randomGrid << std::endl;
     }
-
 }
 
 void TestScene::createExtraBoundary() {
@@ -174,6 +189,20 @@ void TestScene::setPosition(GameObject* pEntity) {
 
             temp_min_y = GRID0_Y+50.f;
             temp_max_y = (GRID0_HEIGHT + GRID0_Y) - 50.f;
+
+            randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
+            randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
+
+            pEntity->setPosX(randomPosX);
+            pEntity->setPosY(randomPosY);
+            break;
+
+        case 1: // Debug
+            temp_min_x = GRID1_X+75.f;
+            temp_max_x = (GRID1_WIDTH + GRID1_X) - 75.f;
+
+            temp_min_y = GRID1_Y+50.f;
+            temp_max_y = (GRID1_HEIGHT + GRID1_Y) - 50.f;
 
             randomPosX = (rand() % (temp_max_x - temp_min_x + 1)) + temp_min_x;
             randomPosY = (rand() % (temp_max_y - temp_min_y + 1)) + temp_min_y;
@@ -291,6 +320,9 @@ void TestScene::setPosition(GameObject* pEntity) {
 
 void TestScene::setGridLock(int num, bool bLock) {
     switch(num) {
+        case 1:
+            this->one = bLock;
+            break;
         case 2:
             this->two = bLock;
             break;
@@ -320,6 +352,9 @@ void TestScene::setGridLock(int num, bool bLock) {
 
 bool TestScene::getGridLock(int num) {
     switch(num) {
+        case 1:
+            return this->one;
+            break;
         case 2:
             return this->two;
             break;

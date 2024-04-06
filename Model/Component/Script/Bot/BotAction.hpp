@@ -13,6 +13,7 @@
 #include "../../../GameObject.hpp"
 #include "../../../Entity/TestEnemy.hpp"
 #include "../../../Entity/TestBoundary.hpp"
+#include "../../../Entity/Shadow.hpp"
 
 #include "../../../../Controller/Manager/GameObjectManager.hpp"
 #include "../../../../Controller/Manager/MapManager.hpp"
@@ -42,6 +43,7 @@ namespace components {
             void selectState();
             void performState();
             void checkCollision();
+            void chaseTarget();
 
         public:
             void setTag(BotTag ETag);
