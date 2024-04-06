@@ -60,45 +60,21 @@ void BotAction::selectState(){
         case 2: // WALK_LEFT
             std::cout << "WALK_LEFT" << std::endl;
             this->setTag(BotTag::WALK_LEFT);
-            // if(this->debug == 0) {
-            //     this->randomDest = this->random();
-            //     this->currentPosX = pEnemy->getPosition().x;
-            //     this->debug = 1;
-            // }
-            //else this->debug = -1;
             break;
 
         case 3: // WALK_RIGHT
             std::cout << "WALK_RIGHT" << std::endl;
             this->setTag(BotTag::WALK_RIGHT);
-            // if(this->debug == 0) {
-            //     this->randomDest = this->random();
-            //     this->currentPosX = pEnemy->getPosition().x;
-            //     this->debug = 1;
-            // }
-            //else this->debug = -1;
             break;
 
         case 4: // WALK_UP
             std::cout << "WALK_UP" << std::endl;
             this->setTag(BotTag::WALK_UP);
-            // if(this->debug == 0) {
-            //     this->randomDest = this->random();
-            //     this->currentPosY = pEnemy->getPosition().y;
-            //     this->debug = 1;
-            // }
-            //else this->debug = -1;
             break;
 
         case 5: // WALK_DOWN
             std::cout << "WALK_DOWN" << std::endl;
             this->setTag(BotTag::WALK_DOWN);
-            // if(this->debug == 0) {
-            //     this->randomDest = this->random();
-            //     this->currentPosY = pEnemy->getPosition().y;
-            //     this->debug = 1;
-            // }
-            //else this->debug = -1;
             break;
 
         default: // CATCH ERROR?
@@ -116,9 +92,6 @@ int BotAction::random() {
 
 void BotAction::performState() {
     TestEnemy* pEnemy = (TestEnemy*)this->pOwner;
-
-    //int cancel = 0;
-
     // Enemy Speed
     float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
 
@@ -140,25 +113,6 @@ void BotAction::performState() {
                 pEnemy->getSprite()->setScale(-2.0f,2.0f);
                 pEnemy->getSprite()->move(-fOffset,0.f);
             }
-
-            // pEnemy->getSprite()->setScale(-2.0f,2.0f);
-            // this->destX_L = this->currentPosX - this->randomDest;
-
-            // if(pEnemy->getPosition().x > this->destX_L && cancel == 0) {
-            //     pEnemy->getSprite()->move(-fOffset,0.f);
-            // }
-            // else if (pEnemy->getPosition().x <= this->destX_L) {
-            //     cancel = 1;
-            //     pEnemy->getSprite()->move(0.f,0.f);
-            // }
-
-            // if(cancel == 1) {
-            //     if(!this->getDelayTimer()) pEnemy->getSprite()->move(0.f,0.f);
-            //     else {
-            //         this->debug = 0;
-            //         this->selectState();
-            //     }
-            // }
             break;
 
         case BotTag::WALK_RIGHT:
@@ -169,26 +123,6 @@ void BotAction::performState() {
                 pEnemy->getSprite()->setScale(2.0f,2.0f);
                 pEnemy->getSprite()->move(fOffset,0.f);
             }
-
-            // pEnemy->getSprite()->setScale(2.0f,2.0f);
-            // this->destX_R = this->currentPosX + this->randomDest;
-
-            // if(pEnemy->getPosition().x < this->destX_R && cancel == 0) {
-            //     pEnemy->getSprite()->move(fOffset,0.f);
-            // }
-            // else if (pEnemy->getPosition().x >= this->destX_R) {
-            //     cancel = 1;
-            //     pEnemy->getSprite()->move(0.f,0.f);
-            // }
-            
-            // if(cancel == 1) {
-            //     if(this->getDelayTimer()) pEnemy->getSprite()->move(0.f,0.f);
-            //     else {
-            //         this->debug = 0;
-            //         this->selectState();
-            //     }
-                
-            // }
             break;
         
         case BotTag::WALK_UP:
@@ -198,24 +132,6 @@ void BotAction::performState() {
             else {
                 pEnemy->getSprite()->move(0.f, -fOffset);
             }
-
-            // this->destY_T = this->currentPosY - this->randomDest;
-
-            // if(pEnemy->getPosition().y > this->destY_T && cancel == 0) {
-            //     pEnemy->getSprite()->move(0.f, -fOffset);
-            // }
-            // else if (pEnemy->getPosition().y <= this->destY_T) {
-            //     cancel = 1;
-            //     pEnemy->getSprite()->move(0.f,0.f);
-            // }
-            
-            // if(cancel == 1) {
-            //     if(this->getDelayTimer()) pEnemy->getSprite()->move(0.f,0.f);
-            //     else {
-            //         this->debug = 0;
-            //         this->selectState();
-            //     }
-            // }
             break;
         
         case BotTag::WALK_DOWN:
@@ -225,24 +141,6 @@ void BotAction::performState() {
             else {
                 pEnemy->getSprite()->move(0.f, fOffset);
             }
-
-            // this->destY_B = this->currentPosY + this->randomDest;
-
-            // if(pEnemy->getPosition().y < this->destY_T && cancel == 0) {
-            //     pEnemy->getSprite()->move(0.f, -fOffset);
-            // }
-            // else if (pEnemy->getPosition().y >= this->destY_T) {
-            //     cancel = 1;
-            //     pEnemy->getSprite()->move(0.f,0.f);
-            // }
-            
-            // if(cancel == 1) {
-            //     if(this->getDelayTimer()) pEnemy->getSprite()->move(0.f,0.f);
-            //     else {
-            //         this->debug = 0;
-            //         this->selectState();
-            //     }
-            // }
             break;
 
         default:

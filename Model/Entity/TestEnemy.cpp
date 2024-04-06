@@ -2,7 +2,7 @@
 
 using namespace entities;
 
-TestEnemy::TestEnemy(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, 300.0f, pTexture) {}
+TestEnemy::TestEnemy(std::string strName, AnimatedTexture* pTexture, int ID) : GameObject(strName, 300.0f, pTexture) {}
 
 void TestEnemy::initialize() {
     this->centerOrigin();

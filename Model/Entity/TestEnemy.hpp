@@ -13,7 +13,7 @@ namespace entities {
             const int nFrameEnd = 8;
 
         public:
-            TestEnemy(std::string strName, AnimatedTexture* pTexture);
+            TestEnemy(std::string strName, AnimatedTexture* pTexture, int ID);
 
         public:
             void initialize();
