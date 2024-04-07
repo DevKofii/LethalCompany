@@ -111,7 +111,7 @@ void TestScene::spawnEnemies() {
             pTestEnemy->setScale({2.0f,2.0f});
         }
         else if(val <= 0.25f) { //Change pTexture
-            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pEnemyTexture1, i);
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pEnemyTexture2, i);
             pTestEnemy->setFrame(0);
             pTestEnemy->setScale({2.0f,2.0f});
         }
