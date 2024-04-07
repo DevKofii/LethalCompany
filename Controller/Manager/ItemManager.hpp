@@ -16,8 +16,8 @@ namespace managers {
             std::unordered_map<std::string, GameObject*> profitObject;
             std::vector<GameObject*> vecProfitObject;
 
-
             int currentGrid;
+            float currentProfit;
         
         public:
             void pickupObject(GameObject* pGameObject);
@@ -25,10 +25,14 @@ namespace managers {
 
             void addProfit(GameObject* pGameObject);
             void calcProfit();
-            void deleteProfit();
+            void deleteProfit(GameObject* pGameObject);
+
+            int findIndexByName(std::string strName);
 
             GameObject* findObjectByName(std::string strName);
             GameObject* returnLastObject();
+
+            float getProfit();
 
         public:
             int getGrid();

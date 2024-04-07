@@ -25,10 +25,21 @@ void ItemManager::calcProfit() {
         totalProfit += pGameObject->getProfit();
     }
     std::cout << totalProfit << std::endl;
+    this->currentProfit = totalProfit;
 }
 
-void ItemManager::deleteProfit() {
-    this->vecProfitObject.pop_back();
+void ItemManager::deleteProfit(GameObject* pGameObject) {
+    int index = this->findIndexByName(pGameObject->getName());
+    this->vecProfitObject.erase(this->vecProfitObject.begin() + index);
+}
+
+int ItemManager::findIndexByName(std::string strName) {
+    for(auto i = 0; i < this->vecProfitObject.size(); i++) {
+        if(this->vecProfitObject[i]->getName() == strName) {
+            return i;
+        }
+    }
+    return NULL;
 }
 
 GameObject* ItemManager::findObjectByName(std::string strName) {
@@ -44,10 +55,15 @@ int ItemManager::getGrid() {
     return this->currentGrid;
 }
 
+float ItemManager::getProfit() {
+    return this->currentProfit;
+}
+
 ItemManager* ItemManager::P_SHARED_INSTANCE = NULL;
 
 ItemManager::ItemManager() {
     this->currentGrid = 0;
+    this->currentProfit = 0.0f;
 }
 
 ItemManager::ItemManager(const ItemManager&) {}
