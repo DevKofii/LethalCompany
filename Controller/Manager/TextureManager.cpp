@@ -28,6 +28,50 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::PLAYER].push_back(pTexture);
     }
 
+        //Load enemy
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/enemy/anims/idle/enemy_idle.png");
+    this->mapTexture[AssetType::ENEMY_1].push_back(pTexture);
+
+    for(int i = 0; i <= 3; i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/enemy/anims/move/tile00" + std::to_string(i) + ".png");
+        this->mapTexture[AssetType::ENEMY_1].push_back(pTexture);
+    }
+
+        //Load enemy
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/enemy2/anims/idle/enemy_idle.png");
+    this->mapTexture[AssetType::ENEMY_2].push_back(pTexture);
+
+    for(int i = 0; i <= 7; i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/enemy2/anims/move/tile00" + std::to_string(i) + ".png");
+        this->mapTexture[AssetType::ENEMY_2].push_back(pTexture);
+    }
+
+        //Load enemy
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/enemy3/anims/idle/enemy_idle.png");
+    this->mapTexture[AssetType::ENEMY_3].push_back(pTexture);
+
+    for(int i = 0; i <= 7; i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/enemy3/anims/move/tile00" + std::to_string(i) + ".png");
+        this->mapTexture[AssetType::ENEMY_3].push_back(pTexture);
+    }
+
+        //Load enemy
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/enemy4/anims/idle/enemy_idle.png");
+    this->mapTexture[AssetType::ENEMY_4].push_back(pTexture);
+
+    for(int i = 0; i <= 3; i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/Debug/enemy4/anims/move/tile00" + std::to_string(i) + ".png");
+        this->mapTexture[AssetType::ENEMY_4].push_back(pTexture);
+    }
+
     //Load shadow
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Debug/char/anims/parts/shadow.png");

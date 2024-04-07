@@ -83,7 +83,10 @@ void TestScene::loadMisc() {
 
 void TestScene::spawnEnemies() {
     //DISCARD PTEXTURE1, TRANSFER OVER YOURS (dont forget to put the textures at texturemanager)
-    AnimatedTexture* pTexture1 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
+    AnimatedTexture* pEnemyTexture1 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY_1));
+    AnimatedTexture* pEnemyTexture2 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY_2));
+    AnimatedTexture* pEnemyTexture3 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY_3));
+    AnimatedTexture* pEnemyTexture4 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENEMY_4));
     AnimatedTexture* pTexture2 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHADOW));
     TestEnemy* pTestEnemy;
     Shadow* pShadow;
@@ -103,22 +106,22 @@ void TestScene::spawnEnemies() {
 
         //CHANGE PTEXTURE# BELOW ARIGATOU
         if(val <= 0.05f) {
-            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pEnemyTexture1, i);
             pTestEnemy->setFrame(0);
             pTestEnemy->setScale({2.0f,2.0f});
         }
         else if(val <= 0.25f) { //Change pTexture
-            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pEnemyTexture1, i);
             pTestEnemy->setFrame(0);
             pTestEnemy->setScale({2.0f,2.0f});
         }
         else if(val <= 0.55f) { //Change pTexture
-            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pEnemyTexture3, i);
             pTestEnemy->setFrame(0);
             pTestEnemy->setScale({2.0f,2.0f});
         }
         else if(val <= 0.45f) { //Change pTexture
-            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pEnemyTexture4, i);
             pTestEnemy->setFrame(0);
             pTestEnemy->setScale({2.0f,2.0f});
         }
