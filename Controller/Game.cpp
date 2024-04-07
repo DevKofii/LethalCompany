@@ -2,7 +2,7 @@
 
 using namespace controllers;
 
-Game::Game() : CWindow(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT),"PROJECT LETHAL COMPANY",sf::Style::Close){
+Game::Game() : CWindow(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT),"PROJECT LETHAL COMPANY | Ragudo, Basil",sf::Style::Close){
     SceneManager::getInstance()->registerScene(new TestScene());
     SceneManager::getInstance()->loadScene(SceneTag::TEST_SCENE);
 }
