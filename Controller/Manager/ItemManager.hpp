@@ -12,13 +12,22 @@ namespace managers {
         private:
             std::unordered_map<std::string, GameObject*> invObject;
             std::vector<GameObject*> vecInvObject;
+
+            std::unordered_map<std::string, GameObject*> profitObject;
+            std::vector<GameObject*> vecProfitObject;
+
+
             int currentGrid;
         
         public:
             void pickupObject(GameObject* pGameObject);
             void dropObject();
-            GameObject* findObjectByName(std::string strName);
 
+            void addProfit(GameObject* pGameObject);
+            void calcProfit();
+            void deleteProfit();
+
+            GameObject* findObjectByName(std::string strName);
             GameObject* returnLastObject();
 
         public:

@@ -5,6 +5,7 @@ using namespace entities;
 TestItem::TestItem(std::string strName, AnimatedTexture* pTexture, int ID) : GameObject(strName, 300.0f, pTexture) {
     this->ID = ID;
     this->bEnabled = true; //pickup-able
+    this->profit = 0.f;
 }
 
 void TestItem::initialize() {

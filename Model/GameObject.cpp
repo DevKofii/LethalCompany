@@ -17,6 +17,8 @@ GameObject::GameObject(std::string strName) {
     this->grid = 0;
     this->posX = 0;
     this->posY = 0;
+
+    this->profit = 0;
 }
 
 GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
@@ -256,4 +258,12 @@ int GameObject::getPosX() {
 
 int GameObject::getPosY() {
     return this->posY;
+}
+
+void GameObject::setProfit(float profit) {
+    this->profit = profit;
+}
+
+float GameObject::getProfit() {
+    return this->profit;
 }

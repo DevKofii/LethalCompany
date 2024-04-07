@@ -32,6 +32,8 @@ namespace models {
             int posX;
             int posY;
 
+            float profit;
+
         public:
             GameObject(std::string strName);
             GameObject(std::string strName, AnimatedTexture* pTexture);
@@ -93,5 +95,8 @@ namespace models {
 
             int getPosX();
             int getPosY();
+
+            void setProfit(float profit);
+            float getProfit();
     };
 }
