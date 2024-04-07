@@ -75,9 +75,7 @@ void ItemAction::dropItem() {
     //Check if grid is 0
     if(pItem->getGrid() == 0) {
         ItemManager::getInstance()->addProfit(pItem);
-        std::cout << "Index: " << ItemManager::getInstance()->findIndexByName(pItem->getName()) << std::endl;
         ItemManager::getInstance()->calcProfit();
-        //std::cout << "PROFIT!" << std::endl;
     }
 }
 
@@ -93,7 +91,7 @@ void ItemAction::checkCollision() {
         //Pickup Item
         if(pInput->getInteract()) {
             std::cout << "Picked Up " << pItem->getName() << std::endl;
-            std::cout << "Value: " << pItem->getProfit() << std::endl;
+            std::cout << "Value: " << pItem->getProfit() << std::endl << std::endl;
 
             //If pickuped item is in grid 0, delete from profit
             if(pItem->getGrid() == 0) { 
@@ -107,8 +105,6 @@ void ItemAction::checkCollision() {
             currentInvGrid = ItemManager::getInstance()->getGrid();
             this->setPosition(pItem->getName(), currentInvGrid);
             pItem->setEnabled(false);
-
-            std::cout << "Total Profit: " << ItemManager::getInstance()->getProfit() << std::endl;
 
             pInput->resetInteract();
         }
