@@ -17,6 +17,7 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::TEST_BACKGROUND].push_back(pTexture);
     }
 
+    //Character Asset From https://penusbmic.itch.io/sci-fi-character-pack-12
     //Load char
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Debug/char/anims/idle/idle.png");
