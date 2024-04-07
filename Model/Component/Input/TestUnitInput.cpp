@@ -10,6 +10,7 @@ TestUnitInput::TestUnitInput(std::string strName) : GeneralInput(strName) {
     this->bShoot = false;
     this->bInteract = false;
     this->bDrop = false;
+    this->bSpace = false;
 }
 
 void TestUnitInput::perform() {
@@ -55,6 +56,9 @@ void TestUnitInput::processKeyInput(bool bPressed) {
             this->bDrop = bPressed;
             break;
 
+        case sf::Keyboard::Space:
+            this->bSpace = bPressed;
+
         default:
             break;
     }
@@ -62,6 +66,10 @@ void TestUnitInput::processKeyInput(bool bPressed) {
 
 void TestUnitInput::resetShoot() {
     this->bShoot = false;
+}
+
+void TestUnitInput::resetReturnHub() {
+    this->bSpace = false;
 }
 
 void TestUnitInput::resetInteract() {
@@ -86,6 +94,10 @@ bool TestUnitInput::getLeft() {
 
 bool TestUnitInput::getRight() {
     return this->bRight;
+}
+
+bool TestUnitInput::getReturnHub() {
+    return this->bSpace;
 }
 
 bool TestUnitInput::getInteract() {

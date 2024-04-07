@@ -194,7 +194,7 @@ void CollisionManager::mapBounds() {
     int p = MapManager::getInstance()->getMapGrid(MapManager::getInstance()->findGridByNum(this->currentGrid) - 1);
     if(safeGrid == p) {
         //std::cout << "Press E To Return" << std::endl;
-        if(pUnitInput->getInteract()) {
+        if(pUnitInput->getReturnHub()) {
             pUnitOwner->getSprite()->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
 
             MapManager::getInstance()->setActiveGrid(MapManager::getInstance()->getMapGrid(0));
@@ -205,6 +205,8 @@ void CollisionManager::mapBounds() {
             std::cout << "Current Grid: " << this->currentGrid << std::endl;
             std::cout << "Next Grid: " << this->nextGrid << std::endl;
             std::cout << "Last Grid: " << this->prevGrid << std::endl << std::endl;
+
+            pUnitInput->resetReturnHub();
         }
     }
 

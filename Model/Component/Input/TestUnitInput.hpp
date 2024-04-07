@@ -15,6 +15,7 @@ namespace components{
             bool bShoot;
             bool bInteract;
             bool bDrop;
+            bool bSpace;
         
         public:
             TestUnitInput(std::string strName);
@@ -27,6 +28,7 @@ namespace components{
 
         public:
             void resetShoot();
+            void resetReturnHub();
             void resetInteract();
             void resetDrop();
 
@@ -34,6 +36,7 @@ namespace components{
             bool getDown();
             bool getLeft();
             bool getRight();
+            bool getReturnHub();
             bool getInteract();
             bool getDrop();
             bool getShoot();

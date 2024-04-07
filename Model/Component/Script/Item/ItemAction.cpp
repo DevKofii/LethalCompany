@@ -10,12 +10,23 @@ ItemAction::ItemAction(std::string strName) : Component(strName, ComponentType::
 
 void ItemAction::perform() {
     TestItem* pItem = (TestItem*)this->pOwner;
+    TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
+    TestUnitInput* pInput = (TestUnitInput*)pPlayer->findComponentByName(pPlayer->getName() + " Input");
+
+
     if(pItem == NULL) std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     else {
         this->spawnItem();
         if(this->bEnabled == true) {
             this->checkCollision();
         }
+        if(pItem->getEnabled() == false) {
+            if(pInput->getDrop()) {
+                this->dropItem();
+                pInput->resetDrop();
+            }
+        }
+           
     }
 }
 
@@ -55,17 +66,24 @@ void ItemAction::pickupItem(std::string strName) {
 void ItemAction::dropItem() {
     TestItem* pItem = (TestItem*)ItemManager::getInstance()->returnLastObject();
     TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
+    int currentActive = MapManager::getInstance()->getActiveGrid();
 
     std::cout << "Dropped " << pItem->getName() << std::endl;
 
     // Set UI here later on
+
+    //Set Pos
     pItem->setPosX(pPlayer->getPosition().x);
     pItem->setPosY(pPlayer->getPosition().y);
 
     int x = pItem->getPosX();
     int y = pItem->getPosY();
     pItem->setPosition({x,y});
-    
+
+    //Set Active Grid
+    pItem->setGrid(currentActive);
+
+    //Set Enable Again
     pItem->setEnabled(true);
 }
 
@@ -82,9 +100,5 @@ void ItemAction::checkCollision() {
             this->pickupItem(pItem->getName());
             pInput->resetInteract();
         }
-    }
-    if(pInput->getDrop()) {
-        this->dropItem();
-        pInput->resetDrop();
     }
 }
