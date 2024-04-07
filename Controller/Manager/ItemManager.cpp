@@ -6,10 +6,15 @@ using namespace models;
 void ItemManager::pickupObject(GameObject* pGameObject) {
     this->invObject[pGameObject->getName()] = pGameObject;
     this->vecInvObject.push_back(pGameObject);
+
+    if(this->currentGrid < 9) this->currentGrid += 1;
 }
 
-void ItemManager::dropObject(std::string strName) {
-    delete this->invObject[strName];
+void ItemManager::dropObject() {
+    //delete this->invObject[strName];
+    this->vecInvObject.pop_back();
+
+    if(this->currentGrid > 0) this->currentGrid -= 1;
 }
 
 GameObject* ItemManager::findObjectByName(std::string strName) {
@@ -21,9 +26,15 @@ GameObject* ItemManager::returnLastObject() {
     return this->vecInvObject.back();
 }
 
+int ItemManager::getGrid() {    
+    return this->currentGrid;
+}
+
 ItemManager* ItemManager::P_SHARED_INSTANCE = NULL;
 
-ItemManager::ItemManager() {}
+ItemManager::ItemManager() {
+    this->currentGrid = 0;
+}
 
 ItemManager::ItemManager(const ItemManager&) {}
 

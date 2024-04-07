@@ -14,16 +14,16 @@ const float INV_X = 414.f;
 const float INV_Y = 669.f;
 
 //For Inv
-const float INV_BOX_Y = 683.f;
-const float INV_BOX1_X = 431.f;
-const float INV_BOX2_X = 480.f;
-const float INV_BOX3_X = 531.f;
-const float INV_BOX4_X = 580.f;
-const float INV_BOX5_X = 631.f;
-const float INV_BOX6_X = 680.f;
-const float INV_BOX7_X = 731.f;
-const float INV_BOX8_X = 780.f;
-const float INV_BOX9_X = 831.f;
+const float INV_BOX_Y = 682.f;
+const float INV_BOX1_X = 425.f;
+const float INV_BOX2_X = 474.f;
+const float INV_BOX3_X = 525.f;
+const float INV_BOX4_X = 574.f;
+const float INV_BOX5_X = 625.f;
+const float INV_BOX6_X = 674.f;
+const float INV_BOX7_X = 725.f;
+const float INV_BOX8_X = 774.f;
+const float INV_BOX9_X = 825.f;
 
 //For Door
 const float DOOR_GRID_X = 570.f;

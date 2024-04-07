@@ -12,13 +12,17 @@ namespace managers {
         private:
             std::unordered_map<std::string, GameObject*> invObject;
             std::vector<GameObject*> vecInvObject;
+            int currentGrid;
         
         public:
             void pickupObject(GameObject* pGameObject);
-            void dropObject(std::string strName);
+            void dropObject();
             GameObject* findObjectByName(std::string strName);
 
             GameObject* returnLastObject();
+
+        public:
+            int getGrid();
             
         private:
             static ItemManager* P_SHARED_INSTANCE;

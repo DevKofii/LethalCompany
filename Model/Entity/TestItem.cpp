@@ -8,7 +8,7 @@ TestItem::TestItem(std::string strName, AnimatedTexture* pTexture, int ID) : Gam
 }
 
 void TestItem::initialize() {
-    this->centerOrigin();
+    //this->centerOrigin();
     this->pSprite->setScale(2.0f,2.0f);
     this->resetPos();
 

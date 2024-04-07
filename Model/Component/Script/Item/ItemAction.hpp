@@ -31,8 +31,8 @@ namespace components {
             void perform();
 
             void spawnItem();
-            void pickupItem(std::string strName);
             void dropItem();
             void checkCollision();
+            void setPosition(std::string strName, int Grid);
     };
 }

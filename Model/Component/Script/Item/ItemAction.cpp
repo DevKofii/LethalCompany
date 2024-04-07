@@ -16,13 +16,17 @@ void ItemAction::perform() {
 
     if(pItem == NULL) std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     else {
-        this->spawnItem();
+        // this->spawnItem();
         if(this->bEnabled == true) {
             this->checkCollision();
         }
+
+        if(pItem->getEnabled() == true) this->spawnItem();
+
         if(pItem->getEnabled() == false) {
             if(pInput->getDrop()) {
                 this->dropItem();
+                ItemManager::getInstance()->dropObject();
                 pInput->resetDrop();
             }
         }
@@ -49,28 +53,12 @@ void ItemAction::spawnItem() {
     }
 }
 
-void ItemAction::pickupItem(std::string strName) {
-    TestItem* pItem = (TestItem*)GameObjectManager::getInstance()->findObjectByName(strName);
-
-    // Set UI here later on
-    pItem->setPosX(10);
-    pItem->setPosY(10);
-
-    int x = pItem->getPosX();
-    int y = pItem->getPosY();
-    pItem->setPosition({x,y});
-    
-    pItem->setEnabled(false);
-}
-
 void ItemAction::dropItem() {
     TestItem* pItem = (TestItem*)ItemManager::getInstance()->returnLastObject();
     TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
     int currentActive = MapManager::getInstance()->getActiveGrid();
 
     std::cout << "Dropped " << pItem->getName() << std::endl;
-
-    // Set UI here later on
 
     //Set Pos
     pItem->setPosX(pPlayer->getPosition().x);
@@ -92,13 +80,56 @@ void ItemAction::checkCollision() {
     TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
     TestUnitInput* pInput = (TestUnitInput*)pPlayer->findComponentByName(pPlayer->getName() + " Input");
 
+    int currentInvGrid; 
+
     //Item Collision
     if(pPlayer->getSprite()->getGlobalBounds().intersects(pItem->getSprite()->getGlobalBounds()) && pItem->getEnabled()) { 
         if(pInput->getInteract()) {
             std::cout << "Picked Up " << pItem->getName() << std::endl;
             ItemManager::getInstance()->pickupObject(pItem);
-            this->pickupItem(pItem->getName());
+            currentInvGrid = ItemManager::getInstance()->getGrid();
+            this->setPosition(pItem->getName(), currentInvGrid);
+            pItem->setEnabled(false);
             pInput->resetInteract();
         }
     }
+}
+
+void ItemAction::setPosition(std::string strName, int Grid) {
+    TestItem* pItem = (TestItem*)GameObjectManager::getInstance()->findObjectByName(strName);
+
+    switch(Grid) {
+        case 1:
+            pItem->setPosX(INV_BOX1_X);
+            break;
+        case 2:
+            pItem->setPosX(INV_BOX2_X);
+            break;
+        case 3:
+            pItem->setPosX(INV_BOX3_X);
+            break;
+        case 4:
+            pItem->setPosX(INV_BOX4_X);
+            break;
+        case 5:
+            pItem->setPosX(INV_BOX5_X);
+            break;
+        case 6:
+            pItem->setPosX(INV_BOX6_X);
+            break;
+        case 7:
+            pItem->setPosX(INV_BOX7_X);
+            break;
+        case 8:
+            pItem->setPosX(INV_BOX8_X);
+            break;
+        case 9:
+            pItem->setPosX(INV_BOX9_X);
+            break;
+    }
+
+    pItem->setPosY(INV_BOX_Y);
+    int x = pItem->getPosX();
+    int y = pItem->getPosY();
+    pItem->setPosition({x,y});
 }

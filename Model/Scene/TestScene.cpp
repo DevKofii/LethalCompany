@@ -15,9 +15,9 @@ void TestScene::onLoadObjects() {
     this->spawnEnemies();
     this->createExtraBoundary();
     this->createDoor();
+    this->createUI();
     this->spawnItem();
     this->spawnUnit();
-    this->createUI();
 }
 
 void TestScene::onUnloadResources() {
@@ -93,7 +93,7 @@ void TestScene::spawnEnemies() {
 
     bool Lock;
  
-    for(int i = 0; i < 2; i++) {
+    for(int i = 0; i < random; i++) {
         pShadow = new Shadow("Shadow" + std::to_string(i), pTexture2);
         GameObjectManager::getInstance()->addObject(pShadow);
 
@@ -107,7 +107,6 @@ void TestScene::spawnEnemies() {
         while(Lock == true) {
             randomNum = (rand() % (maxSize - 2 + 1)) + 2; 
             if(this->getGridLock(randomNum) == true) randomNum = (rand() % (maxSize - 2 + 1)) + 2; 
-            //std::cout << "Random Num: " << randomNum << std::endl;
 
             //Find Index based on random num
             if(MapManager::getInstance()->findGridByNum(randomNum) == NULL) Lock == true;
@@ -116,8 +115,6 @@ void TestScene::spawnEnemies() {
                 grid = MapManager::getInstance()->findGridByNum(randomNum);
             }
         }
-        
-        //std::cout << "Grid: " << grid << std::endl;
 
         pTestEnemy->setGrid(randomNum);
         this->setGridLock(randomNum,true);
@@ -162,7 +159,7 @@ void TestScene::spawnItem() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BARREL));
     TestItem* pBarrel;
 
-    int random = (rand() % (10 - 1 + 1)) + 1;
+    int random = (rand() % (20 - 5 + 1)) + 5;
     int randomGrid;
 
     for(int i = 0; i < random; i++) {
