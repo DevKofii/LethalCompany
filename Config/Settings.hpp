@@ -9,6 +9,22 @@ const float FRAME_RATE_LIMIT = 60.0f;
 
 const int SFX_VOLUME = 25;
 
+//For UI
+const float INV_X = 414.f;
+const float INV_Y = 669.f;
+
+//For Inv
+const float INV_BOX_Y = 683.f;
+const float INV_BOX1_X = 431.f;
+const float INV_BOX2_X = 480.f;
+const float INV_BOX3_X = 531.f;
+const float INV_BOX4_X = 580.f;
+const float INV_BOX5_X = 631.f;
+const float INV_BOX6_X = 680.f;
+const float INV_BOX7_X = 731.f;
+const float INV_BOX8_X = 780.f;
+const float INV_BOX9_X = 831.f;
+
 //For Door
 const float DOOR_GRID_X = 570.f;
 const float DOOR_GRID_Y = 295.f;

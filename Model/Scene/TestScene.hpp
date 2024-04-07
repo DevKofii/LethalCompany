@@ -12,6 +12,7 @@
 #include "../Entity/Light.hpp"
 #include "../Entity/TestItem.hpp"
 #include "../Entity/Shadow.hpp"
+#include "../Entity/TestUI.hpp"
 
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
@@ -44,11 +45,12 @@ namespace scenes {
             void createBackground();
             void createBoundaries();
             void loadMisc();
-            void spawnItem();
             void spawnEnemies();
             void createExtraBoundary();
             void createDoor();
+            void spawnItem();
             void spawnUnit();
+            void createUI();
             
             void setPositionEnemy(TestEnemy* pEntity);
             void setPosition(GameObject* pEntity);

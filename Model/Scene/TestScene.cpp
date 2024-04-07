@@ -12,11 +12,12 @@ void TestScene::onLoadObjects() {
     this->createBackground();
     this->createBoundaries();
     this->loadMisc();
-    this->spawnItem();
     this->spawnEnemies();
     this->createExtraBoundary();
     this->createDoor();
+    this->spawnItem();
     this->spawnUnit();
+    this->createUI();
 }
 
 void TestScene::onUnloadResources() {
@@ -73,26 +74,11 @@ void TestScene::loadMisc() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHADOW));
     Shadow* pShadow = new Shadow("Shadow",pTexture);
     GameObjectManager::getInstance()->addObject(pShadow);
-}
 
-void TestScene::spawnItem() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LIGHT));
     Light* pLight = new Light("Light",pTexture);
     GameObjectManager::getInstance()->addObject(pLight);
 
-    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BARREL));
-    TestItem* pBarrel;
-
-    int random = (rand() % (10 - 1 + 1)) + 1;
-    int randomGrid;
-
-    for(int i = 0; i < random; i++) {
-        pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture, i);
-        randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Item spawning in first tile
-        pBarrel->setGrid(randomGrid);
-        this->setPosition(pBarrel);
-        GameObjectManager::getInstance()->addObject(pBarrel);
-    }
 }
 
 void TestScene::spawnEnemies() {
@@ -172,6 +158,22 @@ void TestScene::createDoor() {
     pDoor->getSprite()->setOrigin(0.f, pDoor->getSprite()->getTexture()->getSize().y/2);
 }
 
+void TestScene::spawnItem() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BARREL));
+    TestItem* pBarrel;
+
+    int random = (rand() % (10 - 1 + 1)) + 1;
+    int randomGrid;
+
+    for(int i = 0; i < random; i++) {
+        pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture, i);
+        randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Item spawning in first tile
+        pBarrel->setGrid(randomGrid);
+        this->setPosition(pBarrel);
+        GameObjectManager::getInstance()->addObject(pBarrel);
+    }
+}
+
 void TestScene::spawnUnit() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
     TestUnit* pTestUnit = new TestUnit("TestUnit", pTexture);
@@ -181,6 +183,13 @@ void TestScene::spawnUnit() {
     pTestUnit->setScale({2.0f,2.0f});
     pTestUnit->setPosition({640.f,360.f});
     GameObjectManager::getInstance()->addObject(pTestUnit);
+}
+
+void TestScene::createUI() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::INV));
+    TestUI* pInv = new TestUI("Inventory", pTexture);
+    pInv->setPosition({INV_X, INV_Y});
+    GameObjectManager::getInstance()->addObject(pInv);
 }
 
 void TestScene::setPosition(GameObject* pEntity) {

@@ -27,6 +27,7 @@
 #include "Model/Entity/Light.cpp"
 #include "Model/Entity/Shadow.cpp"
 #include "Model/Entity/TestItem.cpp"
+#include "Model/Entity/TestUI.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 

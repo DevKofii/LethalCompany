@@ -85,6 +85,12 @@ void TextureManager::loadTest() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Debug/parts/items/barrel/barrel.png");
     this->mapTexture[AssetType::BARREL].push_back(pTexture);
+
+    // Load UI
+    // Inventory
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/ui/inv/inv.png");
+    this->mapTexture[AssetType::INV].push_back(pTexture);
 }
 
 void TextureManager::unloadAll() {
