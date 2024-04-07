@@ -13,7 +13,7 @@ void TestScene::onLoadObjects() {
     this->createBoundaries();
     this->loadMisc();
     this->spawnItem();
-    //this->spawnEnemies();
+    this->spawnEnemies();
     this->createExtraBoundary();
     this->createDoor();
     this->spawnUnit();
