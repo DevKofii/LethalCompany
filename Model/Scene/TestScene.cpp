@@ -82,6 +82,7 @@ void TestScene::loadMisc() {
 }
 
 void TestScene::spawnEnemies() {
+    //DISCARD PTEXTURE1, TRANSFER OVER YOURS (dont forget to put the textures at texturemanager)
     AnimatedTexture* pTexture1 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
     AnimatedTexture* pTexture2 = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHADOW));
     TestEnemy* pTestEnemy;
@@ -92,15 +93,36 @@ void TestScene::spawnEnemies() {
     int maxSize = MapManager::getInstance()->getRoomSize();
 
     bool Lock;
+    float val;
  
     for(int i = 0; i < random; i++) {
         pShadow = new Shadow("Shadow" + std::to_string(i), pTexture2);
         GameObjectManager::getInstance()->addObject(pShadow);
 
-        pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
-        pTestEnemy->setFrame(0);
-        pTestEnemy->setScale({2.0f,2.0f});
+        val = rand() / ( RAND_MAX + 1.0f);
 
+        //CHANGE PTEXTURE# BELOW ARIGATOU
+        if(val <= 0.05f) {
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy->setFrame(0);
+            pTestEnemy->setScale({2.0f,2.0f});
+        }
+        else if(val <= 0.25f) { //Change pTexture
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy->setFrame(0);
+            pTestEnemy->setScale({2.0f,2.0f});
+        }
+        else if(val <= 0.55f) { //Change pTexture
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy->setFrame(0);
+            pTestEnemy->setScale({2.0f,2.0f});
+        }
+        else if(val <= 0.45f) { //Change pTexture
+            pTestEnemy = new TestEnemy("TestEnemy" + std::to_string(i), pTexture1, i);
+            pTestEnemy->setFrame(0);
+            pTestEnemy->setScale({2.0f,2.0f});
+        }
+        
         Lock = true;
         // Randomize Grid based on the min grid (1) and its max room size
         // Avoid Enemy spawning in first tile
