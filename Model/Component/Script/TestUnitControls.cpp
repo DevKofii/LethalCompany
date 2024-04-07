@@ -18,7 +18,7 @@ void TestUnitControls::perform() {
     //GameObject* pClone = pShadow->clone();
 
     pShadow->setPosition({pUnitOwner->getPosition().x,pUnitOwner->getPosition().y});
-    pShadow->getSprite()->setColor(sf::Color::Transparent);
+    pShadow->getSprite()->setColor(sf::Color(255,255,255,30));
 
     if(pUnitInput == NULL && pUnitOwner == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
@@ -39,7 +39,7 @@ void TestUnitControls::perform() {
                 pUnitOwner->setOrientationLeft(pUnitInput->getLeft());
                 pUnitOwner->setOrientationRight(false);
 
-                pShadow->getSprite()->setScale(-1.5f,1.5f);
+                pShadow->getSprite()->setScale(-1.3f,1.3f);
                 pLight->getSprite()->setScale(-1.0f,1.0f);
                 
             }
@@ -49,7 +49,7 @@ void TestUnitControls::perform() {
                 pUnitOwner->setOrientationRight(pUnitInput->getRight());
                 pUnitOwner->setOrientationLeft(false);
                 
-                pShadow->getSprite()->setScale(1.5f,1.5f);
+                pShadow->getSprite()->setScale(1.3f,1.3f);
                 pLight->getSprite()->setScale(1.0f,1.0f);
             }
 
@@ -62,8 +62,8 @@ void TestUnitControls::perform() {
             //     else if(pUnitOwner->getOrientationLeft()) {
             //         ObjectPoolManager::getInstance()->getPool(PoolTag::TEST_BULLET_L)->requestPoolable();
             //     }
-
             // }
+
             
             int currentGrid = MapManager::getInstance()->getActiveGrid();
 

@@ -10,6 +10,7 @@
 #include "Controller/Manager/ObjectPoolManager.cpp"
 #include "Controller/Manager/SceneManager.cpp"
 #include "Controller/Manager/MapManager.cpp"
+#include "Controller/Manager/ItemManager.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 
@@ -50,6 +51,8 @@
 #include "Model/Component/Script/CollisionManager.cpp"
 
 #include "Model/Component/Script/Bot/BotAction.cpp"
+
+#include "Model/Component/Script/Item/ItemAction.cpp"
 
 #include "Model/Component/Renderer/Renderer.cpp"
 

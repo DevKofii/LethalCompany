@@ -16,6 +16,7 @@
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
 #include "../../Controller/Manager/MapManager.hpp"
+#include "../../Controller/Manager/ItemManager.hpp"
 
 #include "../../Controller/Pooling/GameObjectPool.hpp"
 

@@ -14,6 +14,7 @@ namespace components{
             bool bRight;
             bool bShoot;
             bool bInteract;
+            bool bDrop;
         
         public:
             TestUnitInput(std::string strName);
@@ -27,12 +28,14 @@ namespace components{
         public:
             void resetShoot();
             void resetInteract();
+            void resetDrop();
 
             bool getUp();
             bool getDown();
             bool getLeft();
             bool getRight();
             bool getInteract();
+            bool getDrop();
             bool getShoot();
     };
 }

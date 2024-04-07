@@ -13,7 +13,7 @@ void TestScene::onLoadObjects() {
     this->createBoundaries();
     this->loadMisc();
     this->spawnItem();
-    this->spawnEnemies();
+    //this->spawnEnemies();
     this->createExtraBoundary();
     this->createDoor();
     this->spawnUnit();
@@ -87,7 +87,7 @@ void TestScene::spawnItem() {
     int randomGrid;
 
     for(int i = 0; i < random; i++) {
-        pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture);
+        pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture, i);
         randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Item spawning in first tile
         pBarrel->setGrid(randomGrid);
         this->setPosition(pBarrel);

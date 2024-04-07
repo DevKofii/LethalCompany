@@ -12,7 +12,9 @@
 #include "../Component.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../GameObject.hpp"
+
 #include "../../../Controller/Manager/GameObjectManager.hpp"
+#include "../../../Controller/Manager/ItemManager.hpp"
 
 
 namespace components {
@@ -39,6 +41,7 @@ namespace components {
         public:
             void windowBounds();
             void mapBounds();
+
             void mapTraversal(int debug);
             void setDoorPosL(int num);
             void setDoorPosR(int num);
