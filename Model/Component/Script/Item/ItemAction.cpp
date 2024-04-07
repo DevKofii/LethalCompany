@@ -11,45 +11,43 @@ ItemAction::ItemAction(std::string strName) : Component(strName, ComponentType::
 void ItemAction::perform() {
     TestItem* pItem = (TestItem*)this->pOwner;
     TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
-    TestUnitInput* pInput = (TestUnitInput*)pPlayer->findComponentByName(pPlayer->getName() + " Input");
-
 
     if(pItem == NULL) std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     else {
-        // this->spawnItem();
+        this->spawnItem();
         if(this->bEnabled == true) {
             this->checkCollision();
         }
-
-        if(pItem->getEnabled() == true) this->spawnItem();
-
-        if(pItem->getEnabled() == false) {
-            if(pInput->getDrop()) {
-                this->dropItem();
-                ItemManager::getInstance()->dropObject();
-                pInput->resetDrop();
-            }
-        }
-           
     }
 }
 
 void ItemAction::spawnItem() {
     TestItem* pItem = (TestItem*)this->pOwner;
-    int currentActive = MapManager::getInstance()->getActiveGrid();
+    TestUnit* pPlayer = (TestUnit*)GameObjectManager::getInstance()->findObjectByName("TestUnit");
+    TestUnitInput* pInput = (TestUnitInput*)pPlayer->findComponentByName(pPlayer->getName() + " Input");
+    if(pItem->getEnabled() == true) {
+        int currentActive = MapManager::getInstance()->getActiveGrid();
 
-    int x = pItem->getPosX();
-    int y = pItem->getPosY();
+        int x = pItem->getPosX();
+        int y = pItem->getPosY();
 
-    if(pItem->getGrid() == currentActive) {
-        pItem->getSprite()->setColor(sf::Color(255,255,255,255));
-        pItem->setPosition({x,y});
-        this->bEnabled = true;
+        if(pItem->getGrid() == currentActive) {
+            pItem->getSprite()->setColor(sf::Color(255,255,255,255));
+            pItem->setPosition({x,y});
+            this->bEnabled = true;
+        }
+        else { 
+            pItem->getSprite()->setColor(sf::Color(0,0,0,0));
+            pItem->resetPos();
+            this->bEnabled = false;
+        }
     }
-    else { 
-        pItem->getSprite()->setColor(sf::Color(0,0,0,0));
-        pItem->resetPos();
-        this->bEnabled = false;
+    else {
+        if(pInput->getDrop()) {
+            this->dropItem();
+            ItemManager::getInstance()->dropObject();
+            pInput->resetDrop();
+        }
     }
 }
 
@@ -73,6 +71,13 @@ void ItemAction::dropItem() {
 
     //Set Enable Again
     pItem->setEnabled(true);
+
+    //Check if grid is 0
+    if(pItem->getGrid() == 0) {
+        ItemManager::getInstance()->addProfit(pItem);
+        ItemManager::getInstance()->calcProfit();
+        //std::cout << "PROFIT!" << std::endl;
+    }
 }
 
 void ItemAction::checkCollision() {
@@ -86,6 +91,7 @@ void ItemAction::checkCollision() {
     if(pPlayer->getSprite()->getGlobalBounds().intersects(pItem->getSprite()->getGlobalBounds()) && pItem->getEnabled()) { 
         if(pInput->getInteract()) {
             std::cout << "Picked Up " << pItem->getName() << std::endl;
+            std::cout << "Value: " << pItem->getProfit() << std::endl;
             ItemManager::getInstance()->pickupObject(pItem);
             currentInvGrid = ItemManager::getInstance()->getGrid();
             this->setPosition(pItem->getName(), currentInvGrid);

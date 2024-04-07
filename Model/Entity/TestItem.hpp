@@ -11,6 +11,7 @@ namespace entities {
         private:
             bool bEnabled;
             int ID;
+            float profit;
 
         public:
             TestItem(std::string strName, AnimatedTexture* pTexture, int ID);
@@ -21,6 +22,5 @@ namespace entities {
 
             bool getEnabled();
             void setEnabled(bool bEnabled);
-
     };
 }

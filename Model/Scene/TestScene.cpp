@@ -184,11 +184,17 @@ void TestScene::spawnItem() {
     int random = (rand() % (20 - 5 + 1)) + 5;
     int randomGrid;
 
+    float val;
+
     for(int i = 0; i < random; i++) {
         pBarrel = new TestItem("Barrel" + std::to_string(i), pTexture, i);
         randomGrid = (rand() % (9 - 2 + 1)) + 2; // Avoid Item spawning in first tile
         pBarrel->setGrid(randomGrid);
         this->setPosition(pBarrel);
+
+        val = (rand() / ( RAND_MAX + 1.0f)) * 100;
+        pBarrel->setProfit(val);
+        
         GameObjectManager::getInstance()->addObject(pBarrel);
     }
 }

@@ -6,15 +6,29 @@ using namespace models;
 void ItemManager::pickupObject(GameObject* pGameObject) {
     this->invObject[pGameObject->getName()] = pGameObject;
     this->vecInvObject.push_back(pGameObject);
-
     if(this->currentGrid < 9) this->currentGrid += 1;
 }
 
 void ItemManager::dropObject() {
-    //delete this->invObject[strName];
     this->vecInvObject.pop_back();
-
     if(this->currentGrid > 0) this->currentGrid -= 1;
+}
+
+void ItemManager::addProfit(GameObject* pGameObject) {
+    this->profitObject[pGameObject->getName()] = pGameObject;
+    this->vecProfitObject.push_back(pGameObject);
+}
+
+void ItemManager::calcProfit() {
+    float totalProfit = 0.0f;
+    for(GameObject* pGameObject : this->vecProfitObject) {
+        totalProfit += pGameObject->getProfit();
+    }
+    std::cout << totalProfit << std::endl;
+}
+
+void ItemManager::deleteProfit() {
+    this->vecProfitObject.pop_back();
 }
 
 GameObject* ItemManager::findObjectByName(std::string strName) {
