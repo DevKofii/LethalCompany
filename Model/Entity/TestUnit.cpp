@@ -2,7 +2,9 @@
 
 using namespace entities;
 
-TestUnit::TestUnit(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, 300.0f, pTexture) {}
+TestUnit::TestUnit(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, 300.0f, pTexture) {
+    this->pHealth = 100;
+}
 
 void TestUnit::initialize() {
     this->centerOrigin();;
@@ -30,4 +32,8 @@ int TestUnit::getFrameStart() {
 
 int TestUnit::getFrameEnd() {
     return this->nFrameEnd;
+}
+
+void TestUnit::getHit() {
+    this->pHealth -= 10;
 }

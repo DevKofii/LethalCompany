@@ -14,6 +14,7 @@ namespace entities {
         private:
             const int nFrameStart = 0;
             const int nFrameEnd = 8;
+            int pHealth;
 
         public:
             TestUnit(std::string strName, AnimatedTexture* pTexture);
@@ -24,5 +25,7 @@ namespace entities {
         public:
             int getFrameStart();
             int getFrameEnd();
+
+            void getHit();
     };
 }

@@ -35,7 +35,7 @@ void BotAction::spawnEnemy() {
 
     if(pEnemy->getGrid() == currentActive) {
         pEnemy->getSprite()->setColor(sf::Color(255,255,255,255));
-        pShadow->getSprite()->setColor(sf::Color(255,255,255,20));
+        pShadow->getSprite()->setColor(sf::Color(255,255,255,10));
         this->bEnabled = true;
     }
     else { 
@@ -197,10 +197,15 @@ void BotAction::checkCollision() {
         }
     }
 
-    //Enemy Collision
+    //Shadow Collision
     if(pPlayer->getSprite()->getGlobalBounds().intersects(pShadow->getSprite()->getGlobalBounds())) { 
         //std::cout << "Chase Player!" << std::endl;
         this->chaseTarget();
+    }
+
+    //Enemy Collision
+    if(pPlayer->getSprite()->getGlobalBounds().intersects(pEnemy->getSprite()->getGlobalBounds())) { 
+        pPlayer->getHit();
     }
 }
 

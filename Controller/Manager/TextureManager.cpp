@@ -29,6 +29,10 @@ void TextureManager::loadTest() {
         this->mapTexture[AssetType::PLAYER].push_back(pTexture);
     }
 
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Debug/char/anims/hit/hit.png");
+    this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+
     //Enemy Assets From https://luizmelo.itch.io/monsters-creatures-fantasy
     //Load enemy
     pTexture = new sf::Texture();

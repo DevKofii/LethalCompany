@@ -36,7 +36,6 @@ void TestEnemy::setRandom() {
     this->random = temp_select;
 }
 
-
 BotTag TestEnemy::getTag() {
     return this->ETag;
 }
